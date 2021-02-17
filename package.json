@@ -1,7 +1,7 @@
 {
   "name": "validations",
   "version": "1.0.0",
-  "description": "",
+  "description": "Frankie Rosado Terry",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -12,8 +12,16 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.3",
-    "mysql2": "^1.6.4",
-    "sequelize": "^4.41.2"
-  }
+    "express": "^4.17.1",
+    "mysql2": "^1.7.0",
+    "sequelize": "^4.44.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Franciscorosado09/Project2.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Franciscorosado09/Project2/issues"
+  },
+  "homepage": "https://github.com/Franciscorosado09/Project2#readme"
 }

@@ -31,7 +31,7 @@ module.exports = (sequelize, DataTypes) => {
 
     complete: {
       type: DataTypes.BOOLEAN,
-      // "defaultValue" is a flag that defaults a new todos complete value to false if not supplied one
+
       defaultValue: false,
     },
   });
