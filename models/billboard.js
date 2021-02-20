@@ -36,11 +36,25 @@ module.exports = (sequelize, DataTypes) => {
     //   },
     // },
 
-    complete: {
-      type: DataTypes.BOOLEAN,
+    // complete: {
+    //   type: DataTypes.BOOLEAN,
 
-      defaultValue: false,
-    },
+    //   defaultValue: false,
+    // },
   });
+
+
+  Billboard.associate = (models) => {
+    Billboard.belongsTo(models.Login, {
+      onDelete: 'cascade',
+    })
+  }
+
+  Billboard.associate = (models) => {
+    Billboard.hasMany(models.Movies, {
+      onDelete: 'cascade',
+    })
+  }
+
   return Billboard;
 };
