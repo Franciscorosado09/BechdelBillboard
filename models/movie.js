@@ -1,5 +1,3 @@
-const billboard = require("./billboard");
-
 module.exports = (sequelize, DataTypes) => {
     const Movies = sequelize.define('Movies', {
 
@@ -13,21 +11,21 @@ module.exports = (sequelize, DataTypes) => {
 
     });
 
+    
+    //blog posts - assiocate movies with blog posts
     Movies.associate = (models) => {
-        // We're saying that a Post should belong to an Author
-        // A Post can't be created without an Author due to the foreign key constraint
-        Movies.belongsToMany(models.Billboard,{ 
+
+        Movies.belongsTo(models.Billboard,{ 
           foreignKey: {
             allowNull: false,
           },
         });
       };
 
-
+      //Favorites - joining movies to user page for displaying.
       Movies.associate = (models) => {
-        // We're saying that a Post should belong to an Author
-        // A Post can't be created without an Author due to the foreign key constraint
-        Movies.belongsTo(models.Login, {
+
+        Movies.belongsTo(models.User, {
           foreignKey: {
             allowNull: false,
           },
