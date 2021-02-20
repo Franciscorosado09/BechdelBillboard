@@ -15,7 +15,6 @@ module.exports = (app) => {
       director: req.body.director,
       genre: req.body.description,
       rating: req.body.rating,
-
     })
       .then((dbMovies) => res.json(dbMovies))
       .catch((err) => res.json(err));
@@ -32,8 +31,8 @@ module.exports = (app) => {
   });
 
 
-  app.put('/api/Movies', (req, res) => {
-    db.Todo.update(
+  app.put('/api/movies/:id', (req, res) => {
+    db.Movies.update(
       {
         title: req.body.title,
         year: req.body.year,

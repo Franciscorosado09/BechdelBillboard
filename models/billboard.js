@@ -43,13 +43,14 @@ module.exports = (sequelize, DataTypes) => {
     // },
   });
 
-
+  //posts linked to author in login.
   Billboard.associate = (models) => {
-    Billboard.belongsTo(models.Login, {
+    Billboard.belongsTo(models.User, {
       onDelete: 'cascade',
     })
   }
 
+  //links to movies - pulls in movies for posts
   Billboard.associate = (models) => {
     Billboard.hasMany(models.Movies, {
       onDelete: 'cascade',
