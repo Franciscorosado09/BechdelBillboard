@@ -1,9 +1,11 @@
+
+
 module.exports = (sequelize, DataTypes) => {
     const Movies = sequelize.define('Movies', {
 
         title: DataTypes.STRING,
-        year: DataTypes.STRING,
         director: DataTypes.STRING,
+        year: DataTypes.STRING,
         genre: DataTypes.STRING,
         description: DataTypes.STRING,
         rating: DataTypes.STRING,
@@ -12,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     
-    //blog posts - assiocate movies with blog posts
+    // //blog posts - assiocate movies with blog posts
     Movies.associate = (models) => {
 
         Movies.belongsTo(models.Billboard,{ 
@@ -20,9 +22,9 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
           },
         });
-      };
+    }
 
-      //Favorites - joining movies to user page for displaying.
+     //Favorites - joining movies to user page for displaying.
       Movies.associate = (models) => {
 
         Movies.belongsTo(models.User, {
@@ -33,4 +35,4 @@ module.exports = (sequelize, DataTypes) => {
       };
 
     return Movies;
-};
+    };

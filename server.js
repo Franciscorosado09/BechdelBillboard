@@ -1,4 +1,5 @@
 const express = require('express');
+//const passport = require("./config/passport");
 
 // Sets up the Express App
 const app = express();
@@ -13,11 +14,30 @@ app.use(express.json());
 
 // Static directory
 app.use(express.static('public'));
+// app.use(
+//   session({ secret: "keyboard cat", resave: true, saveUninitialized: true })
+// );
+// app.use(passport.initialize());
+// app.use(passport.session());
 
 // Routes
-require('./routes/api-routes.js')(app);
+require('./routes/billboard-routes.js')(app);
+// require('./routes/html-routes.js')(app)
+require('./routes/movies-routes.js')(app)
+require('./routes/user-profile-routes.js')(app)
 
-// Syncing our sequelize models and then starting our Express app
-db.sequelize.sync().then(() => {
-  app.listen(PORT, () => console.log(`App listening on PORT ${PORT}`));
+
+db.sequelize.sync({ force: true }).then(() => {
+  app.listen(PORT, () => console.log(`Listening on PORT ${PORT}`));
 });
+
+//for passport - to be added later and remove above port code.
+// db.sequelize.sync().then(() => {
+//   app.listen(PORT, () => {
+//     console.log(
+//       "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
+//       PORT,
+//       PORT
+//     );
+//   });
+// });
