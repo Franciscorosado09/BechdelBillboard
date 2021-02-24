@@ -36,7 +36,11 @@ module.exports = (app) => {
       // POST route for saving a new post
       //
       app.post('/api/billboard-posts', (req, res) => {
-        db.Billboard.create(req.body.post).then((dbBillboard) => res.json(dbBillboard));
+        db.Billboard.create(
+          {
+            post: req.body.post
+          }
+          ).then((dbBillboard) => res.json(dbBillboard));
       });
     
       // DELETE route for deleting posts
