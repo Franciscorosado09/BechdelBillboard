@@ -88,18 +88,28 @@ document.addEventListener('DOMContentLoaded', () => {
       const newmovieDate = document.createElement('small');
       const newmovieuser = document.createElement('h5');
   
-      newmovieuser.textContent = `Written by: ${movie.user.name}`;
+      newmovieuser.textContent = `Directed by: ${movie.director}`;
       newmovieuser.style.float = 'right';
       newmovieuser.style.color = 'blue';
       newmovieuser.style.marginTop = '-10px';
   
       const newmovieCardBody = document.createElement('div');
+
       newmovieCardBody.classmovie.add('card-body');
   
       const newmovieBody = document.createElement('p');
+
+      // Creating the document Elements so we need to list all movie info
       newmovieTitle.textContent = `${movie.title} `;
-      newmovieBody.textContent = movie.body;
+      newmovieDirector.textContent = movie.year;
+      newmovieYear.textContent = movie.year;
+      newmovieGenre.textContent = movie.genre;
+      newmovieDescription.textContent = movie.desciption;
       newmovieDate.textContent = ` (${formattedDate})`;
+
+
+
+
       newmovieTitle.append(newmovieDate);
       newmovieCardHeading.append(deleteBtn);
       newmovieCardHeading.append(editButton);

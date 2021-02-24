@@ -1,5 +1,6 @@
 const express = require('express');
-//const passport = require("./config/passport");
+const session = require("express-session");
+const passport = require("./config/passport");
 
 // Sets up the Express App
 const app = express();
@@ -14,11 +15,11 @@ app.use(express.json());
 
 // Static directory
 app.use(express.static('public'));
-// app.use(
-//   session({ secret: "keyboard cat", resave: true, saveUninitialized: true })
-// );
-// app.use(passport.initialize());
-// app.use(passport.session());
+app.use(
+  session({ secret: "keyboard cat", resave: true, saveUninitialized: true })
+);
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Routes
 require('./routes/billboard-routes.js')(app);

@@ -20,6 +20,7 @@ module.exports = (app) => {
     })
       .then((dbMovies) => res.json(dbMovies))
       .catch((err) => res.json(err));
+      
   });
 
 
