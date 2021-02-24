@@ -25,6 +25,8 @@ document.addEventListener('DOMContentLoaded', () => {
   let titleId;
   let directorId;
   let yearID;
+  let genreID;
+  let descriptionID;
   let updating = false;
 
   // Get movie data for editing/adding

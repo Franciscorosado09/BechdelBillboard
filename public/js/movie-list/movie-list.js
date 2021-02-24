@@ -4,16 +4,16 @@ document.addEventListener('DOMContentLoaded', () => {
   
     const movieContainer = document.querySelector('.movie-container');
   
-    // Variable to hold our posts
-    let posts;
+    // Variable to hold our movies
+    let movies;
   
-    const getPosts = (user) => {
+    const getmovies = (user) => {
       userId = user || '';
       if (userId) {
         userId = `/?user_id=${userId}`;
       }
   
-      fetch(`/api/posts${userId}`, {
+      fetch(`/api/movies${userId}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -21,8 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
       })
         .then((response) => response.json())
         .then((data) => {
-          posts = data;
-          console.log('Success in getting posts:', data);
+          movies = data;
+          console.log('Success in getting movies:', data);
           if (!data || !data.length) {
             displayEmpty(user);
           } else {
@@ -32,89 +32,89 @@ document.addEventListener('DOMContentLoaded', () => {
         .catch((error) => console.error('Error:', error));
     };
   
-    // Get a movie post from a specific user
+    // Get a movie movie from a specific user
     const url = window.location.search;
     let userId;
     if (url.indexOf('?user_id=') !== -1) {
       userId = url.split('=')[1];
-      getPosts(userId);
+      getmovies(userId);
     } else {
-      getPosts();
+      getmovies();
     }
   
-    // Front end call to DELETE a post
-    const deletePost = (id) => {
-      fetch(`/api/posts/${id}`, {
+    // Front end call to DELETE a movie
+    const deletemovie = (id) => {
+      fetch(`/api/movies/${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
         },
-      }).then(getPosts());
+      }).then(getmovies());
     };
   
     // Create HTML rows for the movie container
     const initializeRows = () => {
       movieContainer.innerHTML = '';
-      const postsToAdd = [];
+      const moviesToAdd = [];
   
-      posts.forEach((post) => postsToAdd.push(createNewRow(post)));
-      postsToAdd.forEach((post) => movieContainer.append(post));
+      movies.forEach((movie) => moviesToAdd.push(createNewRow(movie)));
+      moviesToAdd.forEach((movie) => movieContainer.append(movie));
     };
   
-    const createNewRow = (post) => {
-      console.log('createNewRow -> post', post);
+    const createNewRow = (movie) => {
+      console.log('createNewRow -> movie', movie);
   
-      const formattedDate = new Date(post.createdAt).toLocaleDateString();
+      const formattedDate = new Date(movie.createdAt).toLocaleDateString();
   
-      const newPostCard = document.createElement('div');
-      newPostCard.classmovie.add('card');
+      const newmovieCard = document.createElement('div');
+      newmovieCard.classmovie.add('card');
   
-      const newPostCardHeading = document.createElement('div');
-      newPostCardHeading.classmovie.add('card-header');
+      const newmovieCardHeading = document.createElement('div');
+      newmovieCardHeading.classmovie.add('card-header');
   
       // Delete button
       const deleteBtn = document.createElement('button');
       deleteBtn.textContent = 'x';
       deleteBtn.classmovie.add('delete', 'btn', 'btn-danger');
-      deleteBtn.addEventListener('click', handlePostDelete);
+      deleteBtn.addEventListener('click', handlemovieDelete);
   
       // Edit button
       const editButton = document.createElement('button');
       editButton.textContent = 'EDIT';
       editButton.classmovie.add('edit', 'btn', 'btn-info');
-      editButton.addEventListener('click', handlePostEdit);
+      editButton.addEventListener('click', handlemovieEdit);
   
-      const newPostTitle = document.createElement('h2');
-      const newPostDate = document.createElement('small');
-      const newPostuser = document.createElement('h5');
+      const newmovieTitle = document.createElement('h2');
+      const newmovieDate = document.createElement('small');
+      const newmovieuser = document.createElement('h5');
   
-      newPostuser.textContent = `Written by: ${post.user.name}`;
-      newPostuser.style.float = 'right';
-      newPostuser.style.color = 'blue';
-      newPostuser.style.marginTop = '-10px';
+      newmovieuser.textContent = `Written by: ${movie.user.name}`;
+      newmovieuser.style.float = 'right';
+      newmovieuser.style.color = 'blue';
+      newmovieuser.style.marginTop = '-10px';
   
-      const newPostCardBody = document.createElement('div');
-      newPostCardBody.classmovie.add('card-body');
+      const newmovieCardBody = document.createElement('div');
+      newmovieCardBody.classmovie.add('card-body');
   
-      const newPostBody = document.createElement('p');
-      newPostTitle.textContent = `${post.title} `;
-      newPostBody.textContent = post.body;
-      newPostDate.textContent = ` (${formattedDate})`;
-      newPostTitle.append(newPostDate);
-      newPostCardHeading.append(deleteBtn);
-      newPostCardHeading.append(editButton);
-      newPostCardHeading.append(newPostTitle);
-      newPostCardHeading.append(newPostuser);
-      newPostCardBody.append(newPostBody);
-      newPostCard.append(newPostCardHeading);
-      newPostCard.append(newPostCardBody);
-      newPostCard.setAttribute('data-post', JSON.stringify(post));
+      const newmovieBody = document.createElement('p');
+      newmovieTitle.textContent = `${movie.title} `;
+      newmovieBody.textContent = movie.body;
+      newmovieDate.textContent = ` (${formattedDate})`;
+      newmovieTitle.append(newmovieDate);
+      newmovieCardHeading.append(deleteBtn);
+      newmovieCardHeading.append(editButton);
+      newmovieCardHeading.append(newmovieTitle);
+      newmovieCardHeading.append(newmovieuser);
+      newmovieCardBody.append(newmovieBody);
+      newmovieCard.append(newmovieCardHeading);
+      newmovieCard.append(newmovieCardBody);
+      newmovieCard.setAttribute('data-movie', JSON.stringify(movie));
   
-      console.log('createNewRow -> newPostCard', newPostCard);
-      return newPostCard;
+      console.log('createNewRow -> newmovieCard', newmovieCard);
+      return newmovieCard;
     };
   
-    // Helper function to display something when there are no posts
+    // Helper function to display something when there are no movies
     const displayEmpty = (id) => {
       const query = window.location.search;
       let partial = '';
@@ -126,26 +126,26 @@ document.addEventListener('DOMContentLoaded', () => {
       const messageH2 = document.createElement('h2');
       messageH2.style.textAlign = 'center';
       messageH2.style.marginTop = '50px';
-      messageH2.innerHTML = `No posts yet${partial}, navigate <a href='/cms${query}'>here</a> in order to get started.`;
+      messageH2.innerHTML = `No movies yet${partial}, navigate <a href='/cms${query}'>here</a> in order to get started.`;
       movieContainer.append(messageH2);
     };
   
-    // Handle when we click the delete post button
-    const handlePostDelete = (e) => {
-      const currentPost = JSON.parse(
-        e.target.parentElement.parentElement.dataset.post
+    // Handle when we click the delete movie button
+    const handlemovieDelete = (e) => {
+      const currentmovie = JSON.parse(
+        e.target.parentElement.parentElement.dataset.movie
       );
   
-      deletePost(currentPost.id);
+      deletemovie(currentmovie.id);
     };
   
-    // Handle when we click the edit post button
-    const handlePostEdit = (e) => {
-      const currentPost = JSON.parse(
-        e.target.parentElement.parentElement.dataset.post
+    // Handle when we click the edit movie button
+    const handlemovieEdit = (e) => {
+      const currentmovie = JSON.parse(
+        e.target.parentElement.parentElement.dataset.movie
       );
   
-      window.location.href = `/cms?post_id=${currentPost.id}`;
+      window.location.href = `/cms?movie_id=${currentmovie.id}`;
     };
   });
   
