@@ -15,12 +15,18 @@ module.exports = (app) => {
       year: req.body.year,
       genre: req.body.genre,
       description: req.body.description,
-      image: req.body.image
+      image: req.body.image,
+      
       // rating: req.body.rating,
     })
-      .then((dbMovies) => res.json(dbMovies))
+      .then((dbMovies) => res.send(dbMovies))
       .catch((err) => res.json(err));
+<<<<<<< HEAD
       
+=======
+
+  
+>>>>>>> adding fixes
   });
 
 
