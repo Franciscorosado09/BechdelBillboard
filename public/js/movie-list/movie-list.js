@@ -2,18 +2,20 @@
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOM loaded! 🚀');
   
-    const movieContainer = document.querySelector('.movie-container');
+    const movieContainer = document.querySelector('.movies-container');
   
     // Variable to hold our movies
     let movies;
   
-    const getmovies = (user) => {
-      userId = user || '';
-      if (userId) {
-        userId = `/?user_id=${userId}`;
-      }
+    // user
+    const getmovies = () => {
+      // userId = user || '';
+      // if (userId) {
+      //   userId = `/?user_id=${userId}`;
+      // 
+    }
   
-      fetch(`/api/movies${userId}`, {
+      fetch(`/api/movies`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -33,24 +35,24 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   
     // Get a movie movie from a specific user
-    const url = window.location.search;
-    let userId;
-    if (url.indexOf('?user_id=') !== -1) {
-      userId = url.split('=')[1];
-      getmovies(userId);
-    } else {
-      getmovies();
-    }
+    // const url = window.location.search;
+    // let userId;
+    // if (url.indexOf('?user_id=') !== -1) {
+    //   userId = url.split('=')[1];
+    //   getmovies(userId);
+    // } else {
+    //   getmovies();
+    // }
   
     // Front end call to DELETE a movie
-    const deletemovie = (id) => {
-      fetch(`/api/movies/${id}`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }).then(getmovies());
-    };
+    // const deletemovie = (id) => {
+    //   fetch(`/api/movies/${id}`, {
+    //     method: 'DELETE',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+    //   }).then(getmovies());
+    // };
   
     // Create HTML rows for the movie container
     const initializeRows = () => {
@@ -64,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const createNewRow = (movie) => {
       console.log('createNewRow -> movie', movie);
   
-      const formattedDate = new Date(movie.createdAt).toLocaleDateString();
+      // const formattedDate = new Date(movie.createdAt).toLocaleDateString();
   
       const newmovieCard = document.createElement('div');
       newmovieCard.classmovie.add('card');
@@ -73,10 +75,10 @@ document.addEventListener('DOMContentLoaded', () => {
       newmovieCardHeading.classmovie.add('card-header');
   
       // Delete button
-      const deleteBtn = document.createElement('button');
-      deleteBtn.textContent = 'x';
-      deleteBtn.classmovie.add('delete', 'btn', 'btn-danger');
-      deleteBtn.addEventListener('click', handlemovieDelete);
+      // const deleteBtn = document.createElement('button');
+      // deleteBtn.textContent = 'x';
+      // deleteBtn.classmovie.add('delete', 'btn', 'btn-danger');
+      // deleteBtn.addEventListener('click', handlemovieDelete);
   
       // Edit button
       const editButton = document.createElement('button');
@@ -84,40 +86,51 @@ document.addEventListener('DOMContentLoaded', () => {
       editButton.classmovie.add('edit', 'btn', 'btn-info');
       editButton.addEventListener('click', handlemovieEdit);
   
-      const newmovieTitle = document.createElement('h2');
-      const newmovieDate = document.createElement('small');
-      const newmovieuser = document.createElement('h5');
+      const newmovieTitle = document.createElement('h3');
+      const newmovieYear = document.createElement('h3');
+      const newmovieGenre = document.createElement('p');
+
+
+
+      // const newmovieDate = document.createElement('small');
+      const newmovieuser = document.createElement('h3');
   
       newmovieuser.textContent = `Directed by: ${movie.director}`;
       newmovieuser.style.float = 'right';
       newmovieuser.style.color = 'blue';
       newmovieuser.style.marginTop = '-10px';
   
-      const newmovieCardBody = document.createElement('div');
+      const newmovieCardDescription = document.createElement('div');
 
-      newmovieCardBody.classmovie.add('card-body');
+      newmovieCardDescription.classmovie.add('card-body');
   
-      const newmovieBody = document.createElement('p');
+      const newmovieDescription = document.createElement('p');
 
       // Creating the document Elements so we need to list all movie info
       newmovieTitle.textContent = `${movie.title} `;
-      newmovieDirector.textContent = movie.year;
+      // newmovieDirector.textContent = movie.year;
       newmovieYear.textContent = movie.year;
       newmovieGenre.textContent = movie.genre;
       newmovieDescription.textContent = movie.desciption;
-      newmovieDate.textContent = ` (${formattedDate})`;
+      // newmovieDate.textContent = ` (${formattedDate})`;
 
 
 
 
       newmovieTitle.append(newmovieDate);
-      newmovieCardHeading.append(deleteBtn);
-      newmovieCardHeading.append(editButton);
+
+      // newmovieCardHeading.append(deleteBtn);
+      // newmovieCardHeading.append(editButton);
+
+
       newmovieCardHeading.append(newmovieTitle);
-      newmovieCardHeading.append(newmovieuser);
-      newmovieCardBody.append(newmovieBody);
+      // newmovieCardHeading.append(newmovieuser);
+      newmovieCardDescription.append(newmovieYear);
+      newmovieCardDescription.append(newmovieGenre);
+      newmovieCardDescription.append(newmovieDescription);
+
       newmovieCard.append(newmovieCardHeading);
-      newmovieCard.append(newmovieCardBody);
+      newmovieCard.append(newmovieCardDescription);
       newmovieCard.setAttribute('data-movie', JSON.stringify(movie));
   
       console.log('createNewRow -> newmovieCard', newmovieCard);
