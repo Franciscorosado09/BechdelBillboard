@@ -9,51 +9,51 @@ const db = require('../models');
 module.exports = (app) => {
   app.get('/api/profile', (req, res) => {
     const query = {};
-    if (req.query.author_id) {
-      query.AuthorId = req.query.user_id;
+    if (req.query.user_id) {
+      query.UserId = req.query.user_id;
     }
     // Here we add an "include" property to our options in our findAll query
     // We set the value to an array of the models we want to include in a left outer join
     // In this case, just db.Author
-    db.Login.findAll({
+    db.User.findAll({
       where: query,
-      include: [db.Author],
-    }).then((dbLogin) => res.json(dbLogin));
+      include: [db.Billboard],
+    }).then((dbUser) => res.json(dbUser));
   });
 
   // Get route for retrieving a single Login
-  app.get('/api/login/:id', (req, res) => {
+  app.get('/api/profile/:id', (req, res) => {
     // Here we add an "include" property to our options in our findOne query
     // We set the value to an array of the models we want to include in a left outer join
     // In this case, just db.Author
-    db.Login.findOne({
+    db.User.findOne({
       where: {
         id: req.params.id,
       },
-      include: [db.Author],
+      include: [db.Movies],
     }).then((dbLogin) => res.json(dbLogin));
   });
 
   // POST route for saving a new Login
   app.post('/api/login', (req, res) => {
-    db.Login.create(req.body).then((dbLogin) => res.json(dbLogin));
+    db.Login.create(req.body).then((dbUser) => res.json(dbUser));
   });
 
   // DELETE route for deleting Login
   app.delete('/api/login/:id', (req, res) => {
-    db.Login.destroy({
+    db.User.destroy({
       where: {
         id: req.params.id,
       },
-    }).then((dbLogin) => res.json(dbLogin));
+    }).then((dbUser) => res.json(dbUser));
   });
 
   // PUT route for updating Login
   app.put('/api/login', (req, res) => {
-    db.Login.update(req.body, {
+    db.User.update(req.body, {
       where: {
         id: req.body.id,
       },
-    }).then((dbLogin) => res.json(dbLogin));
+    }).then((dbUser) => res.json(dbUser));
   });
 };

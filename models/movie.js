@@ -8,31 +8,35 @@ module.exports = (sequelize, DataTypes) => {
         year: DataTypes.STRING,
         genre: DataTypes.STRING,
         description: DataTypes.STRING,
-        rating: DataTypes.STRING,
-        favorites: {type: DataTypes.BOOLEAN, defaultValue: false } // True = Favorite
+        image: DataTypes.STRING,
+        //rating: DataTypes.STRING,
 
+        createdAt: DataTypes.DATE,
+        updatedAt: DataTypes.DATE,
     });
 
     
-    // //blog posts - assiocate movies with blog posts
-    Movies.associate = (models) => {
 
-        Movies.belongsTo(models.Billboard,{ 
-          foreignKey: {
-            allowNull: false,
-          },
-        });
-    }
+    
+    // // //blog posts - assiocate movies with blog posts
+    // Movies.associate = (models) => {
+    //   //switch to hasmany?
+    //     Movies.belongsTo(models.Billboard,{ 
+    //       foreignKey: {
+    //         allowNull: false,
+    //       },
+    //     });
+    // }
 
-     //Favorites - joining movies to user page for displaying.
-      Movies.associate = (models) => {
+    //  //Favorites - joining movies to user page for displaying.
+      // Movies.associate = (models) => {
 
-        Movies.belongsTo(models.User, {
-          foreignKey: {
-            allowNull: false,
-          },
-        });
-      };
+      //   Movies.belongsTo(models.User, {
+      //     foreignKey: {
+      //       allowNull: false,
+      //     },
+      //   });
+      // };
 
     return Movies;
     };
