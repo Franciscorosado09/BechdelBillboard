@@ -24,6 +24,10 @@
 ![billboard](./mockup/billboard.png)
 ![blogpost](./mockup/blogpost.png)
 
+# Flow Charts
+
+![bbFlowchart](./mockup/bbFlowchart.png)
+
 # Team Postions:
 
     1. Young Ji Kim - 100% Backend 

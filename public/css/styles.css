@@ -25,5 +25,80 @@ input.new-item:focus {
 
 body{
 
-  background-image: url(/assets/Forfutue.png);
+  background-image: url(/assets/Modern\ Polka\ Dots\ .png);
+  background-size: 115%;
+
+  font-family: 'Jura', sans-serif;
+}
+h1{
+
+  font-family: 'Krona One', sans-serif;
+}
+
+nav{
+
+  background-color:  #fcb9b2;
+  opacity: 0.;
+  margin-top: 1%;
+  
+  font-family: 'Krona One', sans-serif;
+ 
+}
+
+#navText{
+  color: #5d4e60;
+  text-shadow: 2px 2px #fef9ff;
+
+}
+
+.btn {
+  background-color: #5d4e60; 
+  color: #fef9ff;
+  font-size: 150%;
+
+}
+
+/* CSS specfic for List HTML */
+
+.List{
+  margin-top: 7%;
+  
+}
+
+#list{
+  border-left-style: solid;
+  border-right-style: solid;
+}
+
+#titleList{
+  text-align: center;
+  text-shadow: 4px 2px #5d4e60;
+  color: #fcb9b2;
+ background-color: #fef9ff;
+
+  font-size: 400%;
+}
+
+.btn {
+  background-color: #5d4e60; 
+  color: #fef9ff;
+  font-size: 150%;
+
+}
+
+
+/* CSS specific for Movie list CMS */
+
+.movieForm {
+  margin-top: 3%;
+  
+
+}
+
+#cms{
+  font-size: 120%;
+  font-weight: bold;
+  background-color: #fcb9b2;
+
+  padding: 2%;
 }

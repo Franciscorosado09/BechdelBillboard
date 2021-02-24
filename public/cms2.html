@@ -25,8 +25,8 @@
             <ul id="navText" class="nav navbar-nav">
                 <li class="active"><a id="navText" href="#"> The Billboard <span class="sr-only">(current)</span></a></li>
                 <li><a id="navText" href="#">About Us</a></li>
-                <li><a id="navText" href="#">The List</a></li>
-                <li><a id="navText" href="#">User Profile</a></li>
+                <li><a id="navText" href="theList.html">The List</a></li>
+                <li><a id="navText" href="/public/userProfile.html">User Profile</a></li>
 
         </div>
 
@@ -34,31 +34,29 @@
 
 
 
-    <div class="container hidden">
-        <div class="row top-30">
-            <div class="col-md-2 col-sm-2">
-                <a class="btn btn-light" href="/billboard-posts">Go to Blog</a>
-            </div>
-            <div class="col-md-2 col-sm-2">
-                <a class="btn btn-light" href="/login">Manage Authors</a>
-            </div>
+    <div class="movieForm">
+        <div>
+            <h1 id="titleList"> Add a Movie for Review </h1>
         </div>
         <div class="row">
             <div class="col-md-6 offset-md-3">
                 <form id="cms">
                     <div class="form-group">
                         <label for="title">Title:</label>
-                        <input placeholder="Post Title" type="text" class="form-control" id="title">
+                        <input placeholder="Movie Title" type="text" class="form-control" id="title">
                         <br />
-                        <label for="title">Title:</label>
-                        <input placeholder="Post Title" type="text" class="form-control" id="title">
-                        <label for="body">Body:</label>
-                        <textarea placeholder="Post Body" class="form-control" rows="10" id="body"></textarea>
-                        <div class="form-group">
-                            <label for="category">Select Author:</label>
-                            <select class="custom-select" id="author">
-                            </select>
-                        </div>
+                        <label for="director">Director:</label>
+                        <input placeholder="Movie Director" type="text" class="form-control" id="title">
+                        <br />
+                        <label for="year">Year:</label>
+                        <input placeholder="Movie Year" type="text" class="form-control" id="title">
+                        <br />
+                        <label for="genre">Genre:</label>
+                        <input placeholder="Movie Genre" type="text" class="form-control" id="title">
+                        <br />
+                        <label for="description">Description:</label>
+                        <textarea placeholder="Movie Description" class="form-control" rows="10" id="body"></textarea>
+                        <br />
                         <br />
                         <button type="submit" class="btn btn-success submit">Submit</button>
                     </div>
