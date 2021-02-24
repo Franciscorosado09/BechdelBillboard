@@ -1,9 +1,10 @@
 module.exports = (sequelize, DataTypes) => {
   const Billboard = sequelize.define('Billboard', {
-    text: {
+    post: {
       type: DataTypes.STRING,
       
-      allowNull: false,
+      //not working - get error message
+      // allowNull: false,
       
       validate: {
         len: [1, 500],
@@ -11,16 +12,17 @@ module.exports = (sequelize, DataTypes) => {
     },
 
     //npm multer??
-    icon: {
-      type: DataTypes.STRING,
+    // icon: {
+    //   type: DataTypes.STRING,
       
-      allowNull: false,
+    //   allowNull: false,
       
-      validate: {
-        len: [1, 200],
-      },
-    },
+    //   validate: {
+    //     len: [1, 200],
+    //   },
+    // },
 
+    
     //associate to Author - login table
 
     //asssociate to Rating - movie table
@@ -43,6 +45,8 @@ module.exports = (sequelize, DataTypes) => {
     // },
   });
 
+
+
   //posts linked to user in user.
   Billboard.associate = (models) => {
     Billboard.belongsTo(models.User, {
@@ -51,11 +55,12 @@ module.exports = (sequelize, DataTypes) => {
   }
 
   // //links to movies - pulls in movies for posts
-  Billboard.associate = (models) => {
-    Billboard.hasMany(models.Movies, {
-      onDelete: 'cascade',
-    })
-  }
+  // Billboard.associate = (models) => {
+  //   Billboard.hasMany(models.Movies, {
+  //     onDelete: 'cascade',
+  //   })
+  // }
+ 
 
   return Billboard;
 };
