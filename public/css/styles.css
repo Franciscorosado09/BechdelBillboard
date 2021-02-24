@@ -17,3 +17,13 @@ input.new-item:focus {
 .edit {
   width: 100%;
 }
+
+#billboard{
+
+  background-image: url(/);
+}
+
+body{
+
+  background-image: url(/assets/Forfutue.png);
+}
