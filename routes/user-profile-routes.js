@@ -9,7 +9,7 @@ const isAuthenticated = require ('../config/middleware/isAuthenticated')
 
 // Routes
 module.exports = (app) => {
-  app.get('/api/profile', isAuthenticated,(req, res) => {  ///<--- USE ISAUTHENTICATED IF YOU WANT BOUNCE BACK WHEN SOMEONE TRIES TO CHANGE LINK
+  app.get('/api/profile', isAuthenticated,(req, res) => {  ///<--- YJK TESTED //USE ISAUTHENTICATED IF YOU WANT BOUNCE BACK WHEN SOMEONE TRIES TO CHANGE LINK
     const query = {};
     query.id = req.user.id
     // if (req.user_id) {
@@ -55,7 +55,7 @@ module.exports = (app) => {
       },
     }).then((dbUser) => res.json(dbUser));
   });
-
+  
   // PUT route for updating Login
   app.put('/api/login', (req, res) => {
     db.User.update(req.body, {
@@ -70,7 +70,7 @@ module.exports = (app) => {
 // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
 // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
 // otherwise send back an error
-app.post("/api/signup", (req, res) => {
+app.post("/api/signup", (req, res) => { //<-- YJK TESTED
   db.User.create({
     email: req.body.email,
     password: req.body.password
