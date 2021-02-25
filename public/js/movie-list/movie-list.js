@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // 
     }
   
-      fetch(`/api/movies`, {
+      fetch(`/api/movie-list`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -168,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
         e.target.parentElement.parentElement.dataset.movie
       );
   
-      window.location.href = `/cms?movie_id=${currentmovie.id}`;
+      window.location.href = `/cms2?movie_id=${currentmovie.id}`;
     };
   });
   

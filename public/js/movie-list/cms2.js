@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Get movie data for editing/adding
   const getmovieData = (id, type) => {
     const queryUrl =
-      type === 'movie' ? `/api/movies/` : `/api/movies/${id}`;
+      type === 'movie' ? `/api/movie-list` : `//api/movie-list${id}`;
 
     fetch(queryUrl, {
       method: 'GET',

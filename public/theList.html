@@ -7,70 +7,71 @@
   <!-- Latest compiled and minified CSS & JS -->
   <link href="https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/flatly/bootstrap.min.css" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Jura&family=Krona+One&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Jura&family=Krona+One&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/styles.css" media="screen" title="no title">
 </head>
 
 <body>
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <a class="navbar-brand" href="#">
-              <img alt="Brand" src="/assets/BB.png"  style="height: auto; width: 10%;">
-            </a>
-           
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">
+          <img id="logo" alt="Brand" src="/assets/BB.png" style="height: auto; width: 10%;">
+        </a>
 
-          </div>
-          <ul class="nav navbar-nav">
-            <li  class="active"><a id="navText"href="#"> The Billboard </a></li>
-            <li><a id="navText" href="#">About Us</a></li>
-            <li><a id="navText" href="#">The List<span class="sr-only">(current)</span></a></li>
-            <li><a id="navText" href="#">User Profile</a></li>
-           
-        </div>
-        
-      </nav>
 
-     
+      </div>
+      <ul class="nav navbar-nav">
+        <li><a id="navText" href="/public/billboard.html"> The Billboard </a></li>
+        <li><a id="navText" href="/public/aboutUs.html">About Us</a></li>
+        <li class="active"><a id="navText" href="/public/theList.html">The List<span
+              class="sr-only">(current)</span></a></li>
+        <li><a id="navText" href="/public/userProfile.html">User Profile</a></li>
 
-      <div class="row List">
-        <div class="col-md-3"></div>
-        <div id= "list" class="col-md-6">
-            <H1 id= "titleList"> The List </H1>
+    </div>
 
-            <!-- This connects to javascript and pulls in Movie Data -->
-
-            <div class="row">
-              <div class="col-md-12 movies-container">
-              </div>
-          </div>
+  </nav>
 
 
 
+  <div class="row List">
+    <div class="col-md-3"></div>
+    <div id="list" class="col-md-6">
+      <H1 id="titleList"> The List </H1>
 
+      <!-- This connects to javascript and pulls in Movie Data -->
 
-
-
-        </div>
-        <div class="col-md-3">
-          <div class="col-md-2 col-sm-2">
-            <a class="btn btn-light" href="cms2">Add Movie</a>
-            
-        </div>
-        <a style="margin-left: 5% ;"> *subject to review</a>
+      <div class="row">
+        <div class="col-md-12 movies-container">
         </div>
       </div>
 
 
 
 
-  
 
-  
+
+
+    </div>
+    <div class="col-md-3">
+      <div class="col-md-2 col-sm-2">
+        <a class="btn btn-light" href="cms2">Add Movie</a>
+
+      </div>
+      <a style="margin-left: 5% ;"> *subject to review</a>
+    </div>
+  </div>
+
+
+
+
+
+
+
 
   <!-- Custom Script -->
-  <script src="js/blog.js" type="text/javascript"></script>
+  <script src="js/movie-list/movie-list.js" type="text/javascript"></script>
 
 </body>
 
