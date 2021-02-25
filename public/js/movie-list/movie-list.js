@@ -34,6 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
       .catch((error) => console.error('Error:', error));
   };
 
+  getmovies()
+
   // Get a movie movie from a specific user
   // const url = window.location.search;
   // let userId;
@@ -55,16 +57,16 @@ document.addEventListener('DOMContentLoaded', () => {
   // };
 
   // Create HTML rows for the movie container
-  const initializeRows = () => {
+  const initializeRows = (movies) => {
     movieContainer.innerHTML = '';
     const moviesToAdd = [];
 
-    movies.forEach((movie) => moviesToAdd.push(createNewRow(movie)));
-    moviesToAdd.forEach((movie) => movieContainer.append(movie));
+    movies.forEach((movies) => moviesToAdd.push(createNewRow(movies)));
+    moviesToAdd.forEach((movies) => movieContainer.append(movies));
   };
 
-  const createNewRow = (movie) => {
-    console.log('createNewRow -> movie', movie);
+  const createNewRow = (movies) => {
+    console.log('createNewRow -> movie', movies);
 
     // const formattedDate = new Date(movie.createdAt).toLocaleDateString();
 
@@ -81,10 +83,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // deleteBtn.addEventListener('click', handlemovieDelete);
 
     // Edit button
-    const editButton = document.createElement('button');
-    editButton.textContent = 'EDIT';
-    editButton.classmovie.add('edit', 'btn', 'btn-info');
-    editButton.addEventListener('click', handlemovieEdit);
+    // const editButton = document.createElement('button');
+    // editButton.textContent = 'EDIT';
+    // editButton.classmovie.add('edit', 'btn', 'btn-info');
+    // editButton.addEventListener('click', handlemovieEdit);
 
     const newmovieTitle = document.createElement('h3');
     const newmovieYear = document.createElement('h3');
@@ -95,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // const newmovieDate = document.createElement('small');
     const newmovieuser = document.createElement('h3');
 
-    newmovieuser.textContent = `Directed by: ${movie.director}`;
+    newmovieuser.textContent = `Directed by: ${movies.director}`;
     newmovieuser.style.float = 'right';
     // newmovieuser.style.color = 'blue';
     newmovieuser.style.marginTop = '-10px';
@@ -107,17 +109,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const newmovieDescription = document.createElement('p');
 
     // Creating the document Elements so we need to list all movie info
-    newmovieTitle.textContent = `${movie.title} `;
+    newmovieTitle.textContent = `${movies.title} `;
     // newmovieDirector.textContent = movie.year;
-    newmovieYear.textContent = movie.year;
-    newmovieGenre.textContent = movie.genre;
-    newmovieDescription.textContent = movie.desciption;
+    newmovieYear.textContent = `${movies.year}`;
+    newmovieGenre.textContent = `${movies.genre}`;
+    newmovieDescription.textContent = `${movies.desciption}`;
     // newmovieDate.textContent = ` (${formattedDate})`;
 
 
 
 
-    newmovieTitle.append(newmovieDate);
+    // newmovieTitle.append(newmovieDate);
 
     // newmovieCardHeading.append(deleteBtn);
     // newmovieCardHeading.append(editButton);
@@ -131,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     newmovieCard.append(newmovieCardHeading);
     newmovieCard.append(newmovieCardDescription);
-    newmovieCard.setAttribute('data-movie', JSON.stringify(movie));
+    newmovieCard.setAttribute('data-movie', JSON.stringify(movies));
 
     console.log('createNewRow -> newmovieCard', newmovieCard);
     return newmovieCard;
@@ -154,20 +156,20 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // Handle when we click the delete movie button
-  const handlemovieDelete = (e) => {
-    const currentmovie = JSON.parse(
-      e.target.parentElement.parentElement.dataset.movie
-    );
+  // const handlemovieDelete = (e) => {
+  //   const currentmovie = JSON.parse(
+  //     e.target.parentElement.parentElement.dataset.movie
+  //   );
 
-    deletemovie(currentmovie.id);
-  };
+  //   deletemovie(currentmovie.id);
+  // };
 
-  // Handle when we click the edit movie button
-  const handlemovieEdit = (e) => {
-    const currentmovie = JSON.parse(
-      e.target.parentElement.parentElement.dataset.movie
-    );
+  // // Handle when we click the edit movie button
+  // const handlemovieEdit = (e) => {
+  //   const currentmovie = JSON.parse(
+  //     e.target.parentElement.parentElement.dataset.movie
+  //   );
 
-    window.location.href = `/cms2?movie_id=${currentmovie.id}`;
-  };
+  //   window.location.href = `/cms2?movie_id=${currentmovie.id}`;
+  // };
 });
