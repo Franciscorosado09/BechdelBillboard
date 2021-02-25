@@ -55,6 +55,7 @@ module.exports = (sequelize, DataTypes) => {
   //   })
   // }
 
+
   // // //links to movies - pulls in movies for posts
   // Billboard.associate = (models) => {
   //   Billboard.hasMany(models.Movies, {
@@ -62,6 +63,7 @@ module.exports = (sequelize, DataTypes) => {
   //   allowNull: false
   //   })
   // }
+
  
 
   return Billboard;

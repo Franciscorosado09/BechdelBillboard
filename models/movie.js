@@ -1,6 +1,7 @@
 
 
 module.exports = (sequelize, DataTypes) => {
+
   const Movies = sequelize.define('Movies', {
 
     title: DataTypes.STRING,
@@ -41,8 +42,10 @@ module.exports = (sequelize, DataTypes) => {
     Movies.belongsTo(models.User, {
       foreignKey: "favMovieID",
       allowNull: false
+
     });
   };
+
 
   return Movies;
 
