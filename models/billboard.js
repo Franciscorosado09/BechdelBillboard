@@ -55,11 +55,11 @@ module.exports = (sequelize, DataTypes) => {
   }
 
   // //links to movies - pulls in movies for posts
-  // Billboard.associate = (models) => {
-  //   Billboard.hasMany(models.Movies, {
-  //     onDelete: 'cascade',
-  //   })
-  // }
+  Billboard.associate = (models) => {
+    Billboard.hasMany(models.Movies, {
+      onDelete: 'cascade',
+    })
+  }
  
 
   return Billboard;

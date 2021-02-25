@@ -38,11 +38,11 @@ module.exports = (sequelize, DataTypes) => {
     })
   }
 
-  // User.associate = (models) => {
-  //   User.hasMany(models.Movies, {
-  //     onDelete: 'cascade',
-  //   })
-  // }
+  User.associate = (models) => {
+    User.hasMany(models.Movies, {
+      onDelete: 'cascade',
+    })
+  }
 
   User.prototype.validPassword = function (password) {
     return bcrypt.compareSync(password, this.password);
