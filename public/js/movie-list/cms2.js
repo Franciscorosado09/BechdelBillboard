@@ -26,46 +26,46 @@ document.addEventListener('DOMContentLoaded', () => {
   let updating = false;
 
   // Get movie data for editing/adding
-  const getmovieData = (id, type) => {
-    const queryUrl =
-      type === 'movie' ? `/api/movie-list${id}` : `/api/movie-list${title}`;
+  // const getmovieData = (id, type) => {
+  //   const queryUrl =
+  //     type === 'movie' ? `/api/movie-list${id}` : `/api/movie-list${title}`;
 
-    fetch(queryUrl, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data) {
-          console.log('Success in getting movie:', data);
+  //   fetch(queryUrl, {
+  //     method: 'GET',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //   })
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       if (data) {
+  //         console.log('Success in getting movie:', data);
 
-          // Populate the form for editing
-          titleInput.value = data.title;
-          directorInput.value = data.director;
-          yearInput.value = data.year;
-          genreInput.value = data.genre;
-          descriptionInput.value = data.description;
+  //         // Populate the form for editing
+  //         titleInput.value = data.title;
+  //         directorInput.value = data.director;
+  //         yearInput.value = data.year;
+  //         genreInput.value = data.genre;
+  //         descriptionInput.value = data.description;
           
-          movieId = data.title || data.director || data.year || data.genre || data.description
+  //         movieId = data.title || data.director || data.year || data.genre || data.description
 
-          // We are updating
-          updating = true;
-        }
-      })
-      .catch((err) => console.error(err));
-  };
+  //         // We are updating
+  //         updating = true;
+  //       }
+  //     })
+  //     .catch((err) => console.error(err));
+  // };
 
-  // If movie exists, grab the content of the movie
-  if (url.indexOf('?movie_id=') !== -1) {
-    movieId = url.split('=')[1];
-    getmovieData(movieId, 'movie');
-  }
-  // Otherwise if we have an user_id in our url, preset the user select box to be our user
-  else if (url.indexOf('?user_id=') !== -1) {
-    userId = url.split('=')[1];
-  }
+  // // If movie exists, grab the content of the movie
+  // if (url.indexOf('?movie_id=') !== -1) {
+  //   movieId = url.split('=')[1];
+  //   getmovieData(movieId, 'movie');
+  // }
+  // // Otherwise if we have an user_id in our url, preset the user select box to be our user
+  // else if (url.indexOf('?movie_id=') !== -1) {
+  //   userId = url.split('=')[1];
+  // }
 
   // Event handler for when the movie for is submitted
   const handleFormSubmit = (e) => {
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
       !yearInput.value.trim() ||
       !genreInput.value.trim() ||
       !descriptionInput.value.trim() ||
-      !userSelect.value
+      // !userSelect.value
     ) {
       return;
     }
@@ -107,8 +107,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Submits new movie then redirects
   const submitmovie = (movie) => {
-    fetch('/api/movies-list', {
-      method: 'movie',
+    fetch('/api/movie-list', {
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -125,63 +125,63 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // Render a movie of users or redirect if no users
-  const renderusermovie = (data) => {
-    console.log('renderusermovie -> data', data);
-    if (!data.length) {
-      window.location.href = '/users';
-    }
-    if (document.querySelector('.hidden')) {
-      show(document.querySelector('.hidden'));
-    }
+  // const renderusermovie = (data) => {
+  //   console.log('renderusermovie -> data', data);
+  //   if (!data.length) {
+  //     window.location.href = '/users';
+  //   }
+  //   if (document.querySelector('.hidden')) {
+  //     show(document.querySelector('.hidden'));
+  //   }
 
-    const rowsToAdd = [];
+  //   const rowsToAdd = [];
 
-    data.forEach((user) => rowsToAdd.push(createuserRow(user)));
+  //   data.forEach((user) => rowsToAdd.push(createuserRow(user)));
 
-    userSelect.innerHTML = '';
-    console.log('renderusermovie -> rowsToAdd', rowsToAdd);
-    console.log('userSelect', userSelect);
+  //   userSelect.innerHTML = '';
+  //   console.log('renderusermovie -> rowsToAdd', rowsToAdd);
+  //   console.log('userSelect', userSelect);
 
-    rowsToAdd.forEach((row) => userSelect.append(row));
-    userSelect.value = userId;
-  };
+  //   rowsToAdd.forEach((row) => userSelect.append(row));
+  //   userSelect.value = userId;
+  // };
 
-  // Build user dropdown
-  const createuserRow = ({ id, name }) => {
-    const movieOption = document.createElement('option');
-    movieOption.value = id;
-    movieOption.textContent = name;
-    return movieOption;
-  };
+  // // Build user dropdown
+  // const createuserRow = ({ id, name }) => {
+  //   const movieOption = document.createElement('option');
+  //   movieOption.value = id;
+  //   movieOption.textContent = name;
+  //   return movieOption;
+  // };
 
   // A function to get users and then call the render function
-  const getusers = () => {
-    fetch('api/users', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => renderusermovie(data))
-      .catch((err) => console.error(err));
-  };
+  // const getusers = () => {
+  //   fetch('api/users', {
+  //     method: 'GET',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //   })
+  //     .then((response) => response.json())
+  //     .then((data) => renderusermovie(data))
+  //     .catch((err) => console.error(err));
+  // };
 
-  // Get the users, and their movies
-  getusers();
+  // // Get the users, and their movies
+  // getusers();
 
-  // Update a movie then redirect to blog
-  const updatemovie = (movie) => {
-    fetch('/api/movies', {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(movie),
-    })
-      .then(() => {
-        window.location.href = '/blog';
-      })
-      .catch((err) => console.error(err));
-  };
+  // // Update a movie then redirect to blog
+  // const updatemovie = (movie) => {
+  //   fetch('/api/movies', {
+  //     method: 'PUT',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify(movie),
+  //   })
+  //     .then(() => {
+  //       window.location.href = '/blog';
+  //     })
+  //     .catch((err) => console.error(err));
+  // };
 });
