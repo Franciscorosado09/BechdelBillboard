@@ -39,4 +39,5 @@ module.exports = (sequelize, DataTypes) => {
       // };
 
     return Movies;
+    
     };
