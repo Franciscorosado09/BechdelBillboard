@@ -23,4 +23,3 @@ const upload = multer({ storage: storage, fileFilter: fileFilter });
 
 }
 
-console.log("i'm added - please remove me.")
