@@ -21,12 +21,8 @@ module.exports = (app) => {
     })
       .then((dbMovies) => res.send(dbMovies))
       .catch((err) => res.json(err));
-<<<<<<< HEAD
-      
-=======
 
   
->>>>>>> adding fixes
   });
 
 
