@@ -22,17 +22,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // Get query parameter
   const url = window.location.search;
   let movieId;
-  let titleId;
-  let directorId;
-  let yearID;
-  let genreID;
-  let descriptionID;
+  
   let updating = false;
 
   // Get movie data for editing/adding
   const getmovieData = (id, type) => {
     const queryUrl =
-      type === 'movie' ? `/api/movie-list` : `//api/movie-list${id}`;
+      type === 'movie' ? `/api/movie-list${id}` : `/api/movie-list${title}`;
 
     fetch(queryUrl, {
       method: 'GET',
@@ -47,8 +43,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
           // Populate the form for editing
           titleInput.value = data.title;
-          bodyInput.value = data.body;
-          userId = data.userId || data.id;
+          directorInput.value = data.director;
+          yearInput.value = data.year;
+          genreInput.value = data.genre;
+          descriptionInput.value = data.description;
+          
+          movieId = data.title || data.director || data.year || data.genre || data.description
 
           // We are updating
           updating = true;
@@ -74,7 +74,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Make sure the form isn't empty
     if (
       !titleInput.value.trim() ||
-      !bodyInput.value.trim() ||
+      !directorInput.value.trim() ||
+      !yearInput.value.trim() ||
+      !genreInput.value.trim() ||
+      !descriptionInput.value.trim() ||
       !userSelect.value
     ) {
       return;
@@ -83,7 +86,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Object that will be sent to the db
     const newmovie = {
       title: titleInput.value.trim(),
-      body: bodyInput.value.trim(),
+      director: directorInput.value.trim(),
+      year: yearInput.value.trim(),
+      genre: genreInput.value.trim(),
+      description: descriptionInput.value.trim(),
       userId: userSelect.value,
     };
 
@@ -101,15 +107,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Submits new movie then redirects
   const submitmovie = (movie) => {
-    fetch('/api/movies', {
+    fetch('/api/movies-list', {
       method: 'movie',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(movie),
+      title: JSON.stringify(movie),
+      director: JSON.stringify(movie),
+      year: JSON.stringify(movie),
+      genre: JSON.stringify(movie),
+      description: JSON.stringify(movie),
     })
       .then(() => {
-        window.location.href = '/blog';
+        window.location.href = '/theList';
       })
       .catch((err) => console.error(err));
   };
