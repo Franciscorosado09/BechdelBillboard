@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
       
   };
 
-  
+  getmovies()
 
   // Get a movie movie from a specific user
   // const url = window.location.search;
@@ -75,25 +75,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const createNewRow = (movie) => {
     console.log('createNewRow -> movie', movie);
 
-    // const formattedDate = new Date(movie.createdAt).toLocaleDateString();
 
     const newmovieCard = document.createElement('div');
     newmovieCard.classList.add('card');
 
+
     const newmovieCardHeading = document.createElement('div');
     newmovieCardHeading.classList.add('card-header');
+    
 
-    // Delete button
-    // const deleteBtn = document.createElement('button');
-    // deleteBtn.textContent = 'x';
-    // deleteBtn.classmovie.add('delete', 'btn', 'btn-danger');
-    // deleteBtn.addEventListener('click', handlemovieDelete);
-
-    // Edit button
-    // const editButton = document.createElement('button');
-    // editButton.textContent = 'EDIT';
-    // editButton.classmovie.add('edit', 'btn', 'btn-info');
-    // editButton.addEventListener('click', handlemovieEdit);
+  
 
     const newmovieTitle = document.createElement('h3');
     const newmovieYear = document.createElement('h3');
@@ -101,12 +92,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-    // const newmovieDate = document.createElement('small');
+   
     const newmovieuser = document.createElement('h3');
 
     newmovieuser.textContent = `Directed by: ${movie.director}`;
     newmovieuser.style.float = 'right';
-    // newmovieuser.style.color = 'blue';
     newmovieuser.style.marginTop = '-10px';
 
     const newmovieCardDescription = document.createElement('div');
@@ -117,23 +107,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Creating the document Elements so we need to list all movie info
     newmovieTitle.textContent = `${movie.title} `;
-    // newmovieDirector.textContent = movie.year;
+  
     newmovieYear.textContent = `${movie.year}`;
     newmovieGenre.textContent = `${movie.genre}`;
-    newmovieDescription.textContent = `${movie.desciption}`;
-    // newmovieDate.textContent = ` (${formattedDate})`;
-
-
-
-
-    // newmovieTitle.append(newmovieDate);
-
-    // newmovieCardHeading.append(deleteBtn);
-    // newmovieCardHeading.append(editButton);
-
+    newmovieDescription.textContent = `${movie.description}`;
+   
 
     newmovieCardHeading.append(newmovieTitle);
-    // newmovieCardHeading.append(newmovieuser);
+    newmovieCardHeading.append(newmovieuser);
     newmovieCardDescription.append(newmovieYear);
     newmovieCardDescription.append(newmovieGenre);
     newmovieCardDescription.append(newmovieDescription);
