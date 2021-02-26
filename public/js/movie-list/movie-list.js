@@ -5,8 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const movieContainer = document.querySelector('.movies-container');
 
   // Variable to hold our movies
-  let movies;
-
+  //var movies;
+ 
   // user
   const getmovies = (movies) => {
     // userId = user || '';
@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
       })
       .then((response) => response.json())
       .then((data) => {
+        const movies
         movies = data;
         console.log('Success in getting movies:', data);
         if (!data || !data.length) {
@@ -34,7 +35,9 @@ document.addEventListener('DOMContentLoaded', () => {
       .catch((error) => console.error('Error:', error));
   };
 
-  getmovies(movies)
+
+  
+
 
   // Get a movie movie from a specific user
   // const url = window.location.search;
@@ -55,9 +58,9 @@ document.addEventListener('DOMContentLoaded', () => {
   //     },
   //   }).then(getmovies());
   // };
-
+  let movies
   // Create HTML rows for the movie container
-  const initializeRows = (movies) => {
+  const initializeRows = () => {
     movieContainer.innerHTML = '';
     const moviesToAdd = [];
     console.log("-------------------------------")
@@ -65,12 +68,12 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log("-------------------------------")
 
 
-    movies.forEach((movies) => moviesToAdd.push(createNewRow(movies)));
-    moviesToAdd.forEach((movies) => movieContainer.append(movies));
+    movies.forEach((movie) => moviesToAdd.push(createNewRow(movie)));
+    moviesToAdd.forEach((movie) => movieContainer.append(movie));
   };
 
-  const createNewRow = (movies) => {
-    console.log('createNewRow -> movie', movies);
+  const createNewRow = (movie) => {
+    console.log('createNewRow -> movie', movie);
 
     // const formattedDate = new Date(movie.createdAt).toLocaleDateString();
 
@@ -101,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // const newmovieDate = document.createElement('small');
     const newmovieuser = document.createElement('h3');
 
-    newmovieuser.textContent = `Directed by: ${movies.director}`;
+    newmovieuser.textContent = `Directed by: ${movie.director}`;
     newmovieuser.style.float = 'right';
     // newmovieuser.style.color = 'blue';
     newmovieuser.style.marginTop = '-10px';
@@ -113,11 +116,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const newmovieDescription = document.createElement('p');
 
     // Creating the document Elements so we need to list all movie info
-    newmovieTitle.textContent = `${movies.title} `;
+    newmovieTitle.textContent = `${movie.title} `;
     // newmovieDirector.textContent = movie.year;
-    newmovieYear.textContent = `${movies.year}`;
-    newmovieGenre.textContent = `${movies.genre}`;
-    newmovieDescription.textContent = `${movies.desciption}`;
+    newmovieYear.textContent = `${movie.year}`;
+    newmovieGenre.textContent = `${movie.genre}`;
+    newmovieDescription.textContent = `${movie.desciption}`;
     // newmovieDate.textContent = ` (${formattedDate})`;
 
 
@@ -176,4 +179,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   //   window.location.href = `/cms2?movie_id=${currentmovie.id}`;
   // };
+
+  
 });

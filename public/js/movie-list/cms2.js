@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   console.log('DOM loaded! 🚀');
 
   // Get references to the body, title, form and user
- 
+
   const titleInput = document.getElementById('title');
   const directorInput = document.getElementById('director');
   const yearInput = document.getElementById('year');
@@ -16,13 +16,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const descriptionInput = document.getElementById('description');
   const cmsForm = document.getElementById('cms2');
   const userSelect = document.getElementById('user');
-  
+
 
 
   // Get query parameter
   const url = window.location.search;
   let movieId;
-  
+
   let updating = false;
 
   // Get movie data for editing/adding
@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
   //         yearInput.value = data.year;
   //         genreInput.value = data.genre;
   //         descriptionInput.value = data.description;
-          
+
   //         movieId = data.title || data.director || data.year || data.genre || data.description
 
   //         // We are updating
@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
       !directorInput.value.trim() ||
       !yearInput.value.trim() ||
       !genreInput.value.trim() ||
-      !descriptionInput.value.trim() ||
+      !descriptionInput.value.trim()
       // !userSelect.value
     ) {
       return;
@@ -90,16 +90,16 @@ document.addEventListener('DOMContentLoaded', () => {
       year: yearInput.value.trim(),
       genre: genreInput.value.trim(),
       description: descriptionInput.value.trim(),
-      userId: userSelect.value,
+      // userId: userSelect.value,
     };
-
+    submitmovie(newmovie);
     // Update a movie if flag is true, otherwise submit a new one
-    if (updating) {
-      newmovie.id = movieId;
-      updatemovie(newmovie);
-    } else {
-      submitmovie(newmovie);
-    }
+    // if (updating) {
+    //   newmovie.id = movieId;
+    //   updatemovie(newmovie);
+    // } else {
+    //   submitmovie(newmovie);
+    // }
   };
 
   // Attach an event movieener to the form on submit
@@ -107,19 +107,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Submits new movie then redirects
   const submitmovie = (movie) => {
-    fetch('/api/movie-list', {
+    fetch('/api/movie-add', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      title: JSON.stringify(movie),
-      director: JSON.stringify(movie),
-      year: JSON.stringify(movie),
-      genre: JSON.stringify(movie),
-      description: JSON.stringify(movie),
-    })
-      .then(() => {
-        window.location.href = '/theList';
+      body: JSON.stringify(movie),
+      // title: JSON.stringify(movie),
+      // director: JSON.stringify(movie),
+      // year: JSON.stringify(movie),
+      // genre: JSON.stringify(movie),
+      // description: JSON.stringify(movie),
+
+    }).then((response) => response.json())
+      .then((data) => {
+        // window.location.href = '/movie-list';
+        console.log('Success in submitting post:', data);
+        console.log(JSON.stringify(movie))
       })
       .catch((err) => console.error(err));
   };
