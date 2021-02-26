@@ -3,6 +3,10 @@ const db = require('../models');
 // Routes
 module.exports = (app) => {
 
+  app.get('/movie-list', (req, res) => {
+    db.Movies.findAll({}).then((dbMovies) => res.json(dbMovies));
+  });
+
   app.get('/api/movie-list', (req, res) => {
     db.Movies.findAll({}).then((dbMovies) => res.json(dbMovies));
   });
