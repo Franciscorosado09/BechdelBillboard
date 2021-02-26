@@ -5,7 +5,6 @@ module.exports = (app) => {
 
   app.get('/movie-list', (req, res) => {
     db.Movies.findAll({}).then((dbMovies) => res.json(dbMovies));
-
   });
 
   app.get('/api/movie-list', (req, res) => {
@@ -13,15 +12,16 @@ module.exports = (app) => {
   });
 
 
-  app.post('/api/movie-list', (req, res) => {
+  app.post('/api/movie-add', (req, res) => {
+    console.log(req.body)
     db.Movies.create({
       title: req.body.title,
       director: req.body.director,
       year: req.body.year,
       genre: req.body.genre,
       description: req.body.description,
-      image: req.body.image,
-      favorites: req.body.favorites,
+      // image: req.body.image,
+      // favorites: req.body.favorites,
       
       // rating: req.body.rating,
     })
