@@ -48,18 +48,22 @@ module.exports = (sequelize, DataTypes) => {
 
 
   //posts linked to user in user.
-  Billboard.associate = (models) => {
-    Billboard.belongsTo(models.User, {
-      onDelete: 'cascade',
-    })
-  }
+  // Billboard.associate = (models) => {
+  //   Billboard.belongsTo(models.User, {
+  //      foreignKey: "billboardID",
+  //       allowNull: false,
+  //   })
+  // }
 
-  // //links to movies - pulls in movies for posts
-  Billboard.associate = (models) => {
-    Billboard.hasMany(models.Movies, {
-      onDelete: 'cascade',
-    })
-  }
+
+  // // //links to movies - pulls in movies for posts
+  // Billboard.associate = (models) => {
+  //   Billboard.hasMany(models.Movies, {
+  //     foreignKey: 'billboardMovie',
+  //   allowNull: false
+  //   })
+  // }
+
  
 
   return Billboard;
