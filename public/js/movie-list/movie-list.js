@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let movies;
 
   // user
-  const getmovies = () => {
+  const getmovies = (movies) => {
     // userId = user || '';
     // if (userId) {
     //   userId = `/?user_id=${userId}`;
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
       .catch((error) => console.error('Error:', error));
   };
 
-  getmovies()
+  getmovies(movies)
 
   // Get a movie movie from a specific user
   // const url = window.location.search;
@@ -60,6 +60,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const initializeRows = (movies) => {
     movieContainer.innerHTML = '';
     const moviesToAdd = [];
+    console.log("-------------------------------")
+    console.log(movies)
+    console.log("-------------------------------")
+
 
     movies.forEach((movies) => moviesToAdd.push(createNewRow(movies)));
     moviesToAdd.forEach((movies) => movieContainer.append(movies));
