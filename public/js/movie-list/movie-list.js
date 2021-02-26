@@ -5,10 +5,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const movieContainer = document.querySelector('.movies-container');
 
   // Variable to hold our movies
-  let movies;
-
+  //var movies;
+ 
   // user
-  const getmovies = () => {
+  const getmovies = (movies) => {
     // userId = user || '';
     // if (userId) {
     //   userId = `/?user_id=${userId}`;
@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
       })
       .then((response) => response.json())
       .then((data) => {
+        const movies
         movies = data;
         console.log('Success in getting movies:', data);
         if (!data || !data.length) {
@@ -34,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
       .catch((error) => console.error('Error:', error));
   };
 
-  getmovies()
+  
 
   // Get a movie movie from a specific user
   // const url = window.location.search;
@@ -55,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
   //     },
   //   }).then(getmovies());
   // };
-
+  let movies
   // Create HTML rows for the movie container
   const initializeRows = (movies) => {
     movieContainer.innerHTML = '';
@@ -63,6 +64,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     movies.forEach((movies) => moviesToAdd.push(createNewRow(movies)));
     moviesToAdd.forEach((movies) => movieContainer.append(movies));
+
+    console.log()
+
   };
 
   const createNewRow = (movies) => {
@@ -172,4 +176,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
   //   window.location.href = `/cms2?movie_id=${currentmovie.id}`;
   // };
+  getmovies(movies)
 });
