@@ -38,11 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
       
   };
 
-<<<<<<< HEAD
-  getmovies(movies)
-=======
   
->>>>>>> 0517d9f825fc7e3dd96d3ecb5dc093ab0df0e23b
 
   // Get a movie movie from a specific user
   // const url = window.location.search;
