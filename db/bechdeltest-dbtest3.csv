@@ -1,4 +1,4 @@
-id,Title,Director,Year,Genre,Description,Image,favorites,BillboardId,UserId
+id,Title,Director,Year,Genre,Description,Image,favorites,favMovieID,UserId
 1,Four Heads Are Better Than One,Georges Méliès,1898,"Short, Comedy","One of the greatest of black art pictures. The conjurer appears before the audience, with his head in its proper place. He then removes his head, and throwing it in the air, it appears on ...",http://ia.media-imdb.com/images/M/MV5BNzMxODQ2NzQyMl5BMl5BanBnXkFtZTcwNTExODEyMQ@@._V1_SX300.jpg,0,NULL,NULL
 2,The One-Man Band,Georges Méliès,1900,"Short, Comedy",A band-leader assembles an orchestra by mystifying means.,http://ia.media-imdb.com/images/M/MV5BNzMxODQ2NzQyMl5BMl5BanBnXkFtZTcwNTExODEyMQ@@._V1_SX300.jpg,0,NULL,NULL
 3,"Searching Ruins on Broadway, Galveston, for Dead Bodies",Albert E. Smith,1900,"Short, Documentary",This shows the heart of the tremendous drifts in the east end of Galveston. Hundreds of bodies are concealed in these immense masses...,N/A,0,NULL,NULL
