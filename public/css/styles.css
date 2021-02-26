@@ -18,20 +18,20 @@ input.new-item:focus {
   width: 100%;
 }
 
-#billboard{
+/* #billboard{
 
   background-image: url(/);
-}
+} */
 
 #Brand{
-  background-image: url(/assets/BB.png);
+  background-image: url(./assets/BB.png);
   height: auto; 
   width: 10%;
 }
 
 body{
 
-  background-image: url(/assets/PolkaDots.png);
+  background-image: url(./assets/PolkaDots.png);
   background-size: 115%;
 
   font-family: 'Jura', sans-serif;
