@@ -23,9 +23,15 @@ input.new-item:focus {
   background-image: url(/);
 }
 
+#Brand{
+  background-image: url(/assets/BB.png);
+  height: auto; 
+  width: 10%;
+}
+
 body{
 
-  background-image: url(/assets/Modern\ Polka\ Dots\ .png);
+  background-image: url(/assets/PolkaDots.png);
   background-size: 115%;
 
   font-family: 'Jura', sans-serif;
