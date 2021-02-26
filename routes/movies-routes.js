@@ -21,10 +21,11 @@ module.exports = (app) => {
       genre: req.body.genre,
       description: req.body.description,
       image: req.body.image,
+      favorites: req.body.favorites,
       
       // rating: req.body.rating,
     })
-      .then((dbMovies) => res.send(dbMovies))
+      .then((dbMovies) => res.json(dbMovies))
       .catch((err) => res.json(err));
       
 
@@ -51,6 +52,7 @@ module.exports = (app) => {
         genre: req.body.genre,
         description: req.body.description,
         image: req.body.image,
+        favorites: req.body.favorites,
         //rating: req.body.rating,
       },
       {

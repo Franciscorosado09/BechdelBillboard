@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
         movies = data;
         console.log('Success in getting movies:', data);
         if (!data || !data.length) {
-          displayEmpty(user);
+          displayEmpty();
         } else {
           initializeRows();
         }
