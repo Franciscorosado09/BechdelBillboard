@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
       
   };
 
-  getmovies()
+
 
   // Get a movie movie from a specific user
   // const url = window.location.search;
@@ -66,6 +66,10 @@ document.addEventListener('DOMContentLoaded', () => {
     
     movieContainer.innerHTML = '';
     const moviesToAdd = [];
+    console.log("-------------------------------")
+    console.log(movies)
+    console.log("-------------------------------")
+
 
     movies.forEach((movie) => moviesToAdd.push(createNewRow(movie)));
     moviesToAdd.forEach((movie) => movieContainer.append(movie));
