@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const yearInput = document.getElementById('year');
   const genreInput = document.getElementById('genre');
   const descriptionInput = document.getElementById('description');
+  const imageInput = document.getElementById('image');
   const cmsForm = document.getElementById('cms2');
   const userSelect = document.getElementById('user');
 
@@ -77,6 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
       !directorInput.value.trim() ||
       !yearInput.value.trim() ||
       !genreInput.value.trim() ||
+      !imageInput.value.trim() ||
       !descriptionInput.value.trim()
       // !userSelect.value
     ) {
@@ -89,6 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
       director: directorInput.value.trim(),
       year: yearInput.value.trim(),
       genre: genreInput.value.trim(),
+      image: imageInput.value.trim(),
       description: descriptionInput.value.trim(),
 
     };

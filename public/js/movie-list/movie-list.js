@@ -89,9 +89,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const newmovieTitle = document.createElement('h3');
     const newmovieYear = document.createElement('h3');
     const newmovieGenre = document.createElement('p');
-
-
-
+    // const newmovieImage = document.createElement('a');
+    
+    // const imageText = document.createTextNode('This is linked.')
+    // newmovieImage.append(`${movie.image}`)
+    // document.body.prepend(newmovieImage)
    
     const newmovieuser = document.createElement('h3');
 
@@ -106,6 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const newmovieDescription = document.createElement('p');
 
     // Creating the document Elements so we need to list all movie info
+    
     newmovieTitle.textContent = `${movie.title} `;
   
     newmovieYear.textContent = `${movie.year}`;
