@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       body: JSON.stringify(billboard),
 
-      
+
     }).then((response) => response.json())
       .then((data) => {
         // window.location.href = '/billboard';
