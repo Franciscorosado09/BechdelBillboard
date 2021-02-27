@@ -38,7 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
       
   };
 
-  getmovies()
 
   // Get a movie movie from a specific user
   // const url = window.location.search;
