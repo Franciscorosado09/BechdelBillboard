@@ -5,15 +5,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const movieContainer = document.querySelector('.movies-container');
 
   // Variable to hold our movies
-  //var movies;
+  let movie;
  
   // user
-  const getmovies = (movies) => {
+  const getmovies = () => {
     // userId = user || '';
     // if (userId) {
     //   userId = `/?user_id=${userId}`;
     // 
-
+    
 
     fetch(`/api/movie-list`, {
         method: 'GET',
@@ -23,20 +23,21 @@ document.addEventListener('DOMContentLoaded', () => {
       })
       .then((response) => response.json())
       .then((data) => {
-        const movies
+        //const movies
+ 
         movies = data;
         console.log('Success in getting movies:', data);
         if (!data || !data.length) {
           displayEmpty();
         } else {
-          initializeRows();
+          initializeRows(movies);
+          
         }
       })
       .catch((error) => console.error('Error:', error));
+      
   };
 
-
-  
 
 
   // Get a movie movie from a specific user
@@ -58,9 +59,11 @@ document.addEventListener('DOMContentLoaded', () => {
   //     },
   //   }).then(getmovies());
   // };
-  let movies
+  getmovies()
   // Create HTML rows for the movie container
   const initializeRows = () => {
+
+    
     movieContainer.innerHTML = '';
     const moviesToAdd = [];
     console.log("-------------------------------")
@@ -70,30 +73,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     movies.forEach((movie) => moviesToAdd.push(createNewRow(movie)));
     moviesToAdd.forEach((movie) => movieContainer.append(movie));
+    console.log(moviesToAdd)
   };
 
   const createNewRow = (movie) => {
     console.log('createNewRow -> movie', movie);
 
-    // const formattedDate = new Date(movie.createdAt).toLocaleDateString();
 
     const newmovieCard = document.createElement('div');
-    newmovieCard.classmovie.add('card');
+    newmovieCard.classList.add('card');
+
 
     const newmovieCardHeading = document.createElement('div');
-    newmovieCardHeading.classmovie.add('card-header');
+    newmovieCardHeading.classList.add('card-header');
+    
 
-    // Delete button
-    // const deleteBtn = document.createElement('button');
-    // deleteBtn.textContent = 'x';
-    // deleteBtn.classmovie.add('delete', 'btn', 'btn-danger');
-    // deleteBtn.addEventListener('click', handlemovieDelete);
-
-    // Edit button
-    // const editButton = document.createElement('button');
-    // editButton.textContent = 'EDIT';
-    // editButton.classmovie.add('edit', 'btn', 'btn-info');
-    // editButton.addEventListener('click', handlemovieEdit);
+  
 
     const newmovieTitle = document.createElement('h3');
     const newmovieYear = document.createElement('h3');
@@ -101,39 +96,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-    // const newmovieDate = document.createElement('small');
+   
     const newmovieuser = document.createElement('h3');
 
     newmovieuser.textContent = `Directed by: ${movie.director}`;
     newmovieuser.style.float = 'right';
-    // newmovieuser.style.color = 'blue';
     newmovieuser.style.marginTop = '-10px';
 
     const newmovieCardDescription = document.createElement('div');
 
-    newmovieCardDescription.classmovie.add('card-body');
+    newmovieCardDescription.classList.add('card-body');
 
     const newmovieDescription = document.createElement('p');
 
     // Creating the document Elements so we need to list all movie info
     newmovieTitle.textContent = `${movie.title} `;
-    // newmovieDirector.textContent = movie.year;
+  
     newmovieYear.textContent = `${movie.year}`;
     newmovieGenre.textContent = `${movie.genre}`;
-    newmovieDescription.textContent = `${movie.desciption}`;
-    // newmovieDate.textContent = ` (${formattedDate})`;
-
-
-
-
-    // newmovieTitle.append(newmovieDate);
-
-    // newmovieCardHeading.append(deleteBtn);
-    // newmovieCardHeading.append(editButton);
-
+    newmovieDescription.textContent = `${movie.description}`;
+   
 
     newmovieCardHeading.append(newmovieTitle);
-    // newmovieCardHeading.append(newmovieuser);
+    newmovieCardHeading.append(newmovieuser);
     newmovieCardDescription.append(newmovieYear);
     newmovieCardDescription.append(newmovieGenre);
     newmovieCardDescription.append(newmovieDescription);
@@ -182,3 +167,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
   
 });
+
+getmovies()

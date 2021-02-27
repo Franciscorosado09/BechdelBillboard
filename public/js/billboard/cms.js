@@ -1,28 +1,28 @@
 // Helper functions to show/hide elements
-const show = (el) => {
-  el.style.display = 'block';
-};
+// const show = (el) => {
+//   el.style.display = 'block';
+// };
 
 // Wait for the DOM to completely load before we run our JS
 document.addEventListener('DOMContentLoaded', () => {
   console.log('DOM loaded! 🚀');
 
-  // Get references to the body, title, form and user
-  const bodyInput = document.getElementById('body');
+  // Get references to the post, title, form and user
+  const postInput = document.getElementById('post');
   const titleInput = document.getElementById('title');
   const cmsForm = document.getElementById('cms');
   const userSelect = document.getElementById('user');
 
   // Get query parameter
   const url = window.location.search;
-  let postId;
+  let billboardId;
   let userId;
   let updating = false;
 
-  // Get post data for editing/adding
-  const getPostData = (id, type) => {
+  // Get billboard data for editing/adding
+  const getbillboardData = (id, type) => {
     const queryUrl =
-      type === 'post' ? `/api/posts/${id}` : `/api/users/${id}`;
+      type === 'billboard' ? `/api/billboard/${id}` : `/api/user/${id}`;
 
     fetch(queryUrl, {
       method: 'GET',
@@ -33,11 +33,11 @@ document.addEventListener('DOMContentLoaded', () => {
       .then((response) => response.json())
       .then((data) => {
         if (data) {
-          console.log('Success in getting post:', data);
+          console.log('Success in getting billboard:', data);
 
           // Populate the form for editing
           titleInput.value = data.title;
-          bodyInput.value = data.body;
+          postInput.value = data.post;
           userId = data.userId || data.id;
 
           // We are updating
@@ -47,60 +47,72 @@ document.addEventListener('DOMContentLoaded', () => {
       .catch((err) => console.error(err));
   };
 
-  // If post exists, grab the content of the post
-  if (url.indexOf('?post_id=') !== -1) {
-    postId = url.split('=')[1];
-    getPostData(postId, 'post');
+  // If billboard exists, grab the content of the billboard
+  if (url.indexOf('?billboard_id=') !== -1) {
+    billboardId = url.split('=')[1];
+    getbillboardData(billboardId, 'billboard');
   }
   // Otherwise if we have an user_id in our url, preset the user select box to be our user
   else if (url.indexOf('?user_id=') !== -1) {
     userId = url.split('=')[1];
   }
 
-  // Event handler for when the post for is submitted
+  // Event handler for when the billboard for is submitted
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
     // Make sure the form isn't empty
     if (
       !titleInput.value.trim() ||
-      !bodyInput.value.trim() ||
-      !userSelect.value
+      !postInput.value.trim() 
+      // ||
+      // !userSelect.value
     ) {
       return;
     }
 
     // Object that will be sent to the db
-    const newPost = {
+    const newbillboard = {
       title: titleInput.value.trim(),
-      body: bodyInput.value.trim(),
-      userId: userSelect.value,
+      post: postInput.value.trim(),
+      // userId: userSelect.value,
     };
+    submitbillboard(newbillboard);
 
-    // Update a post if flag is true, otherwise submit a new one
-    if (updating) {
-      newPost.id = postId;
-      updatePost(newPost);
-    } else {
-      submitPost(newPost);
-    }
+    // Update a billboard if flag is true, otherwise submit a new one
+    // if (updating) {
+    //   newbillboard.id = billboardId;
+    //   updatebillboard(newbillboard);
+    // } else {
+      // submitbillboard(newbillboard);
+    // }
   };
 
   // Attach an event listener to the form on submit
   cmsForm.addEventListener('submit', handleFormSubmit);
 
-  // Submits new post then redirects
-  const submitPost = (post) => {
-    fetch('/api/posts', {
+  // Submits new billboard then redirects
+  const submitbillboard = (billboard) => {
+    fetch('/api/billboard-add', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(post),
-    })
-      .then(() => {
-        window.location.href = '/billboard';
+      body: JSON.stringify(billboard),
+
+      
+    }).then((response) => response.json())
+      .then((data) => {
+        // window.location.href = '/billboard';
+
+        console.log('Success in submitting post:', data);
+        console.log(JSON.stringify(billboard))
+
+
       })
+      // console.log(billboard)
+      
+
       .catch((err) => console.error(err));
   };
 
@@ -135,29 +147,29 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // A function to get users and then call the render function
-  const getusers = () => {
-    fetch('api/users', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => renderuserList(data))
-      .catch((err) => console.error(err));
-  };
+  // const getusers = () => {
+  //   fetch('api/users', {
+  //     method: 'GET',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //   })
+  //     .then((response) => response.json())
+  //     .then((data) => renderuserList(data))
+  //     .catch((err) => console.error(err));
+  // };
 
-  // Get the users, and their posts
-  getusers();
+  // // Get the users, and their billboards
+  // getusers();
 
-  // Update a post then redirect to billboard
-  const updatePost = (post) => {
-    fetch('/api/posts', {
+  // Update a billboard then redirect to billboard
+  const updatebillboard = (billboard) => {
+    fetch('/api/billboard', {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(post),
+      body: JSON.stringify(billboard),
     })
       .then(() => {
         window.location.href = '/billboard';

@@ -1,10 +1,21 @@
 module.exports = (sequelize, DataTypes) => {
   const Billboard = sequelize.define('Billboard', {
+    title: {
+      type: DataTypes.STRING,
+      
+      //not working - get error message
+      allowNull: false,
+      
+      validate: {
+        len: [1, 25],
+      },
+    },
+    
     post: {
       type: DataTypes.STRING,
       
       //not working - get error message
-      // allowNull: false,
+      allowNull: false,
       
       validate: {
         len: [1, 500],

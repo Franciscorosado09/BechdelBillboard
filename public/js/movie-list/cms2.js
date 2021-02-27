@@ -90,16 +90,10 @@ document.addEventListener('DOMContentLoaded', () => {
       year: yearInput.value.trim(),
       genre: genreInput.value.trim(),
       description: descriptionInput.value.trim(),
-      // userId: userSelect.value,
+
     };
     submitmovie(newmovie);
-    // Update a movie if flag is true, otherwise submit a new one
-    // if (updating) {
-    //   newmovie.id = movieId;
-    //   updatemovie(newmovie);
-    // } else {
-    //   submitmovie(newmovie);
-    // }
+
   };
 
   // Attach an event movieener to the form on submit
@@ -113,11 +107,6 @@ document.addEventListener('DOMContentLoaded', () => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(movie),
-      // title: JSON.stringify(movie),
-      // director: JSON.stringify(movie),
-      // year: JSON.stringify(movie),
-      // genre: JSON.stringify(movie),
-      // description: JSON.stringify(movie),
 
     }).then((response) => response.json())
       .then((data) => {
