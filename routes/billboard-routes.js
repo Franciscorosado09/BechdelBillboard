@@ -36,8 +36,11 @@ module.exports = (app) => {
       // POST route for saving a new post
       //
       app.post('/api/billboard-add', (req, res) => {
+        console.log (req.body)
         db.Billboard.create(
-          {
+          { 
+            title: req.body.title,
+
             post: req.body.post
           }
           ).then((dbBillboard) => res.json(dbBillboard));

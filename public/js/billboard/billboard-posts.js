@@ -95,21 +95,21 @@ document.addEventListener('DOMContentLoaded', () => {
       newbillboarduser.style.color = 'blue';
       newbillboarduser.style.marginTop = '-10px';
   
-      const newbillboardCardBody = document.createElement('div');
-      newbillboardCardBody.classList.add('card-body');
+      const newbillboardCardPost = document.createElement('div');
+      newbillboardCardPost.classList.add('card-Post');
   
-      const newbillboardBody = document.createElement('p');
+      const newbillboardPost = document.createElement('p');
       newbillboardTitle.textContent = `${billboard.title} `;
-      newbillboardBody.textContent = billboard.body;
+      newbillboardPost.textContent = billboard.Post;
       newbillboardDate.textContent = ` (${formattedDate})`;
       newbillboardTitle.append(newbillboardDate);
       newbillboardCardHeading.append(deleteBtn);
       newbillboardCardHeading.append(editButton);
       newbillboardCardHeading.append(newbillboardTitle);
       newbillboardCardHeading.append(newbillboarduser);
-      newbillboardCardBody.append(newbillboardBody);
+      newbillboardCardPost.append(newbillboardPost);
       newbillboardCard.append(newbillboardCardHeading);
-      newbillboardCard.append(newbillboardCardBody);
+      newbillboardCard.append(newbillboardCardPost);
       newbillboardCard.setAttribute('data-billboard', JSON.stringify(billboard));
   
       console.log('createNewRow -> newbillboardCard', newbillboardCard);
