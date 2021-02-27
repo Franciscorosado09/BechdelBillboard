@@ -1,6 +1,7 @@
 const express = require('express');
 const session = require("express-session");
 const passport = require("./config/passport");
+//const exphbs = require('express-handlebars');
 
 // Sets up the Express App
 const app = express();
@@ -12,7 +13,7 @@ const db = require('./models');
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
+//app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 // Static directory
 app.use(express.static('public'));
 app.use(
@@ -20,6 +21,7 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
+//app.set('view engine', 'handlebars');
 
 // Routes
 require('./routes/billboard-routes.js')(app);

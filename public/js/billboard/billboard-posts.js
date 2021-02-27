@@ -6,14 +6,15 @@ document.addEventListener('DOMContentLoaded', () => {
   
     // Variable to hold our billboards
     let billboards;
+    
   
-    const getBillboards = () => {
-      // userId = user || '';
-      // if (userId) {
-      //   userId = `/?user_id=${userId}`;
-      // }
+    const getBillboards = (user) => {
+      userId = user || '';
+      if (userId) {
+        userId = `/?user_id=${userId}`;
+      }
   
-      fetch(`/api/billboard`, {
+      fetch(`/api/billboard${userId}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -32,17 +33,17 @@ document.addEventListener('DOMContentLoaded', () => {
         .catch((error) => console.error('Error:', error));
     };
 
-    getBillboards()
+    //getBillboards()
   
     // Get a billboard billboard from a specific user
-    // const url = window.location.search;
-    // let userId;
-    // if (url.indexOf('?user_id=') !== -1) {
-    //   userId = url.split('=')[1];
-    //   getBillboards(userId);
-    // } else {
-    //   getBillboards();
-    // }
+    const url = window.location.search;
+    let userId;
+    if (url.indexOf('?user_id=') !== -1) {
+      userId = url.split('=')[1];
+      getBillboards(userId);
+    } else {
+      getBillboards();
+    }
   
     // Front end call to DELETE a billboard
     const deletebillboard = (id) => {
@@ -88,9 +89,9 @@ document.addEventListener('DOMContentLoaded', () => {
   
       const newbillboardTitle = document.createElement('h2');
       const newbillboardDate = document.createElement('small');
-      // const newbillboarduser = document.createElement('h5');
+      //const newbillboarduser = document.createElement('h5');
   
-      // newbillboarduser.textContent = `Written by: ${billboard.user.name}`;
+      // newbillboarduser.textContent = `Written by: ${billboard.user.email}`;
       // newbillboarduser.style.float = 'right';
       // newbillboarduser.style.color = 'blue';
       // newbillboarduser.style.marginTop = '-10px';
@@ -106,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
       newbillboardCardHeading.append(deleteBtn);
       newbillboardCardHeading.append(editButton);
       newbillboardCardHeading.append(newbillboardTitle);
-      // newbillboardCardHeading.append(newbillboarduser);
+      //newbillboardCardHeading.append(newbillboarduser);
       newbillboardCardPost.append(newbillboardPost);
       newbillboardCard.append(newbillboardCardHeading);
       newbillboardCard.append(newbillboardCardPost);
