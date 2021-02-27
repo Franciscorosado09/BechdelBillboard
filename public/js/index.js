@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
        
-        window.location.href = '/userProfile.html';
+        window.location.href = '/login.html';
           
 
 
