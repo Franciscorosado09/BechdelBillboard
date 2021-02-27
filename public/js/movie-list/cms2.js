@@ -96,6 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   };
 
+
   // Attach an event movieener to the form on submit
   cmsForm.addEventListener('submit', handleFormSubmit);
 
@@ -116,6 +117,8 @@ document.addEventListener('DOMContentLoaded', () => {
       })
       .catch((err) => console.error(err));
   };
+
+
 
   // Render a movie of users or redirect if no users
   // const renderusermovie = (data) => {

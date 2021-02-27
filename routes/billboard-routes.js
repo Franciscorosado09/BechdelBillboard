@@ -4,6 +4,7 @@ const db = require('../models');
 module.exports = (app) => {
 
     //** Need to add details to query movie information into billboard post. **
+    
 
     app.get('/api/billboard', (req, res) => {
         const query = {};
