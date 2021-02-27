@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
           if (!data || !data.length) {
             displayEmpty();
           } else {
-            initializeRows();
+            initializeRows(billboards);
           }
         })
         .catch((error) => console.error('Error:', error));
@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
       billboardsToAdd.forEach((billboard) => billboardContainer.append(billboard));
     };
   
-    const createNewRow = () => {
+    const createNewRow = (billboard) => {
       console.log('createNewRow -> billboard', billboard);
   
       const formattedDate = new Date(billboard.createdAt).toLocaleDateString();
@@ -88,25 +88,25 @@ document.addEventListener('DOMContentLoaded', () => {
   
       const newbillboardTitle = document.createElement('h2');
       const newbillboardDate = document.createElement('small');
-      const newbillboarduser = document.createElement('h5');
+      // const newbillboarduser = document.createElement('h5');
   
-      newbillboarduser.textContent = `Written by: ${billboard.user.name}`;
-      newbillboarduser.style.float = 'right';
-      newbillboarduser.style.color = 'blue';
-      newbillboarduser.style.marginTop = '-10px';
+      // newbillboarduser.textContent = `Written by: ${billboard.user.name}`;
+      // newbillboarduser.style.float = 'right';
+      // newbillboarduser.style.color = 'blue';
+      // newbillboarduser.style.marginTop = '-10px';
   
       const newbillboardCardPost = document.createElement('div');
       newbillboardCardPost.classList.add('card-Post');
   
       const newbillboardPost = document.createElement('p');
-      newbillboardTitle.textContent = `${billboard.title} `;
-      newbillboardPost.textContent = billboard.Post;
+      newbillboardTitle.textContent = `${billboard.title}`;
+      newbillboardPost.textContent =`${billboard.post}`;
       newbillboardDate.textContent = ` (${formattedDate})`;
       newbillboardTitle.append(newbillboardDate);
       newbillboardCardHeading.append(deleteBtn);
       newbillboardCardHeading.append(editButton);
       newbillboardCardHeading.append(newbillboardTitle);
-      newbillboardCardHeading.append(newbillboarduser);
+      // newbillboardCardHeading.append(newbillboarduser);
       newbillboardCardPost.append(newbillboardPost);
       newbillboardCard.append(newbillboardCardHeading);
       newbillboardCard.append(newbillboardCardPost);
@@ -139,6 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
       );
   
       deletebillboard(currentbillboard.id);
+      getBillboards()
     };
   
     // Handle when we click the edit billboard button
@@ -147,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
         e.target.parentElement.parentElement.dataset.billboard
       );
   
-      window.location.href = `/cms?billboard_id=${currentbillboard.id}`;
+      window.location.href = `/billboard-add.html?Billboard_id=${currentbillboard.id}`;
     };
   });
   

@@ -22,8 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // Get billboard data for editing/adding
   const getbillboardData = (id, type) => {
     const queryUrl =
-      type === 'billboard' ? `/api/billboard/${id}` : `/api/user/${id}`;
-
+      type === 'billboard' ? `/api/billboard/${id}` :
+// : `/api/user/${id}`
     fetch(queryUrl, {
       method: 'GET',
       headers: {
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
           // Populate the form for editing
           titleInput.value = data.title;
           postInput.value = data.post;
-          userId = data.userId || data.id;
+          // userId = data.userId || data.id;
 
           // We are updating
           updating = true;
@@ -80,12 +80,12 @@ document.addEventListener('DOMContentLoaded', () => {
     submitbillboard(newbillboard);
 
     // Update a billboard if flag is true, otherwise submit a new one
-    // if (updating) {
-    //   newbillboard.id = billboardId;
-    //   updatebillboard(newbillboard);
-    // } else {
-      // submitbillboard(newbillboard);
-    // }
+    if (updating) {
+      newbillboard.id = billboardId;
+      updatebillboard(newbillboard);
+    } else {
+      submitbillboard(newbillboard);
+    }
   };
 
   // Attach an event listener to the form on submit
@@ -176,4 +176,5 @@ document.addEventListener('DOMContentLoaded', () => {
       })
       .catch((err) => console.error(err));
   };
+  
 });
