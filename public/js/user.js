@@ -2,12 +2,12 @@
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOM loaded! 🚀');
   
-    const nameInput = document.getElementById('user-name');
-    const userList = document.querySelector('tbody');
+    // const nameInput = document.getElementById('user-name');
+    // const userList = document.querySelector('tbody');
   
     // Create an user
     const insertuser = (userData) => {
-      fetch('/api/users', {
+      fetch('/api/userProfile', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -32,20 +32,20 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     };
   
-    document
-      .getElementById('user-form')
-      .addEventListener('submit', handleuserFormSubmit);
+    // document
+    //   .getElementById('user-form')
+    //   .addEventListener('submit', handleuserFormSubmit);
   
     // Event handler for the delete user button
-    const handleDeleteButtonPress = (e) => {
-      const { id } = e.target.parentElement.parentElement;
-      fetch(`/api/users/${id}`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }).then(getusers);
-    };
+    // const handleDeleteButtonPress = (e) => {
+    //   const { id } = e.target.parentElement.parentElement;
+    //   fetch(`/api/userProfile/${id}`, {
+    //     method: 'DELETE',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+    //   }).then(getusers);
+    // };
   
     // Create list row for users
     const createuserRow = (userData) => {
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
       // "Go to posts" link
       const postsLink = document.createElement('td');
-      postsLink.innerHTML = `<td><a href='/blog?user_id=${userData.id}'>Go to Posts</a></td>`;
+      postsLink.innerHTML = `<td><a href='/billboard?user_id=${userData.id}'>Go to Posts</a></td>`;
       tr.appendChild(postsLink);
   
       // "Create a post" link
@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Grab all the users
     const getusers = () => {
       console.log('Get users is getting called');
-      fetch('/api/users', {
+      fetch(`/api/userProfile/${id}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',

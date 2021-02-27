@@ -9,12 +9,12 @@ const isAuthenticated = require ('../config/middleware/isAuthenticated')
 
 // Routes
 module.exports = (app) => {
-  app.get('/api/profile', isAuthenticated,(req, res) => {  ///<--- YJK TESTED //USE ISAUTHENTICATED IF YOU WANT BOUNCE BACK WHEN SOMEONE TRIES TO CHANGE LINK
+  app.get('/api/userProfile', isAuthenticated,(req, res) => {  ///<--- YJK TESTED //USE ISAUTHENTICATED IF YOU WANT BOUNCE BACK WHEN SOMEONE TRIES TO CHANGE LINK
     const query = {};
     query.id = req.user.id
-    // if (req.user_id) {
-    //   UserId = req.user_id;
-    // }
+    if (req.user_id) {
+      UserId = req.user_id;
+    }
     // Here we add an "include" property to our options in our findAll query
     // We set the value to an array of the models we want to include in a left outer join
     // In this case, just db.Author
@@ -26,7 +26,7 @@ module.exports = (app) => {
   });
 
   // Get route for retrieving a single Login
-  app.get('/api/profile/:id', (req, res) => {
+  app.get('/api/userProfile/:id', (req, res) => {
     // Here we add an "include" property to our options in our findOne query
     // We set the value to an array of the models we want to include in a left outer join
     // In this case, just db.Author
@@ -34,7 +34,8 @@ module.exports = (app) => {
       where: {
         id: req.params.id,
       },
-      include: [db.Movies],
+      // include: [db.Movies],
+      include: [db.Billboard],
     }).then((dbLogin) => res.json(dbLogin));
   });
 
