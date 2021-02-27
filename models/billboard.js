@@ -59,12 +59,12 @@ module.exports = (sequelize, DataTypes) => {
 
 
   //posts linked to user in user.
-  // Billboard.associate = (models) => {
-  //   Billboard.belongsTo(models.User, {
-  //      foreignKey: "billboardID",
-  //       allowNull: false,
-  //   })
-  // }
+  Billboard.associate = (models) => {
+    Billboard.belongsTo(models.User, {
+       foreignKey: "userId",
+        allowNull: false,
+    })
+  }
 
 
   // // //links to movies - pulls in movies for posts

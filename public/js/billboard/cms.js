@@ -3,6 +3,8 @@
 //   el.style.display = 'block';
 // };
 
+//const { json } = require("sequelize");
+
 // Wait for the DOM to completely load before we run our JS
 document.addEventListener('DOMContentLoaded', () => {
   console.log('DOM loaded! 🚀');
@@ -16,14 +18,18 @@ document.addEventListener('DOMContentLoaded', () => {
   // Get query parameter
   const url = window.location.search;
   let billboardId;
+  let billboard;
   let userId;
   let updating = false;
 
+  
+
   // Get billboard data for editing/adding
   const getbillboardData = (id, type) => {
+    console.log("I'm inside getBillboard")
     const queryUrl =
-      type === 'billboard' ? `/api/billboard/${id}` :
-// : `/api/user/${id}`
+      type === 'billboard' ? `/api/billboard/${id}`:`/api/userProfile/${id}`
+
     fetch(queryUrl, {
       method: 'GET',
       headers: {
@@ -34,28 +40,41 @@ document.addEventListener('DOMContentLoaded', () => {
       .then((data) => {
         if (data) {
           console.log('Success in getting billboard:', data);
-
+        
           // Populate the form for editing
           titleInput.value = data.title;
           postInput.value = data.post;
-          // userId = data.userId || data.id;
+          userId = data.userId || data.id;
 
+          const billboard = {
+            titleInput: data.title,
+            postInput: data.post,
+            //userId: data.userId || data.id
+          }
+          console.log(billboard)
           // We are updating
           updating = true;
+          console.log(getusers)
+          //getusers(billboard);
         }
       })
       .catch((err) => console.error(err));
-  };
 
+      
+  };
+ 
+  
   // If billboard exists, grab the content of the billboard
   if (url.indexOf('?billboard_id=') !== -1) {
     billboardId = url.split('=')[1];
     getbillboardData(billboardId, 'billboard');
+    console.log(billboardId)
   }
-  // Otherwise if we have an user_id in our url, preset the user select box to be our user
-  else if (url.indexOf('?user_id=') !== -1) {
-    userId = url.split('=')[1];
-  }
+  // // Otherwise if we have an user_id in our url, preset the user select box to be our user
+  // else if (url.indexOf('?user_id=') !== -1) {
+  //   userId = url.split('=')[1];
+  // }
+  //getbillboardData(billboardId, 'billboard')
 
   // Event handler for when the billboard for is submitted
   const handleFormSubmit = (e) => {
@@ -65,7 +84,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (
       !titleInput.value.trim() ||
       !postInput.value.trim() 
-      // ||
       // !userSelect.value
     ) {
       return;
@@ -117,50 +135,54 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // Render a list of users or redirect if no users
-  const renderuserList = (data) => {
-    console.log('renderuserList -> data', data);
-    if (!data.length) {
-      window.location.href = '/users';
-    }
-    if (document.querySelector('.hidden')) {
-      show(document.querySelector('.hidden'));
-    }
+  // const renderuserList = (data) => {
+  //   console.log('renderuserList -> data', data);
+  //   if (!data.length) {
+  //     window.location.href = '/users';
+  //   }
+  //   if (document.querySelector('.hidden')) {
+  //     show(document.querySelector('.hidden'));
+  //   }
 
-    const rowsToAdd = [];
+  //   const rowsToAdd = [];
 
-    data.forEach((user) => rowsToAdd.push(createuserRow(user)));
+  //   data.forEach((user) => rowsToAdd.push(createuserRow(user)));
 
-    userSelect.innerHTML = '';
-    console.log('renderuserList -> rowsToAdd', rowsToAdd);
-    console.log('userSelect', userSelect);
+  //   // //userSelect.innerHTML = '';
+  //   // console.log('renderuserList -> rowsToAdd', rowsToAdd);
+  //   // console.log('userSelect', userSelect);
 
-    rowsToAdd.forEach((row) => userSelect.append(row));
-    userSelect.value = userId;
-  };
+  //   // rowsToAdd.forEach((row) => userSelect.append(row));
+  //   // userSelect.value = userId;
+  // };
 
   // Build user dropdown
-  const createuserRow = ({ id, name }) => {
-    const listOption = document.createElement('option');
-    listOption.value = id;
-    listOption.textContent = name;
-    return listOption;
-  };
+  // const createuserRow = ({ id, email }) => {
+  //   const listOption = document.createElement('option');
+  //   listOption.value = id;
+  //   listOption.textContent = email;
+  //   return listOption;
+  // };
 
   // A function to get users and then call the render function
   // const getusers = () => {
-  //   fetch('api/users', {
+  //   console.log(billboard)
+  //   fetch('api/userProfile', {
   //     method: 'GET',
   //     headers: {
   //       'Content-Type': 'application/json',
   //     },
+  //     //  body: JSON.stringify(billboard)
   //   })
   //     .then((response) => response.json())
   //     .then((data) => renderuserList(data))
   //     .catch((err) => console.error(err));
+      
+     
   // };
 
   // // Get the users, and their billboards
-  // getusers();
+  //getusers();
 
   // Update a billboard then redirect to billboard
   const updatebillboard = (billboard) => {
@@ -176,5 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
       })
       .catch((err) => console.error(err));
   };
+
+ 
   
 });

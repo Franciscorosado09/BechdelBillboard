@@ -21,12 +21,12 @@ module.exports = (sequelize, DataTypes) => {
 
   //Links blog posts to author (can have many posts)
 
-  // User.associate = (models) => {
-  //   User.hasMany(models.Billboard, {
-  //     foreignKey: 'userid',
-  //   allowNull: false
-  //   })
-  // }
+  User.associate = (models) => {
+    User.hasMany(models.Billboard, {
+      foreignKey: 'userid',
+    allowNull: false
+    })
+  }
 
   User.associate = (models) => {   
     User.hasMany(models.Movies, {
