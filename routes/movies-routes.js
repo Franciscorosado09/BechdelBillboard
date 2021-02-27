@@ -11,6 +11,15 @@ module.exports = (app) => {
     db.Movies.findAll({}).then((dbMovies) => res.json(dbMovies));
   });
 
+  // var upload = multer({ storage: storage }).single('myFile');
+  // app.post('/dashboard/myFile', function (req, res) {
+  //   upload(req, res, function (err) {
+  //     //console.log("owen",req.file,err);
+  //     if (err)
+  //       return res.end("error uploading file");
+  //     res.end("file is uploaded");
+  //   });
+  // });
 
   app.post('/api/movie-add', (req, res) => {
     console.log(req.body)
@@ -20,16 +29,16 @@ module.exports = (app) => {
       year: req.body.year,
       genre: req.body.genre,
       description: req.body.description,
-      // image: req.body.image,
+      image: req.body.image,
       // favorites: req.body.favorites,
-      
+
       // rating: req.body.rating,
     })
       .then((dbMovies) => res.json(dbMovies))
       .catch((err) => res.json(err));
-      
 
-  
+
+
   });
 
 
