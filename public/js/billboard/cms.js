@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const getbillboardData = (id, type) => {
     console.log("I'm inside getBillboard")
     const queryUrl =
-      type === 'billboard' ? `/api/billboard/${id}`: `/api/user_data/${email}`;
+      type === 'billboard' ? `/api/billboard/${id}`: `/api/user_data/${id}`;
 
     fetch(queryUrl, {
       method: 'GET',
@@ -39,12 +39,15 @@ document.addEventListener('DOMContentLoaded', () => {
       .then((data) => {
         if (data) {
           console.log('Success in getting billboard:', data);
-        
+          //data.userId = users.email
           // Populate the form for editing
           titleInput.value = data.title;
           postInput.value = data.post;
           userSelect.value = data.userId;
-          console.log(userId)
+
+
+
+          console.log(data.userId)
           updating = true;
 
         }
@@ -75,8 +78,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Make sure the form isn't empty
     if (
       !titleInput.value.trim() ||
-      !postInput.value.trim() 
-      // !userSelect.value
+      !postInput.value.trim() ||
+      !userSelect.value
     ) {
       return;
     }
@@ -113,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     }).then((response) => response.json())
       .then((data) => {
-        window.location.href = '/billboard.html';
+        // window.location.href = '/billboard.html';
 
         console.log('Success in submitting post:', data);
         console.log(JSON.stringify(billboard))
@@ -132,9 +135,12 @@ document.addEventListener('DOMContentLoaded', () => {
       console.log("Hello")
       console.log('createNewRow -> user', users)
       const email = document.getElementById('user');
-      email.textContent = `${users.email}`
-      userId = `${users.email}`
       
+      email.textContent = `${users.email}`
+      userId = users.id
+      userSelect.value = userId
+      console.log(userId)
+      console.log(userSelect.value)
     }
 
     
@@ -179,7 +185,10 @@ document.addEventListener('DOMContentLoaded', () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        users = data;
+        users = {
+          id: data.id,
+          email: data.email
+        }
         console.log('Success in getting user information:', data);
         renderUser(users)
 
