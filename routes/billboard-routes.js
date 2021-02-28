@@ -41,8 +41,8 @@ module.exports = (app) => {
         db.Billboard.create(
           { 
             title: req.body.title,
-
-            post: req.body.post
+            post: req.body.post,
+            userId: req.body.userId
           }
           ).then((dbBillboard) => res.json(dbBillboard));
       });
