@@ -27,8 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const getbillboardData = (id, type) => {
     console.log("I'm inside getBillboard")
     const queryUrl =
-      type === 'billboard' ? `/api/billboard/${id}`:
-      // `/api/user_data`;
+      type === 'billboard' ? `/api/billboard/${id}`: `/api/user_data/${email}`;
 
     fetch(queryUrl, {
       method: 'GET',
@@ -44,8 +43,8 @@ document.addEventListener('DOMContentLoaded', () => {
           // Populate the form for editing
           titleInput.value = data.title;
           postInput.value = data.post;
-          //userId = data.userId || data.id;
-
+          userSelect.value = data.userId;
+          console.log(userId)
           updating = true;
 
         }
@@ -77,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (
       !titleInput.value.trim() ||
       !postInput.value.trim() 
-      //!userSelect.value
+      // !userSelect.value
     ) {
       return;
     }
@@ -86,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const newbillboard = {
       title: titleInput.value.trim(),
       post: postInput.value.trim(),
-      //userId: userSelect.value,
+      userId: userSelect.value,
     };
     
     //submitbillboard(newbillboard);
@@ -112,14 +111,13 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       body: JSON.stringify(billboard),
 
-
     }).then((response) => response.json())
       .then((data) => {
         window.location.href = '/billboard.html';
 
         console.log('Success in submitting post:', data);
         console.log(JSON.stringify(billboard))
-
+        console.log(userId)
 
       })
       // console.log(billboard)
@@ -129,6 +127,17 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // Render a list of users or redirect if no users
+
+    const renderUser = (users) => {
+      console.log("Hello")
+      console.log('createNewRow -> user', users)
+      const email = document.getElementById('user');
+      email.textContent = `${users.email}`
+      userId = `${users.email}`
+      
+    }
+
+    
   // const renderuserList = (data) => {
   //   console.log('renderuserList -> data', data);
   //   if (!data.length) {
@@ -159,24 +168,29 @@ document.addEventListener('DOMContentLoaded', () => {
   // };
 
   // A function to get users and then call the render function
-  // const getusers = () => {
+  const getusers = () => {
     
-  //   fetch('api/user_data', {
-  //     method: 'GET',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     //  body: JSON.stringify(billboard)
-  //   })
-  //     .then((response) => response.json())
-  //    // .then((data) => renderuserList(data))
-  //     .catch((err) => console.error(err));
+    fetch('api/user_data', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      //  body: JSON.stringify(billboard)
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        users = data;
+        console.log('Success in getting user information:', data);
+        renderUser(users)
+
+      })
+      .catch((err) => console.error(err));
       
      
-  // };
+  };
 
   // // Get the users, and their billboards
-  //getusers();
+  getusers();
 
   // Update a billboard then redirect to billboard
   const updatebillboard = (billboard) => {

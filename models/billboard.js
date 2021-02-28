@@ -61,7 +61,7 @@ module.exports = (sequelize, DataTypes) => {
   //posts linked to user in user.
   Billboard.associate = (models) => {
     Billboard.belongsTo(models.User, {
-       foreignKey: "userId",
+       foreignKey: "userid",
         allowNull: false,
     })
   }
