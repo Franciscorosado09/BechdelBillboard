@@ -103,8 +103,8 @@ app.get("/api/user_data", (req, res) => {
     // Sending back a password, even a hashed password, isn't a good idea
 
     res.json({
+      id: req.user.id,
       email: req.user.email,
-      id: req.user.id
     });
   }
     
