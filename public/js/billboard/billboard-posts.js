@@ -150,7 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const currentbillboard = JSON.parse(
         e.target.parentElement.parentElement.dataset.billboard
       );
-  
+      console.log(currentbillboard)
       window.location.href = `/billboard-add.html?Billboard_id=${currentbillboard.id}`;
     };
   });

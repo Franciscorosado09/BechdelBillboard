@@ -27,7 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const getbillboardData = (id, type) => {
     console.log("I'm inside getBillboard")
     const queryUrl =
-      type === 'billboard' ? `/api/billboard/${id}`: `/api/user_data/${id}`;
+      type === 'billboard' ? `/api/billboard/${id}`: 
+       `/api/user_data/${id}`;
 
     fetch(queryUrl, {
       method: 'GET',
@@ -64,6 +65,8 @@ document.addEventListener('DOMContentLoaded', () => {
     billboardId = url.split('=')[1];
     getbillboardData(billboardId, 'billboard');
     console.log(billboardId)
+  } else {
+    console.log('no post to edit.')
   }
   // // // Otherwise if we have an user_id in our url, preset the user select box to be our user
   // else if (url.indexOf('?user_id=') !== -1) {
@@ -203,7 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Update a billboard then redirect to billboard
   const updatebillboard = (billboard) => {
-    fetch('/api/billboard', {
+    fetch(`/api/billboard-add/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -211,7 +214,8 @@ document.addEventListener('DOMContentLoaded', () => {
       body: JSON.stringify(billboard),
     })
       .then(() => {
-        window.location.href = '/billboard.html';
+        console.log("Success in Put!")
+       //window.location.href = '/billboard.html';
       })
       .catch((err) => console.error(err));
   };
