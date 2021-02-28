@@ -66,6 +66,8 @@ module.exports = (sequelize, DataTypes) => {
     })
   }
 
+  
+
 
   // // //links to movies - pulls in movies for posts
   // Billboard.associate = (models) => {
