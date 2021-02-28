@@ -23,10 +23,16 @@ input.new-item:focus {
   background-image: url(/);
 } */
 
+.navbar-nav {
+  position: absolute;
+  right: 0px;
+  width: 500px;   
+} 
+
 #Brand{
   background-image: url(./assets/BB.png);
   height: auto; 
-  width: 10%;
+  width: 7%;
 }
 
 body{
@@ -47,7 +53,7 @@ nav{
 
   background-color:  #fcb9b2;
   opacity: 0.;
-  margin-top: 1%;
+  /* margin-top: 1%; */
   
   font-family: 'Krona One', sans-serif;
  
@@ -119,5 +125,13 @@ nav{
   margin-top: 1%;
   background-color:  #fef9ff;
 
+
+}
+
+
+/* Profile Image*/
+.profileimg {
+  width: 150px;
+  height: 150px;
 
 }

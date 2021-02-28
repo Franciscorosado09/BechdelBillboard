@@ -8,9 +8,9 @@ module.exports = (app) => {
 
     app.get('/api/billboard', (req, res) => {
         const query = {};
-        if (req.query.user_id) {
-          query.UserId = req.query.user_id;
-          query.MovieID = req.query.movie_id
+        if (req.query.userId) {
+          query.UserId = req.query.userId;
+          //query.MovieID = req.query.movie_id
         }
         // Here we add an "include" property to our options in our findAll query
         // We set the value to an array of the models we want to include in a left outer join

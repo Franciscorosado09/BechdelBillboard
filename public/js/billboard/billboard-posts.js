@@ -33,17 +33,17 @@ document.addEventListener('DOMContentLoaded', () => {
         .catch((error) => console.error('Error:', error));
     };
 
-    //getBillboards()
+    getBillboards()
   
     // Get a billboard billboard from a specific user
-    const url = window.location.search;
-    let userId;
-    if (url.indexOf('?user_id=') !== -1) {
-      userId = url.split('=')[1];
-      getBillboards(userId);
-    } else {
-      getBillboards();
-    }
+    // const url = window.location.search;
+    // let userId;
+    // if (url.indexOf('?user_id=') !== -1) {
+    //   userId = url.split('=')[1];
+    //   getBillboards(userId);
+    // } else {
+    //   getBillboards();
+    // }
   
     // Front end call to DELETE a billboard
     const deletebillboard = (id) => {
@@ -86,6 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
       editButton.textContent = 'EDIT';
       editButton.classList.add('edit', 'btn', 'btn-info');
       editButton.addEventListener('click', handlebillboardEdit);
+      
   
       const newbillboardTitle = document.createElement('h2');
       const newbillboardDate = document.createElement('small');
@@ -145,6 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
     // Handle when we click the edit billboard button
     const handlebillboardEdit = (e) => {
+      
       const currentbillboard = JSON.parse(
         e.target.parentElement.parentElement.dataset.billboard
       );

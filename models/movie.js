@@ -38,13 +38,13 @@ module.exports = (sequelize, DataTypes) => {
   // }
 
   //  //Favorites - joining movies to user page for displaying.
-  Movies.associate = (models) => {
-    Movies.belongsTo(models.User, {
-      foreignKey: "favMovieID",
-      allowNull: false
+  // Movies.associate = (models) => {
+  //   Movies.belongsTo(models.User, {
+  //     foreignKey: "favMovieID",
+  //     allowNull: false
 
-    });
-  };
+  //   });
+  // };
 
 
   return Movies;

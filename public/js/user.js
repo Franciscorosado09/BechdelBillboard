@@ -32,9 +32,9 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     };
   
-    // document
-    //   .getElementById('user-form')
-    //   .addEventListener('submit', handleuserFormSubmit);
+      document
+      .getElementById('user-form')
+      .addEventListener('submit', handleuserFormSubmit);
   
     // Event handler for the delete user button
     // const handleDeleteButtonPress = (e) => {
