@@ -1,9 +1,9 @@
 // Helper functions to show/hide elements
-// const show = (el) => {
-//   el.style.display = 'block';
-// };
+const show = (el) => {
+  el.style.display = 'block';
+};
 
-//const { json } = require("sequelize");
+
 
 // Wait for the DOM to completely load before we run our JS
 document.addEventListener('DOMContentLoaded', () => {
@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // Get query parameter
   const url = window.location.search;
   let billboardId;
-  let billboard;
   let userId;
   let updating = false;
 
@@ -28,7 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const getbillboardData = (id, type) => {
     console.log("I'm inside getBillboard")
     const queryUrl =
-      type === 'billboard' ? `/api/billboard/${id}`:`/api/userProfile/${id}`
+      type === 'billboard' ? `/api/billboard/${id}`:
+      // `/api/user_data`;
 
     fetch(queryUrl, {
       method: 'GET',
@@ -44,18 +44,10 @@ document.addEventListener('DOMContentLoaded', () => {
           // Populate the form for editing
           titleInput.value = data.title;
           postInput.value = data.post;
-          userId = data.userId || data.id;
+          //userId = data.userId || data.id;
 
-          const billboard = {
-            titleInput: data.title,
-            postInput: data.post,
-            //userId: data.userId || data.id
-          }
-          console.log(billboard)
-          // We are updating
           updating = true;
-          console.log(getusers)
-          //getusers(billboard);
+
         }
       })
       .catch((err) => console.error(err));
@@ -66,11 +58,12 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // If billboard exists, grab the content of the billboard
   if (url.indexOf('?billboard_id=') !== -1) {
+    console.log('grabing edit')
     billboardId = url.split('=')[1];
     getbillboardData(billboardId, 'billboard');
     console.log(billboardId)
   }
-  // // Otherwise if we have an user_id in our url, preset the user select box to be our user
+  // // // Otherwise if we have an user_id in our url, preset the user select box to be our user
   // else if (url.indexOf('?user_id=') !== -1) {
   //   userId = url.split('=')[1];
   // }
@@ -84,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (
       !titleInput.value.trim() ||
       !postInput.value.trim() 
-      // !userSelect.value
+      //!userSelect.value
     ) {
       return;
     }
@@ -93,9 +86,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const newbillboard = {
       title: titleInput.value.trim(),
       post: postInput.value.trim(),
-      // userId: userSelect.value,
+      //userId: userSelect.value,
     };
-    submitbillboard(newbillboard);
+    
+    //submitbillboard(newbillboard);
 
     // Update a billboard if flag is true, otherwise submit a new one
     if (updating) {
@@ -121,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     }).then((response) => response.json())
       .then((data) => {
-        // window.location.href = '/billboard';
+        window.location.href = '/billboard.html';
 
         console.log('Success in submitting post:', data);
         console.log(JSON.stringify(billboard))
@@ -148,12 +142,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   //   data.forEach((user) => rowsToAdd.push(createuserRow(user)));
 
-  //   // //userSelect.innerHTML = '';
-  //   // console.log('renderuserList -> rowsToAdd', rowsToAdd);
-  //   // console.log('userSelect', userSelect);
+  //   userSelect.innerHTML = '';
+  //   console.log('renderuserList -> rowsToAdd', rowsToAdd);
+  //   console.log('userSelect', userSelect);
 
-  //   // rowsToAdd.forEach((row) => userSelect.append(row));
-  //   // userSelect.value = userId;
+  //   rowsToAdd.forEach((row) => userSelect.append(row));
+  //   userSelect.value = userId;
   // };
 
   // Build user dropdown
@@ -166,8 +160,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // A function to get users and then call the render function
   // const getusers = () => {
-  //   console.log(billboard)
-  //   fetch('api/userProfile', {
+    
+  //   fetch('api/user_data', {
   //     method: 'GET',
   //     headers: {
   //       'Content-Type': 'application/json',
@@ -175,7 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
   //     //  body: JSON.stringify(billboard)
   //   })
   //     .then((response) => response.json())
-  //     .then((data) => renderuserList(data))
+  //    // .then((data) => renderuserList(data))
   //     .catch((err) => console.error(err));
       
      
@@ -194,7 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
       body: JSON.stringify(billboard),
     })
       .then(() => {
-        window.location.href = '/billboard';
+        window.location.href = '/billboard.html';
       })
       .catch((err) => console.error(err));
   };

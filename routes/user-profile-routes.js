@@ -26,18 +26,21 @@ module.exports = (app) => {
   });
 
   // Get route for retrieving a single Login
-  app.get('/api/userProfile/:id', (req, res) => {
-    // Here we add an "include" property to our options in our findOne query
-    // We set the value to an array of the models we want to include in a left outer join
-    // In this case, just db.Author
-    db.User.findOne({
-      where: {
-        id: req.params.id,
-      },
-      // include: [db.Movies],
-      include: [db.Billboard],
-    }).then((dbLogin) => res.json(dbLogin));
-  });
+  // app.get('/api/userProfile/:id', isAuthenticated,(req, res) => {
+    
+  //   // Here we add an "include" property to our options in our findOne query
+  //   // We set the value to an array of the models we want to include in a left outer join
+  //   // In this case, just db.Author
+  //   db.User.findOne({
+  //     where: {
+  //       id: req.params.id,
+        
+  //     },
+  //     include: req.params.email
+  //     // include: [db.Movies],
+  //     // include: [db.Billboard],
+  //   }).then((dbUser) => res.json(dbUser));
+  // });
 
   // POST route for saving a new Login
   app.post("/api/login", passport.authenticate("local"), (req, res) => { //<--YJK TESTED
@@ -45,7 +48,7 @@ module.exports = (app) => {
     res.json({
       email: req.user.email,
       id: req.user.id
-    });
+    })
   });
 
   // DELETE route for deleting Login
@@ -91,6 +94,22 @@ app.get("/logout", (req, res) => {
 });
 
 // Route for getting some data about our user to be used client side
+// app.get("/api/user_data", (req, res) => {
+//   if (!req.user) {
+//     // The user is not logged in, send back an empty object
+//     res.json({});
+//   } else {
+//     // Otherwise send back the user's email and id
+//     // Sending back a password, even a hashed password, isn't a good idea
+
+//     res.json({
+//       email: req.user.email,
+//       id: req.user.id
+//     });
+//   }
+    
+// });
+
 app.get("/api/user_data", (req, res) => {
   if (!req.user) {
     // The user is not logged in, send back an empty object
@@ -98,11 +117,16 @@ app.get("/api/user_data", (req, res) => {
   } else {
     // Otherwise send back the user's email and id
     // Sending back a password, even a hashed password, isn't a good idea
-    res.json({
+
+    db.User.findAll({
+      where: query,
+      include: [{model: db.Billboard}],
+    }).then(() => res.json({
       email: req.user.email,
       id: req.user.id
-    });
+    }));
   }
+    
 });
 
 };
