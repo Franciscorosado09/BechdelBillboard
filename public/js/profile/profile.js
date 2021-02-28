@@ -33,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const email = document.getElementById('email');
 
         email.textContent = `Email: ${users.email}`
+       
 
     }
 

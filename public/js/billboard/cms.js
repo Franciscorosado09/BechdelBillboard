@@ -38,9 +38,8 @@ document.addEventListener('DOMContentLoaded', () => {
           // Populate the form for editing
           titleInput.value = data.title;
           postInput.value = data.post;
-          // userId = data.userId || data.id;
-
-          // We are updating
+          userSelect.value = data.userId;
+          console.log(userId)
           updating = true;
         }
       })
@@ -65,7 +64,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (
       !titleInput.value.trim() ||
       !postInput.value.trim() 
-      // ||
       // !userSelect.value
     ) {
       return;
@@ -75,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const newbillboard = {
       title: titleInput.value.trim(),
       post: postInput.value.trim(),
-      // userId: userSelect.value,
+      userId: userSelect.value,
     };
     submitbillboard(newbillboard);
 
@@ -100,14 +98,13 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       body: JSON.stringify(billboard),
 
-
     }).then((response) => response.json())
       .then((data) => {
         // window.location.href = '/billboard';
 
         console.log('Success in submitting post:', data);
         console.log(JSON.stringify(billboard))
-
+        console.log(userId)
 
       })
       // console.log(billboard)
@@ -117,14 +114,25 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // Render a list of users or redirect if no users
-  const renderuserList = (data) => {
-    console.log('renderuserList -> data', data);
-    if (!data.length) {
-      window.location.href = '/users';
+
+    const renderUser = (users) => {
+      console.log("Hello")
+      console.log('createNewRow -> user', users)
+      const email = document.getElementById('user');
+      email.textContent = `${users.email}`
+      userId = `${users.email}`
+      
     }
-    if (document.querySelector('.hidden')) {
-      show(document.querySelector('.hidden'));
-    }
+
+    
+  // const renderuserList = (data) => {
+  //   console.log('renderuserList -> data', data);
+  //   if (!data.length) {
+  //     window.location.href = '/users';
+  //   }
+  //   if (document.querySelector('.hidden')) {
+  //     show(document.querySelector('.hidden'));
+  //   }
 
     const rowsToAdd = [];
 
@@ -148,18 +156,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // A function to get users and then call the render function
   const getusers = () => {
-    fetch('api/users', {
+    
+    fetch('api/user_data', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
       },
+      //  body: JSON.stringify(billboard)
     })
       .then((response) => response.json())
-      .then((data) => renderuserList(data))
+      .then((data) => {
+        users = data;
+        console.log('Success in getting user information:', data);
+        renderUser(users)
+
+      })
       .catch((err) => console.error(err));
+      
+     
   };
 
-  // Get the users, and their billboards
+  // // Get the users, and their billboards
   getusers();
 
   // Update a billboard then redirect to billboard
