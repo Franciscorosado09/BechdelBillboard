@@ -60,8 +60,8 @@ document.addEventListener('DOMContentLoaded', () => {
  
   
   // If billboard exists, grab the content of the billboard
-  if (url.indexOf('?billboard_id=') !== -1) {
-    console.log('grabing edit')
+  if (url.indexOf('?billboard_id=') !== 0) {
+    console.log('grabbing edit')
     billboardId = url.split('=')[1];
     getbillboardData(billboardId, 'billboard');
     console.log(billboardId)
@@ -101,6 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
       newbillboard.id = billboardId;
       updatebillboard(newbillboard);
     } else {
+      newbillboard.id = billboardId;
       submitbillboard(newbillboard);
     }
   };
@@ -206,7 +207,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Update a billboard then redirect to billboard
   const updatebillboard = (billboard) => {
-    fetch(`/api/billboard-add/${id}`, {
+    console.log('Inside Update')
+    fetch(`/api/billboard-add/:id`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
