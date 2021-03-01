@@ -58,7 +58,12 @@ module.exports = (app) => {
     
       // PUT route for updating posts
       app.put('/api/billboard-add/:id', (req, res) => {
-        db.Billboard.update(req.body, {
+        db.Billboard.update(
+          {
+            title: req.body.title,
+            post: req.body.post
+          }, 
+          {
           where: {
             id: req.body.id,
           },
