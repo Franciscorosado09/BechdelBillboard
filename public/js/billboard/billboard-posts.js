@@ -77,6 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
       const newbillboardCard = document.createElement('div');
       newbillboardCard.classList.add('card');
+      
   
       const newbillboardCardHeading = document.createElement('div');
       newbillboardCardHeading.classList.add('card-header');
@@ -84,6 +85,9 @@ document.addEventListener('DOMContentLoaded', () => {
       
   
       // Delete button
+      const editDeleteRow = document.createElement('div')
+      editDeleteRow.classList.add('row')
+      editDeleteRow.setAttribute('id', 'editDelete')
       const deleteBtn = document.createElement('button');
       deleteBtn.textContent = 'x'
       //deleteBtn.innerHTML = '<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>';
@@ -96,13 +100,32 @@ document.addEventListener('DOMContentLoaded', () => {
       //editButton.innerHTML = '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>';
       editButton.classList.add('edit', 'btn', 'btn-info');
       editButton.addEventListener('click', handlebillboardEdit);
+
+      editDeleteRow.append(deleteBtn)
+      editDeleteRow.append(editButton)
       
-  
+      const titleDataRow = document.createElement('div')
+      titleDataRow.classList.add('row')
+      titleDataRow.setAttribute('id', 'titlePost')
       const newbillboardTitle = document.createElement('h2');
       const newbillboardDate = document.createElement('small');
-      //const newbillboardImage = document.createElement('img').setAttribute('src', `${billboard.image}`)
+      titleDataRow.append(newbillboardTitle)
+      //titleDataRow.append(newbillboardDate)
+
+      const imageRow = document.createElement('div')
+      imageRow.classList.add('row')
+      imageRow.setAttribute('id', 'imagePost')
+      const userRow = document.createElement('div')
+      userRow.classList.add('row')
+      userRow.setAttribute('id', 'userPost')
+
       const newbillboarduser = document.createElement('h5');
       const newbillboardImage = document.createElement('img');
+
+      imageRow.append(newbillboardImage)
+      userRow.append(newbillboarduser)
+      
+
       newbillboardImage.src = `${billboard.image}`
       newbillboardImage.innerHTML = `${billboard.image}`
       console.log(newbillboardImage)
@@ -122,11 +145,11 @@ document.addEventListener('DOMContentLoaded', () => {
       newbillboardPost.textContent =`${billboard.post}`;
       newbillboardDate.textContent = ` (${formattedDate})`;
       newbillboardTitle.append(newbillboardDate);
-      newbillboardCardHeading.append(deleteBtn);
-      newbillboardCardHeading.append(editButton);
-      newbillboardCardHeading.append(newbillboardTitle);
-      newbillboardCardHeading.append(newbillboarduser);
-      newbillboardCardHeading.append(newbillboardImage)
+      newbillboardCardHeading.append(editDeleteRow);
+      //newbillboardCardHeading.append(editButton);
+      newbillboardCardHeading.append(titleDataRow);
+      newbillboardCardHeading.append(userRow);
+      newbillboardCardHeading.append(imageRow)
      
       newbillboardCardPost.append(newbillboardPost);
       newbillboardCard.append(newbillboardCardHeading);
