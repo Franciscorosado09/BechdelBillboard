@@ -22,6 +22,11 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
 
+    image: {
+      type: DataTypes.STRING,
+      allowNull: false
+    }
+
     //npm multer??
     // icon: {
     //   type: DataTypes.STRING,

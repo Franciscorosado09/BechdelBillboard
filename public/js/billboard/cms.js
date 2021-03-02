@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const titleInput = document.getElementById('title');
   const cmsForm = document.getElementById('cms');
   const userSelect = document.getElementById('user');
+  const imageSelect = document.getElementById('image');
 
   // Get query parameter
   const url = window.location.search;
@@ -27,7 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const getbillboardData = (id, type) => {
     console.log("I'm inside getBillboard")
     const queryUrl =
-      type === 'billboard' ? `/api/billboard/${id}`: `/api/user_data/${email}`;
+      type === 'billboard' ? `/api/billboard/${id}`: 
+       `/api/user_data/${id}`;
 
     fetch(queryUrl, {
       method: 'GET',
@@ -39,11 +41,17 @@ document.addEventListener('DOMContentLoaded', () => {
       .then((data) => {
         if (data) {
           console.log('Success in getting billboard:', data);
-        
+          //data.userId = users.email
           // Populate the form for editing
+          console.log(data)
+          console.log(data.image)
           titleInput.value = data.title;
           postInput.value = data.post;
+          imageSelect.value = data.image
           userSelect.value = data.userId;
+
+
+
           console.log(data.userId)
           updating = true;
 
@@ -56,11 +64,13 @@ document.addEventListener('DOMContentLoaded', () => {
  
   
   // If billboard exists, grab the content of the billboard
-  if (url.indexOf('?billboard_id=') !== -1) {
-    console.log('grabing edit')
+  if (url.indexOf('?billboard_id=') !== 0) {
+    console.log('grabbing edit')
     billboardId = url.split('=')[1];
     getbillboardData(billboardId, 'billboard');
     console.log(billboardId)
+  } else {
+    console.log('no post to edit.')
   }
   // // // Otherwise if we have an user_id in our url, preset the user select box to be our user
   // else if (url.indexOf('?user_id=') !== -1) {
@@ -75,8 +85,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Make sure the form isn't empty
     if (
       !titleInput.value.trim() ||
-      !postInput.value.trim() 
-      // !userSelect.value
+      !postInput.value.trim() ||
+      !imageSelect.value.trim() ||
+      !userSelect.value
     ) {
       return;
     }
@@ -85,7 +96,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const newbillboard = {
       title: titleInput.value.trim(),
       post: postInput.value.trim(),
-      userId: userSelect.value,
+      image: imageSelect.value,
+      userId: userSelect.value
     };
     
     //submitbillboard(newbillboard);
@@ -95,6 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
       newbillboard.id = billboardId;
       updatebillboard(newbillboard);
     } else {
+      newbillboard.id = billboardId;
       submitbillboard(newbillboard);
     }
   };
@@ -113,10 +126,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     }).then((response) => response.json())
       .then((data) => {
-        window.location.href = '/billboard.html';
+        // window.location.href = '/billboard.html';
 
         console.log('Success in submitting post:', data);
         console.log(JSON.stringify(billboard))
+        console.log(image)
         console.log(userId)
 
       })
@@ -132,9 +146,12 @@ document.addEventListener('DOMContentLoaded', () => {
       console.log("Hello")
       console.log('createNewRow -> user', users)
       const email = document.getElementById('user');
-      email.textContent = `${users.email}`
-      userId = `${users.email}`
       
+      email.textContent = `${users.email}`
+      userId = users.id
+      userSelect.value = userId
+      console.log(userId)
+      console.log(userSelect.value)
     }
 
     
@@ -179,7 +196,10 @@ document.addEventListener('DOMContentLoaded', () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        users = data;
+        users = {
+          id: data.id,
+          email: data.email
+        }
         console.log('Success in getting user information:', data);
         renderUser(users)
 
@@ -194,7 +214,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Update a billboard then redirect to billboard
   const updatebillboard = (billboard) => {
-    fetch('/api/billboard', {
+    console.log('Inside Update')
+    fetch(`/api/billboard-add/:id`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -202,6 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
       body: JSON.stringify(billboard),
     })
       .then(() => {
+        console.log("Success in Put!")
         window.location.href = '/billboard.html';
       })
       .catch((err) => console.error(err));

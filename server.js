@@ -1,6 +1,8 @@
 const express = require('express');
 const session = require("express-session");
 const passport = require("./config/passport");
+
+
 //const exphbs = require('express-handlebars');
 
 // Sets up the Express App
@@ -30,7 +32,7 @@ require('./routes/movies-routes.js')(app)
 require('./routes/user-profile-routes.js')(app)
 
 
-db.sequelize.sync({ force: true }).then(() => {
+db.sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log(`Listening on PORT ${PORT}`));
 });
 

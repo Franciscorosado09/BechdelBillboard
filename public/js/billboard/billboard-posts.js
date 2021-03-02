@@ -6,9 +6,10 @@ document.addEventListener('DOMContentLoaded', () => {
   
     // Variable to hold our billboards
     let billboards;
-    
+    console.log("Hello I'm working")
   
     const getBillboards = (user) => {
+      console.log('inside getbillboards')
       userId = user || '';
       if (userId) {
         userId = `/?user_id=${userId}`;
@@ -23,6 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
         .then((response) => response.json())
         .then((data) => {
           billboards = data;
+          console.log(data)
+          console.log(billboards[0].image)
           console.log('Success in getting billboards:', data);
           if (!data || !data.length) {
             displayEmpty();
@@ -31,10 +34,13 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         })
         .catch((error) => console.error('Error:', error));
+       
     };
 
+      
+
     getBillboards()
-  
+    
     // Get a billboard billboard from a specific user
     // const url = window.location.search;
     // let userId;
@@ -74,41 +80,54 @@ document.addEventListener('DOMContentLoaded', () => {
   
       const newbillboardCardHeading = document.createElement('div');
       newbillboardCardHeading.classList.add('card-header');
+
+      
   
       // Delete button
       const deleteBtn = document.createElement('button');
-      deleteBtn.textContent = 'x';
+      deleteBtn.textContent = 'x'
+      //deleteBtn.innerHTML = '<a class="glyphicon glyphicon-trash" aria-hidden="true"></a>';
       deleteBtn.classList.add('delete', 'btn', 'btn-danger');
       deleteBtn.addEventListener('click', handlebillboardDelete);
   
       // Edit button
       const editButton = document.createElement('button');
-      editButton.textContent = 'EDIT';
+      editButton.textContent = 'Edit'
+      //editButton.innerHTML = '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>';
       editButton.classList.add('edit', 'btn', 'btn-info');
       editButton.addEventListener('click', handlebillboardEdit);
       
   
       const newbillboardTitle = document.createElement('h2');
       const newbillboardDate = document.createElement('small');
-      //const newbillboarduser = document.createElement('h5');
-  
-      // newbillboarduser.textContent = `Written by: ${billboard.user.email}`;
-      // newbillboarduser.style.float = 'right';
-      // newbillboarduser.style.color = 'blue';
-      // newbillboarduser.style.marginTop = '-10px';
+      //const newbillboardImage = document.createElement('img').setAttribute('src', `${billboard.image}`)
+      const newbillboarduser = document.createElement('h5');
+      const newbillboardImage = document.createElement('img');
+      newbillboardImage.src = `${billboard.image}`
+      newbillboardImage.innerHTML = `${billboard.image}`
+      console.log(newbillboardImage)
+      console.log(billboard.image)
+
+      newbillboarduser.textContent = `Written by: ${billboard.User.email}`;
+      newbillboarduser.style.float = 'left';
+      newbillboarduser.style.color = '#5d4e60';
+      //newbillboarduser.style.marginTop = '5%';
   
       const newbillboardCardPost = document.createElement('div');
       newbillboardCardPost.classList.add('card-Post');
   
       const newbillboardPost = document.createElement('p');
       newbillboardTitle.textContent = `${billboard.title}`;
+
       newbillboardPost.textContent =`${billboard.post}`;
       newbillboardDate.textContent = ` (${formattedDate})`;
       newbillboardTitle.append(newbillboardDate);
       newbillboardCardHeading.append(deleteBtn);
       newbillboardCardHeading.append(editButton);
       newbillboardCardHeading.append(newbillboardTitle);
-      //newbillboardCardHeading.append(newbillboarduser);
+      newbillboardCardHeading.append(newbillboarduser);
+      newbillboardCardHeading.append(newbillboardImage)
+     
       newbillboardCardPost.append(newbillboardPost);
       newbillboardCard.append(newbillboardCardHeading);
       newbillboardCard.append(newbillboardCardPost);
@@ -136,6 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
     // Handle when we click the delete billboard button
     const handlebillboardDelete = (e) => {
+      
       const currentbillboard = JSON.parse(
         e.target.parentElement.parentElement.dataset.billboard
       );
@@ -150,7 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const currentbillboard = JSON.parse(
         e.target.parentElement.parentElement.dataset.billboard
       );
-  
+      console.log(currentbillboard)
       window.location.href = `/billboard-add.html?Billboard_id=${currentbillboard.id}`;
     };
   });

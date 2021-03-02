@@ -42,7 +42,8 @@ module.exports = (app) => {
           { 
             title: req.body.title,
             post: req.body.post,
-            userId: req.body.userId
+            image: req.body.image,
+            userId: req.body.userId,
           }
           ).then((dbBillboard) => res.json(dbBillboard));
       });
@@ -58,13 +59,22 @@ module.exports = (app) => {
     
       // PUT route for updating posts
       app.put('/api/billboard-add/:id', (req, res) => {
-        db.Billboard.update(req.body, {
+        db.Billboard.update(req.body,
+          {
           where: {
             id: req.body.id,
           },
         }).then((dbBillboard) => res.json(dbBillboard));
       });
 
+      app.put('/billboard-add/:id', (req, res) => {
+        db.Billboard.update(req.body,
+          {
+          where: {
+            id: req.body.id,
+          },
+        }).then((dbBillboard) => res.json(dbBillboard));
+      });
 
 
 
