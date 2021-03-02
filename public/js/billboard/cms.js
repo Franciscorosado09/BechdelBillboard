@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
           titleInput.value = data.title;
           postInput.value = data.post;
           userSelect.value = data.userId;
-          console.log(userId)
+          console.log(data.userId)
           updating = true;
 
         }
