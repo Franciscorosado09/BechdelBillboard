@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-  const getUserPosts = (users) => {
+  const getUserPosts = () => {
 
     fetch(`/api/billboard`, {
       method: 'GET',
@@ -111,18 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log(billboards[0].title)
     console.log(td.textContent = billboards[0].title)
     console.log(newRow)
-    //postContainer.appendChild(newRow)
-    
-    // td.textContent = billboards.post;
-    // tr.appendChild(td);
-    // Element to show how many posts
-    // const lengthTd = document.createElement('td');
-    // if (userData.Posts) {
-    //   lengthTd.textContent = userData.Posts.length;
-    // } else {
-    //   lengthTd.textContent = '0';
-    // }
-    //tr.appendChild(lengthTd);
+
 
     // "Go to posts" link
     const postsLink = document.createElement('td');
@@ -136,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // "Delete user" link
     const deleteLink = document.createElement('td');
-    deleteLink.innerHTML = `<td><button style='cursor:pointer;color:red' class='delete-user btn'>Delete Post</button></td>`;
+    deleteLink.innerHTML = `<td><a href= '/billboard.html?Billboard_id=${billboards[0].id} style='cursor:pointer;color:red' class='delete-user btn'>Delete Post</a></td>`;
     deleteLink.addEventListener('click', deletebillboard);
     newRow.appendChild(deleteLink);
     console.log(newRow)
@@ -145,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
   };
 
-  //need to set this up to delete!
+  // //need to set this up to delete!
   const deletebillboard = (id) => {
     billboard = id || '';
     if (billboard) {
@@ -156,8 +145,11 @@ document.addEventListener('DOMContentLoaded', () => {
       headers: {
         'Content-Type': 'application/json',
       },
-    }).then(getUserDetails);
+    }).then(
+      //getUserDetails(users)
+    );
+    window.location.href = `/userProfile.html`
   };
 
-
+  
 });

@@ -10,12 +10,12 @@ const PORT = process.env.PORT || 8080;
 // Requiring our models for syncing
 const db = require('./models');
 
-// Sets up the Express app to handle data parsing
+// Sets up the Express app to handle data parsing//
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Set Handlebars.
-const handlebars = require('express-handlebars');
+//const handlebars = require('express-handlebars');
 
 // app.engine('handlebars', handlebars({ layoutsDir: __dirname + '/views' }));
 // app.set('view engine', 'handlebars');
@@ -26,16 +26,16 @@ const handlebars = require('express-handlebars');
 
 
   //Sets our app to use the handlebars engine
-app.set('view engine', 'handlebars');
-//Sets handlebars configurations (we will go through them later on)
-app.engine('handlebars', handlebars({
-layoutsDir: __dirname + '/views/layouts',
-}));
+// app.set('view engine', 'handlebars');
+// //Sets handlebars configurations (we will go through them later on)
+// app.engine('handlebars', handlebars({
+// layoutsDir: __dirname + '/views/layouts',
+// }));
 
-app.get('/', (req, res) => {
-  //Serves the body of the page aka "main.handlebars" to the container //aka "index.handlebars"
-  res.render('main', {layout : 'index'});
-  });
+// app.get('/', (req, res) => {
+//   //Serves the body of the page aka "main.handlebars" to the container //aka "index.handlebars"
+//   res.render('main', {layout : 'index'});
+//   });
   
 
 
@@ -60,7 +60,7 @@ require('./routes/movies-routes.js')(app)
 require('./routes/user-profile-routes.js')(app)
 
 
-db.sequelize.sync({ force: false }).then(() => {
+db.sequelize.sync({ force: true }).then(() => {
   app.listen(PORT, () => console.log(`Listening on PORT ${PORT}`));
 });
 

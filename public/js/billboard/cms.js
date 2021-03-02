@@ -1,8 +1,3 @@
-// Helper functions to show/hide elements
-// const show = (el) => {
-//   el.style.display = 'block';
-// };
-
 // Wait for the DOM to completely load before we run our JS
 document.addEventListener('DOMContentLoaded', () => {
   console.log('DOM loaded! 🚀');
@@ -12,16 +7,18 @@ document.addEventListener('DOMContentLoaded', () => {
   const titleInput = document.getElementById('title');
   const cmsForm = document.getElementById('cms');
   const userSelect = document.getElementById('user');
-  const imageSelect = document.getElementById('image');
-
+  const imageAdd = document.getElementById('image');
   // Get query parameter
   const url = window.location.search;
   let billboardId;
   let userId;
   let updating = false;
 
+  
+
   // Get billboard data for editing/adding
   const getbillboardData = (id, type) => {
+    console.log("I'm inside getBillboard")
     const queryUrl =
       type === 'billboard' ? `/api/billboard/${id}`: 
        `/api/user_data/${id}`;
@@ -38,22 +35,24 @@ document.addEventListener('DOMContentLoaded', () => {
           console.log('Success in getting billboard:', data);
           //data.userId = users.email
           // Populate the form for editing
-          console.log(data)
-          console.log(data.image)
           titleInput.value = data.title;
           postInput.value = data.post;
-          imageSelect.value = data.image
+          imageAdd.value = data.image
           userSelect.value = data.userId;
-
+         
 
 
           console.log(data.userId)
           updating = true;
+
         }
       })
       .catch((err) => console.error(err));
-  };
 
+      
+  };
+ 
+  
   // If billboard exists, grab the content of the billboard
   if (url.indexOf('?billboard_id=') !== 0) {
     console.log('grabbing edit')
@@ -63,10 +62,11 @@ document.addEventListener('DOMContentLoaded', () => {
   } else {
     console.log('no post to edit.')
   }
-  // Otherwise if we have an user_id in our url, preset the user select box to be our user
-  else if (url.indexOf('?user_id=') !== -1) {
-    userId = url.split('=')[1];
-  }
+  // // // Otherwise if we have an user_id in our url, preset the user select box to be our user
+  // else if (url.indexOf('?user_id=') !== -1) {
+  //   userId = url.split('=')[1];
+  // }
+  //getbillboardData(billboardId, 'billboard')
 
   // Event handler for when the billboard for is submitted
   const handleFormSubmit = (e) => {
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (
       !titleInput.value.trim() ||
       !postInput.value.trim() ||
-      !imageSelect.value.trim() ||
+      !imageAdd.value.trim()||
       !userSelect.value
     ) {
       return;
@@ -86,17 +86,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const newbillboard = {
       title: titleInput.value.trim(),
       post: postInput.value.trim(),
-      image: imageSelect.value,
-      userId: userSelect.value
+      image: imageAdd.value.trim(),
+      userId: userSelect.value,
     };
-    submitbillboard(newbillboard);
+    
+    //submitbillboard(newbillboard);
 
     // Update a billboard if flag is true, otherwise submit a new one
     if (updating) {
       newbillboard.id = billboardId;
       updatebillboard(newbillboard);
     } else {
-      newbillboard.id = billboardId;
+      //newbillboard.id = billboardId;
       submitbillboard(newbillboard);
     }
   };
@@ -116,10 +117,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }).then((response) => response.json())
       .then((data) => {
         // window.location.href = '/billboard.html';
-
+        console.log(data)
         console.log('Success in submitting post:', data);
         console.log(JSON.stringify(billboard))
-        console.log(image)
         console.log(userId)
 
       })
@@ -153,25 +153,25 @@ document.addEventListener('DOMContentLoaded', () => {
   //     show(document.querySelector('.hidden'));
   //   }
 
-    const rowsToAdd = [];
+  //   const rowsToAdd = [];
 
-    data.forEach((user) => rowsToAdd.push(createuserRow(user)));
+  //   data.forEach((user) => rowsToAdd.push(createuserRow(user)));
 
-    userSelect.innerHTML = '';
-    console.log('renderuserList -> rowsToAdd', rowsToAdd);
-    console.log('userSelect', userSelect);
+  //   userSelect.innerHTML = '';
+  //   console.log('renderuserList -> rowsToAdd', rowsToAdd);
+  //   console.log('userSelect', userSelect);
 
-    rowsToAdd.forEach((row) => userSelect.append(row));
-    userSelect.value = userId;
-  };
+  //   rowsToAdd.forEach((row) => userSelect.append(row));
+  //   userSelect.value = userId;
+  // };
 
   // Build user dropdown
-  const createuserRow = ({ id, name }) => {
-    const listOption = document.createElement('option');
-    listOption.value = id;
-    listOption.textContent = name;
-    return listOption;
-  };
+  // const createuserRow = ({ id, email }) => {
+  //   const listOption = document.createElement('option');
+  //   listOption.value = id;
+  //   listOption.textContent = email;
+  //   return listOption;
+  // };
 
   // A function to get users and then call the render function
   const getusers = () => {
@@ -185,10 +185,11 @@ document.addEventListener('DOMContentLoaded', () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        users = {
-          id: data.id,
-          email: data.email
-        }
+        users = data
+        // users = {
+        //   id: data.id,
+        //   email: data.email
+        // }
         console.log('Success in getting user information:', data);
         renderUser(users)
 
@@ -213,9 +214,13 @@ document.addEventListener('DOMContentLoaded', () => {
     })
       .then(() => {
         console.log("Success in Put!")
-        window.location.href = '/billboard.html';
+       //window.location.href = '/billboard.html';
       })
       .catch((err) => console.error(err));
   };
+
+ 
   
 });
+
+

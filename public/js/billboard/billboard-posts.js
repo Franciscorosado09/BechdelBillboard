@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .then((data) => {
           billboards = data;
           console.log(data)
-          console.log(billboards[0].image)
+          console.log(billboards.image)
           console.log('Success in getting billboards:', data);
           if (!data || !data.length) {
             displayEmpty();
