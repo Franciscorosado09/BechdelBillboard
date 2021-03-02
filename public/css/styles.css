@@ -14,12 +14,12 @@ input.new-item:focus {
   margin-left: 5px;
 }
 
-.btn.btn-light {
+/* .btn.btn-light {
   margin-top: 10%;
   margin-bottom: 30%;
   width: 60%;
   position: center;
-}
+} */
 
 /* #billboard{
 
@@ -94,6 +94,7 @@ nav{
 .delete {
   margin-bottom: 2%;
 }
+
 span {
   color: #fef9ff;
   width: auto;

@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Delete button
       const deleteBtn = document.createElement('button');
       deleteBtn.textContent = 'x'
-      //deleteBtn.innerHTML = '<a class="glyphicon glyphicon-trash" aria-hidden="true"></a>';
+      //deleteBtn.innerHTML = '<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>';
       deleteBtn.classList.add('delete', 'btn', 'btn-danger');
       deleteBtn.addEventListener('click', handlebillboardDelete);
   
@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const messageH2 = document.createElement('h2');
       messageH2.style.textAlign = 'center';
       messageH2.style.marginTop = '50px';
-      messageH2.innerHTML = `No billboards yet${partial}, navigate <a href='/cms${query}'>here</a> in order to get started.`;
+      messageH2.innerHTML = `No billboards yet${partial}, navigate <a href='/billboard-add.html${query}'>here</a> in order to get started.`;
       billboardContainer.append(messageH2);
     };
   
@@ -159,17 +159,19 @@ document.addEventListener('DOMContentLoaded', () => {
       const currentbillboard = JSON.parse(
         e.target.parentElement.parentElement.dataset.billboard
       );
-  
-      deletebillboard(currentbillboard.id);
+    
+     deletebillboard(currentbillboard.id);
       getBillboards()
     };
   
     // Handle when we click the edit billboard button
     const handlebillboardEdit = (e) => {
-      
+      console.log('hi')
       const currentbillboard = JSON.parse(
+        
         e.target.parentElement.parentElement.dataset.billboard
       );
+      console.log('hi')
       console.log(currentbillboard)
       window.location.href = `/billboard-add.html?Billboard_id=${currentbillboard.id}`;
     };

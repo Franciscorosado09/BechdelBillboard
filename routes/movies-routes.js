@@ -1,13 +1,17 @@
 const db = require('../models');
-
+const passport = require('../config/passport')
+const isAuthenticated = require ('../config/middleware/isAuthenticated')
 // Routes
 module.exports = (app) => {
 
-  // app.get('/movie-list', (req, res) => {
-  //   db.Movies.findAll({}).then((dbMovies) => res.json(dbMovies));
-  // });
+  app.get('/movie-list', isAuthenticated, (req, res) => {
+    if (req.user) {
+      res.redirect("/login");
+    } 
+    db.Movies.findAll({}).then((dbMovies) => res.json(dbMovies));
+  });
 
-  app.get('/api/movie-list', (req, res) => {
+  app.get('/api/movie-list', isAuthenticated, (req, res) => {
     db.Movies.findAll({}).then((dbMovies) => res.json(dbMovies));
   });
 

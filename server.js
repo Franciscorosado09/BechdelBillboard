@@ -44,7 +44,7 @@ app.use(express.json());
 
 // Static directory
 app.use(express.static('public'));
-// app.use(express.static(__dirname + '/public'));
+//app.use(express.static(__dirname + '/public'));
 
 app.use(
   session({ secret: "keyboard cat", resave: true, saveUninitialized: true })
@@ -55,7 +55,7 @@ app.use(passport.session());
 
 // Routes
 require('./routes/billboard-routes.js')(app);
-// require('./routes/html-routes.js')(app)
+require('./routes/html-routes.js')(app)
 require('./routes/movies-routes.js')(app)
 require('./routes/user-profile-routes.js')(app)
 
@@ -68,7 +68,7 @@ db.sequelize.sync({ force: true }).then(() => {
 // db.sequelize.sync().then(() => {
 //   app.listen(PORT, () => {
 //     console.log(
-//       "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
+//       "==> 🌎  Listening on port 8080. Visit http://localhost:8080/ in your browser.",
 //       PORT,
 //       PORT
 //     );
