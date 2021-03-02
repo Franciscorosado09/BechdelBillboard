@@ -7,51 +7,136 @@
   <!-- Latest compiled and minified CSS & JS -->
   <link href="https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/flatly/bootstrap.min.css" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Jura&family=Krona+One&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Jura&family=Krona+One&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/styles.css" media="screen" title="no title">
 </head>
 
 <body>
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-          <div class="navbar-header">
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="navbar-header">
             <a class="navbar-brand" href="#">
-                <img id="Brand" src="./css/assets/BB.png" >
+                <img id="Brand" src="./css/assets/BB.png">
             </a>
-           
+        </div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav navbar-dark">
+            <a id="navText" href="/billboard.html"> The Billboard <span
+                class="sr-only">(current)</span></a>
+            <a id="navText" href="/aboutUs.html">About Us</a>
+            <a id="navText" href="/movie-list.html">The List</a>
+            <a id="navText" href="/userProfile.html">User Profile</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+
+
+  <div class="row">
+    <div class="col-xs-12 col-md-8">
+      <div class="jumbotron">
+        <h1 id="text">About Bechdel Billboard</h1>
+        <p>The Bechdel Billboard is an app designed for user looking to find trailblazing characters in film that pass
+          the Bechdel test and allow the user to share their opinions on the "Billboard." </p>
+
+      </div>
+
+
+    </div>
+    <div class="col-xs-6 col-md-4"></div>
+  </div>
+
+  <div class="row">
+
+    <div class="col-xs-6 col-md-4"></div>
+    <div class="col-xs-12 col-md-8">
+      <div class="jumbotron">
+        <h1 id="text">Whats the Bechdel test?</h1>
+        <p>The Bechdel test also known as the Bechdel–Wallace test,is a measure of the representation of women in
+          fiction. According to user-edited databases and the media industry press, about half of all films meet these
+          criteria. Passing or failing the test is not necessarily indicative of how well women are represented in any
+          specific work. Rather, the test is used as an indicator for the active presence of women in the entire field
+          of film and other fiction, and to call attention to gender inequality in fiction. </p>
+        <h2 id="theTest">The Test</h2>
+        <p id="point">It has to have at least two women in it,</p>
+        <p id="point">Who talk to each other,</p>
+        <p id="point">About something other than a man.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="row">
+    <div class="col-xs-6 col-md-2"></div>
+    <div class="col-xs-12 col-md-7">
+      <div class="jumbotron">
+        <h1 id="text1">Meet the Team</h1>
+        <div class="col-xs-4 col-md-4">
+          <div id="team">
+            <img id="pic" src="/public/css/assets/rachel.png" alt="...">
+            <div class="caption">
+              <h3>Rachel Wanke "Horne Wanke"</h3>
+              <p>Favorite Bechdel Movie:</p>
+              <p>Full-Stack Developer</p>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xs-4 col-md-4">
+
+          <div id="team">
+            <img id="pic" src="/public/css/assets/Jeezy.jpg" alt="...">
+            <div class="caption">
+              <h3>Young Ji Kim "Jeezy" </h3>
+              <p>Favorite Bechdel Movie:</p>
+              <p>Full-Stack Developer</p>
+
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-xs-4 col-md-4">
+
+          <div id="team">
+            <img id="pic" src="/public/css/assets/frankie.jpeg" alt="...">
+            <div class="caption">
+              <h3>Francisco Rosado "Frankie"</h3>
+              <p>Favorite Bechdel Movies: Meangirls, Trainwreck, Wonder Woman, Booksmart, and so many more. </p>
+              <p>Full-Stack Developer</p>
+
+            </div>
+
 
           </div>
-          <ul id="navText" class="nav navbar-nav">
-            <li ><a id="navText" href="/public/billboard.html"> The Billboard </a></li>
-            <li class="active"><a id="navText" href="aboutUs.html">About Us<span class="sr-only">(current)</span></a></li>
-            <li><a id="navText" href="/public/theList.html">The List</a></li>
-            <li><a id="navText" href="/public/userProfile.html">User Profile</a></li>
-           
         </div>
-        
-      </nav>
-
-     
 
 
 
+      </div>
+      <div class="col-xs-6 col-md-2"></div>
+    </div>
+
+ -->
 
 
 
-  
 
-  
-
-  <!-- Custom Script -->
-  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<script src="https://code.jquery.com/jquery-1.12.4.min.js"
-  integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ"
-  crossorigin="anonymous"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
-  integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
-  crossorigin="anonymous"></script>
+    <!-- Custom Script -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+      integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous">
+    </script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+      integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous">
+    </script>
 
 </body>
 

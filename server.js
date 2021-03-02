@@ -1,9 +1,7 @@
 const express = require('express');
 const session = require("express-session");
 const passport = require("./config/passport");
-
-
-//const exphbs = require('express-handlebars');
+// const exphbs = require('express-handlebars');
 
 // Sets up the Express App
 const app = express();
@@ -15,9 +13,39 @@ const db = require('./models');
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-//app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
+
+// Set Handlebars.
+const handlebars = require('express-handlebars');
+
+// app.engine('handlebars', handlebars({ layoutsDir: __dirname + '/views' }));
+// app.set('view engine', 'handlebars');
+// app.get('/', (req, res) => {
+//   //Serves the body of the page aka "main.handlebars" to the container //aka "index.handlebars"
+//   res.render('main', {layout : 'index'});
+//   });
+
+
+  //Sets our app to use the handlebars engine
+app.set('view engine', 'handlebars');
+//Sets handlebars configurations (we will go through them later on)
+app.engine('handlebars', handlebars({
+layoutsDir: __dirname + '/views/layouts',
+}));
+
+app.get('/', (req, res) => {
+  //Serves the body of the page aka "main.handlebars" to the container //aka "index.handlebars"
+  res.render('main', {layout : 'index'});
+  });
+  
+
+
+
+// app.set('views', __dirname + '/views');
+
 // Static directory
 app.use(express.static('public'));
+// app.use(express.static(__dirname + '/public'));
+
 app.use(
   session({ secret: "keyboard cat", resave: true, saveUninitialized: true })
 );
