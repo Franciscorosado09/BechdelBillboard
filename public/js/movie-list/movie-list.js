@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // userId = user || '';
     // if (userId) {
     //   userId = `/?user_id=${userId}`;
-    // 
+    // }
     
 
     fetch(`/api/movie-list`, {
@@ -24,8 +24,9 @@ document.addEventListener('DOMContentLoaded', () => {
       .then((response) => response.json())
       .then((data) => {
         //const movies
- 
+        
         movies = data;
+        console.log(data)
         console.log('Success in getting movies:', data);
         if (!data || !data.length) {
           displayEmpty();
@@ -86,16 +87,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const newmovieCardHeading = document.createElement('div');
     newmovieCardHeading.classList.add('card-header');
     
-
+    console.log(movie.image)
   
 
     const newmovieTitle = document.createElement('h3');
     const newmovieYear = document.createElement('h3');
     const newmovieGenre = document.createElement('p');
-    // const newmovieImage = document.createElement('a');
+    const newmovieImage = document.createElement('a').setAttribute('href', `${movie.image}`);
     
-    // const imageText = document.createTextNode('This is linked.')
+    const imageText = document.createTextNode('This is linked.')
+    // console.log(imageText)
     // newmovieImage.append(`${movie.image}`)
+    // newmovieImage.href(`${movie.image}`)
     // document.body.prepend(newmovieImage)
    
     const newmovieuser = document.createElement('h3');
@@ -113,17 +116,22 @@ document.addEventListener('DOMContentLoaded', () => {
     // Creating the document Elements so we need to list all movie info
     
     newmovieTitle.textContent = `${movie.title} `;
-  
+    // newmovieImage.append(`${movie.image}`)
+    // newmovieImage.href(`${movie.image}`)
     newmovieYear.textContent = `${movie.year}`;
     newmovieGenre.textContent = `${movie.genre}`;
     newmovieDescription.textContent = `${movie.description}`;
+    // newmovieImage.textContent = `${movie.image}`;
+    // newmovieImage.set
    
-
+    newmovieCardHeading.append(newmovieImage);
     newmovieCardHeading.append(newmovieTitle);
-    newmovieCardHeading.append(newmovieuser);
+    //newmovieCardHeading.append(newmovieImage);
+    newmovieCardDescription.append(newmovieuser);
     newmovieCardDescription.append(newmovieYear);
     newmovieCardDescription.append(newmovieGenre);
     newmovieCardDescription.append(newmovieDescription);
+   
 
     newmovieCard.append(newmovieCardHeading);
     newmovieCard.append(newmovieCardDescription);
@@ -170,4 +178,4 @@ document.addEventListener('DOMContentLoaded', () => {
   
 });
 
-getmovies()
+//getmovies()
