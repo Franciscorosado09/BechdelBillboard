@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const titleInput = document.getElementById('title');
   const cmsForm = document.getElementById('cms');
   const userSelect = document.getElementById('user');
+  const imageSelect = document.getElementById('image');
 
   // Get query parameter
   const url = window.location.search;
@@ -42,8 +43,11 @@ document.addEventListener('DOMContentLoaded', () => {
           console.log('Success in getting billboard:', data);
           //data.userId = users.email
           // Populate the form for editing
+          console.log(data)
+          console.log(data.image)
           titleInput.value = data.title;
           postInput.value = data.post;
+          imageSelect.value = data.image
           userSelect.value = data.userId;
 
 
@@ -82,6 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (
       !titleInput.value.trim() ||
       !postInput.value.trim() ||
+      !imageSelect.value.trim() ||
       !userSelect.value
     ) {
       return;
@@ -91,7 +96,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const newbillboard = {
       title: titleInput.value.trim(),
       post: postInput.value.trim(),
-      userId: userSelect.value,
+      image: imageSelect.value,
+      userId: userSelect.value
     };
     
     //submitbillboard(newbillboard);
@@ -124,6 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         console.log('Success in submitting post:', data);
         console.log(JSON.stringify(billboard))
+        console.log(image)
         console.log(userId)
 
       })
@@ -217,7 +224,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
       .then(() => {
         console.log("Success in Put!")
-       //window.location.href = '/billboard.html';
+        window.location.href = '/billboard.html';
       })
       .catch((err) => console.error(err));
   };
