@@ -9,12 +9,12 @@ const isAuthenticated = require ('../config/middleware/isAuthenticated')
 
 // Routes
 module.exports = (app) => {
-  app.get('/api/userProfile', isAuthenticated,(req, res) => {  ///<--- YJK TESTED //USE ISAUTHENTICATED IF YOU WANT BOUNCE BACK WHEN SOMEONE TRIES TO CHANGE LINK
+  app.get('/api/profile', isAuthenticated,(req, res) => {  ///<--- YJK TESTED //USE ISAUTHENTICATED IF YOU WANT BOUNCE BACK WHEN SOMEONE TRIES TO CHANGE LINK
     const query = {};
     query.id = req.user.id
-    if (req.user_id) {
-      UserId = req.user_id;
-    }
+    // if (req.user_id) {
+    //   UserId = req.user_id;
+    // }
     // Here we add an "include" property to our options in our findAll query
     // We set the value to an array of the models we want to include in a left outer join
     // In this case, just db.Author
@@ -26,21 +26,17 @@ module.exports = (app) => {
   });
 
   // Get route for retrieving a single Login
-  // app.get('/api/userProfile/:id', isAuthenticated,(req, res) => {
-    
-  //   // Here we add an "include" property to our options in our findOne query
-  //   // We set the value to an array of the models we want to include in a left outer join
-  //   // In this case, just db.Author
-  //   db.User.findOne({
-  //     where: {
-  //       id: req.params.id,
-        
-  //     },
-  //     include: req.params.email
-  //     // include: [db.Movies],
-  //     // include: [db.Billboard],
-  //   }).then((dbUser) => res.json(dbUser));
-  // });
+  app.get('/api/profile/:id', (req, res) => {
+    // Here we add an "include" property to our options in our findOne query
+    // We set the value to an array of the models we want to include in a left outer join
+    // In this case, just db.Author
+    db.User.findOne({
+      where: {
+        id: req.params.id,
+      },
+      include: [db.Movies],
+    }).then((dbLogin) => res.json(dbLogin));
+  });
 
   // POST route for saving a new Login
   app.post("/api/login", passport.authenticate("local"), (req, res) => { //<--YJK TESTED
@@ -48,7 +44,7 @@ module.exports = (app) => {
     res.json({
       email: req.user.email,
       id: req.user.id
-    })
+    });
   });
 
   // DELETE route for deleting Login
@@ -101,32 +97,11 @@ app.get("/api/user_data", (req, res) => {
   } else {
     // Otherwise send back the user's email and id
     // Sending back a password, even a hashed password, isn't a good idea
-
     res.json({
       id: req.user.id,
       email: req.user.email,
     });
   }
-    
 });
-
-// app.get("/api/user_data", (req, res) => {
-//   if (!req.user) {
-//     // The user is not logged in, send back an empty object
-//     res.json({});
-//   } else {
-//     // Otherwise send back the user's email and id
-//     // Sending back a password, even a hashed password, isn't a good idea
-
-//     db.User.findAll({
-//       where: query,
-//       include: [{model: db.Billboard}],
-//     }).then(() => res.json({
-//       email: req.user.email,
-//       id: req.user.id
-//     }));
-//   }
-    
-// });
 
 };
