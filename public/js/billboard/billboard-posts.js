@@ -1,3 +1,5 @@
+
+
 // Wait for the DOM to completely load before we run our JS
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOM loaded! 🚀');
@@ -89,15 +91,19 @@ document.addEventListener('DOMContentLoaded', () => {
       // editDeleteRow.classList.add('row')
       // editDeleteRow.setAttribute('id', 'editDelete')
       const deleteBtn = document.createElement('button');
+      //const icon = document.createElement('i')
+      //icon.innerHTML = '<i class="bi bi-trash" ></i>';
       deleteBtn.textContent = 'x'
-      //deleteBtn.innerHTML = '<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>';
+      //deleteBtn.append(icon)
+      //deleteBtn.innerHTML = '<i class="bi bi-trash" ></i>';
       deleteBtn.classList.add('delete', 'btn', 'btn-danger');
+      deleteBtn.setAttribute('id', 'deleteBtn')
       deleteBtn.addEventListener('click', handlebillboardDelete);
   
       // Edit button
       const editButton = document.createElement('button');
       editButton.textContent = 'Edit'
-      //editButton.innerHTML = '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>';
+      //editButton.innerHTML = '<span class="glyphicon glyphicon-edit">';
       editButton.classList.add('edit', 'btn', 'btn-info');
       editButton.addEventListener('click', handlebillboardEdit);
 
@@ -108,6 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
       titleDataRow.classList.add('row')
       titleDataRow.setAttribute('id', 'titlePost')
       const newbillboardTitle = document.createElement('h2');
+      newbillboardTitle.setAttribute('id', 'postTitle')
       const newbillboardDate = document.createElement('small');
       titleDataRow.append(newbillboardTitle)
       //titleDataRow.append(newbillboardDate)
@@ -120,8 +127,9 @@ document.addEventListener('DOMContentLoaded', () => {
       userRow.setAttribute('id', 'userPost')
 
       const newbillboarduser = document.createElement('h5');
+      newbillboarduser.setAttribute('id', 'userStyle')
       const newbillboardImage = document.createElement('img');
-
+      newbillboardImage.setAttribute('id', 'imageStyle')
       imageRow.append(newbillboardImage)
       userRow.append(newbillboarduser)
       
@@ -140,6 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
       newbillboardCardPost.classList.add('card-Post');
   
       const newbillboardPost = document.createElement('p');
+      newbillboardPost.setAttribute('id', 'postText')
       newbillboardTitle.textContent = `${billboard.title}`;
 
       newbillboardPost.textContent =`${billboard.post}`;
@@ -182,14 +191,15 @@ document.addEventListener('DOMContentLoaded', () => {
       const currentbillboard = JSON.parse(
         e.target.parentElement.parentElement.dataset.billboard
       );
+      console.log('Hi')
     
      deletebillboard(currentbillboard.id);
-      getBillboards()
+    getBillboards()
     };
   
     // Handle when we click the edit billboard button
     const handlebillboardEdit = (e) => {
-      console.log('hi')
+      
       const currentbillboard = JSON.parse(
         
         e.target.parentElement.parentElement.dataset.billboard
