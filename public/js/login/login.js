@@ -13,7 +13,13 @@ $(document).ready(() => {
     };
 
     if (!userData.email || !userData.password) {
-      return;
+      console.log("Hi here!");
+      const alertContainer = document.createElement('div')
+      alertContainer.textContent = '<div class="alert alert-danger" role="alert"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span><span class="sr-only">Error:</span>Enter a valid email address</div>'
+      const addContainer = document.getElementById('alertcontainer')
+      addContainer.setAttribute('style', 'visibility: visible')
+      addContainer.append(alertContainer)
+      console.log(alertContainer)
     }
 
     // If we have an email and password we run the loginUser function and clear the form
@@ -29,7 +35,11 @@ $(document).ready(() => {
       password: password
     })
       .then(() => {
-        window.location.replace("/userProfile.html");
+
+          window.location.replace("/userProfile.html");
+      
+        
+        
         // If there's an error, log the error
       })
       .catch(err => {

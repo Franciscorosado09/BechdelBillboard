@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
         users = data;
         console.log('Success in getting user information:', data);
         addEmail(users)
+        getUserPosts(users)
 
       })
       .catch((error) => console.error('Error:', error));
@@ -36,7 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const email = document.getElementById('email');
 
     email.textContent = `Email: ${users.email}`
-
 
   }
 
@@ -53,15 +53,21 @@ document.addEventListener('DOMContentLoaded', () => {
       .then((response) => response.json())
       .then((data) => {
         billboards = data;
+        console.log(billboards)
         console.log('Success in getting user information:', data);
         //pairuserPosts(billboards)
         //initializeRows(billboards)
-        createNewRow(billboards)
+        if(billboards[0].User.id === users.id){
+          createNewRow(billboards)
+        } else {
+          console.log('no posts yet')
+        }
+        //createNewRow(billboards)
       })
       .catch((error) => console.error('Error:', error));
   };
 
-  getUserPosts();
+  //getUserPosts();
 
   // const pairuserPosts = (billboards) => {
   //   console.log(user.email)
@@ -105,18 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log(billboards[0].title)
     console.log(td.textContent = billboards[0].title)
     console.log(newRow)
-    //postContainer.appendChild(newRow)
-    
-    // td.textContent = billboards.post;
-    // tr.appendChild(td);
-    // Element to show how many posts
-    // const lengthTd = document.createElement('td');
-    // if (userData.Posts) {
-    //   lengthTd.textContent = userData.Posts.length;
-    // } else {
-    //   lengthTd.textContent = '0';
-    // }
-    //tr.appendChild(lengthTd);
+
 
     // "Go to posts" link
     const postsLink = document.createElement('td');
@@ -130,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // "Delete user" link
     const deleteLink = document.createElement('td');
-    deleteLink.innerHTML = `<td><a style='cursor:pointer;color:red' class='delete-user'>Delete Post</a></td>`;
+    deleteLink.innerHTML = `<td><a href= '/billboard.html?Billboard_id=${billboards[0].id} style='cursor:pointer;color:red' class='delete-user btn'>Delete Post</a></td>`;
     deleteLink.addEventListener('click', deletebillboard);
     newRow.appendChild(deleteLink);
     console.log(newRow)
@@ -139,15 +134,22 @@ document.addEventListener('DOMContentLoaded', () => {
     
   };
 
-  //need to set this up to delete!
+  // //need to set this up to delete!
   const deletebillboard = (id) => {
-    fetch(`/api/billboard/${id}`, {
+    billboard = id || '';
+    if (billboard) {
+      billboard = `/?billboard_id=${billboard}`;
+    }
+    fetch(`/api/billboard/${billboard}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
       },
-    }).then(getUserDetails);
+    }).then(
+      //getUserDetails(users)
+    );
+    window.location.href = `/userProfile.html`
   };
 
-
+  
 });
