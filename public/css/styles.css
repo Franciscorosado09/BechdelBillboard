@@ -79,6 +79,7 @@ nav{
 #navText{
   color: #5d4e60;
   text-shadow: 2px 2px #fef9ff;
+  margin-right: 4.5%;
 
 }
 
@@ -155,6 +156,15 @@ span {
 
 
 }
+.page-link{
+  background-color: #5d4e60; 
+  color: #fef9ff;
+}
+
+#previous{
+  background-color: #5d4e60; 
+  color: #fef9ff;
+}
 
 
 /* Profile Image*/
@@ -163,7 +173,66 @@ span {
   height: 150px;
 
 }
+#profileInfo{
+ font-size: 140%;
+ color: black;
+ font-weight: bolder;
 
+}
+
+#linkColor{
+  color: #5d4e60;
+}
+
+
+/* about us */
+
+#pic{
+  border: 2px solid #C0C0C0;
+  padding: 5px;
+  height: 150px;
+  width: 150px;
+}
+
+.jumbotron{
+
+  background-color:  #fcb9b2;
+  margin-top: 2%;
+  color: #5d4e60;
+  
+
+}
+
+#text{
+  color: #5d4e60;
+  text-shadow: 2px 2px #fef9ff
+}
+#text1{
+  color: #5d4e60;
+  text-shadow: 2px 2px #fef9ff;
+  margin-left: 15%;
+}
+
+#theTest{
+  color: #5d4e60;
+  text-shadow: 2px 2px #fef9ff;
+  font-family: 'Krona One', sans-serif;
+
+}
+
+#point{
+
+  font-weight: 150%;
+  font-size: 130%;
+}
+
+.col-sm-6{
+  margin-left: 30%;
+}
+
+#team{
+  margin-left: 125%;
+}
 /*testing search bar YJK--*/
 #searchBar {
   width: 100%;

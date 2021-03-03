@@ -1,9 +1,7 @@
 const express = require('express');
 const session = require("express-session");
 const passport = require("./config/passport");
-
-
-//const exphbs = require('express-handlebars');
+// const exphbs = require('express-handlebars');
 
 // Sets up the Express App
 const app = express();
@@ -15,9 +13,25 @@ const db = require('./models');
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-//app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
+
+// Set Handlebars.
+var exphbs  = require('express-handlebars');
+
+app.engine('handlebars', exphbs());
+app.set('view engine', 'handlebars');
+
+app.get('/', function (req, res) {
+    res.render('home');
+});
+
+
+
+
+
 // Static directory
 app.use(express.static('public'));
+
+
 app.use(
   session({ secret: "keyboard cat", resave: true, saveUninitialized: true })
 );

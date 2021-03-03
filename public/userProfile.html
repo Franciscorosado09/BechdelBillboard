@@ -9,28 +9,33 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Jura&family=Krona+One&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="css/styles.css" media="screen" title="no title">
+	<link rel="stylesheet" href="css/styles.css" media="screen" title="no title">
+	<link rel="icon" href="./css/assets/BBicon.ico">
 </head>
 
 <body>
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="navbar-header">
                 <a class="navbar-brand" href="#">
-                    <img id="Brand" src="./css/assets/BB.png" >
+                    <img id="Brand" src="./css/assets/BB.png">
                 </a>
-
-
             </div>
-            <ul class="nav navbar-nav">
-                <li><a id="navText" href="/billboard.html"> The Billboard </a></li>
-                <li><a id="navText" href="/aboutUs.html">About Us</a></li>
-                <li><a id="navText" href="/movie-list.html">The List</a></li>
-                <li class="active"><a id="navText" href="/userProfile.html">User Profile<span
-                            class="sr-only">(current)</span></a></li>
-
-        </div>
-    </nav>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav navbar-dark">
+                <a id="navText" href="/billboard.html"> The Billboard <span
+                    class="sr-only">(current)</span></a>
+                <a id="navText" href="/aboutUs.html">About Us</a>
+                <a id="navText" href="/movie-list.html">The List</a>
+                <a id="navText" href="/userProfile.html">User Profile</a>
+            </div>
+          </div>
+        </nav>
+      </header>
 
     <div class="user-container">
 		<div class="row mt-4">
@@ -46,8 +51,8 @@
 							</div>
 							<div class="col-6" id="profileInfo">
 								<p id="email"></p>
-								<p><a href="#favLink">Favorites</a></p>
-								<p><a href="#postLink">Billboard Posts</a></p>
+								<p><a id="linkColor" href="#favLink">Favorites</a></p>
+								<p><a id="linkColor" href="#postLink">Billboard Posts</a></p>
 							</div>
 						</div>
 						</div>
