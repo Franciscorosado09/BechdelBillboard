@@ -60,6 +60,24 @@ document.addEventListener('DOMContentLoaded', () => {
   //   }).then(getmovies());
   // };
   getmovies()
+
+
+  /// Search Shown//-YJK
+  const initializeSearch = () => {
+    const searches = [];
+    console.log("-------------------------------")
+    console.log(movies)
+    console.log("-------------------------------")
+
+
+    movies.forEach((movie) => searches.push(createNewRow(movie)));
+    searches.forEach((movie) => movieContainer.prepend(movie));
+    console.log(searches)
+  }
+
+///TESTING-YJK
+
+
   // Create HTML rows for the movie container
   const initializeRows = () => {
 
@@ -158,36 +176,99 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
 
-  //~!!!!!!YOUNG JI DO THIS!!!! initializeSearch(data); BUILD FUNCTION.
+  //~!!!!!!YOUNG JI initializeSearch(data); BUILD FUNCTION.
+  // const initializeSearch = () => {
+  //   const moviesToAdd = [];
+  //   console.log("-------------------------------")
+  //   console.log(data)
+  //   console.log("-------------------------------")
 
+
+  //   movies.forEach((data) => moviesToAdd.push(createNewRow(data)));
+  //   moviesToAdd.forEach((data) => movieContainer.append(data));
+  //   console.log(moviesToAdd)
+  // }
 
   // const charactersList = document.getElementById('charactersList');
-    const searchBar = document.getElementById('searchBar');
-    let searchString = [];
-    
+  const searchBar = document.getElementById('searchBar');
+  let searchString = [];
 
-    searchBar.addEventListener("keyup", e => { 
-      const searchString = e.target.value; 
-      fetch(`/api/movie-list/${searchString}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log('Success in searching movies:', data);
-          console.log(!data)
-          // if (!data || !data.length) {
-          //   displayEmpty();
-          // } else {
-            initializeSearch(data);
-        // }
-        })
-        .catch((error) => console.error('Error:', error));
+
+  searchBar.addEventListener("keyup", e => {
+    const searchString = e.target.value;
+    fetch(`/api/movie-list/${searchString}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
     })
+      .then((response) => response.json())
+      .then((data) => {
+        movies = data
+        console.log('Success in searching movies:', data);
+        if (!data || !data.length) {
+          displayEmpty();
+        } else {
+        initializeSearch(movies);
+        }
+      })
+      .catch((error) => console.error('Error:', error));
+  })
 
-  });
+
+
+});
+
+
+//////////////////////
+
+
+
+  // const pages = [6000]/60
+
+  // const createNewPages = (movie) => {
+  //   const pagination = document.querySelector(".pagination");
+  //   const page= document.createElement("li")
+  //   const pageNumber= document.createElement ("a")
+  //   pageNumber.classList("page-link")
+  //   pageNumber.textContent= `${count}`
+  //   page.append(pageNumber)
+  //   pagination.innerHTML= ' '
+
+  // }
+
+  // for (let index = 0; index < 100; index++) {
+  //   const count = index;
+
+  //   if(count < 1) {
+  //   var divCreate = `
+  //   <div id = ${count}>
+  //   <a href="#" data-value="1-60">1</a>
+  //   <a href="#">2</a>
+  //   <a href="#">3</a>
+  //   <a href="#">4</a>
+  //   <a href="#">5</a>
+  //   <a href="#">6</a>
+  //   <a href="#">7</a>
+  //   <a href="#">8</a>
+  //   </div>`
+  // }
+  // else {
+  //   var divCreate = `
+  //   <div id = ${count} style ="display:none">
+  //   <a href="#">1</a>
+  //   <a href="#">2</a>
+  //   <a href="#">3</a>
+  //   <a href="#">4</a>
+  //   <a href="#">5</a>
+  //   <a href="#">6</a>
+  //   <a href="#">7</a>
+  //   <a href="#">8</a>
+  //   </div>`
+  // }
+
+  // }
+
 
   // Handle when we click the delete movie button
   // const handlemovieDelete = (e) => {

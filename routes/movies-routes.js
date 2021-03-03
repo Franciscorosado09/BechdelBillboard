@@ -15,14 +15,15 @@ module.exports = (app) => {
     db.Movies.findAll({}).then((dbMovies) => res.json(dbMovies));
   });
 
-  app.get('/api/movie-list', (req, res) => {
-    db.Movies.findAll({
-      limit: 15,
-      offset: 1,
-      where: {}, // conditions
-    })
-    .then((dbMovies) => res.json(dbMovies));
-  });
+  // app.get('/api/movie-list', (req, res) => {
+  //   db.Movies.findAll({
+  //     limit: 15,
+  //     offset: 0,
+  //     where: {}, // conditions
+  //   })
+  //   .then((dbMovies) => res.json(dbMovies));
+  // });
+  
 
   // var upload = multer({ storage: storage }).single('myFile');
   // app.post('/dashboard/myFile', function (req, res) {

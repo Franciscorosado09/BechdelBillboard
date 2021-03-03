@@ -114,12 +114,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
     }).then((response) => response.json())
       .then((data) => {
-        // window.location.href = '/movie-list';
+        window.location.href = '/movie-list.html';
         console.log('Success in submitting post:', data);
         console.log(JSON.stringify(movie))
       })
       .catch((err) => console.error(err));
   };
+
+  // var tags = ['a1','a2','a3','a4'],
+  // hSet = [];
+
+  // for (var i in tags) {
+  //   var these = document.getElementsById(tags[i]);
+  //   if (these.length) {
+  //     for (var n = 0, m = these.length; n < m; n++) {
+  //       these[n].addEventListener('click', function () { alert('hello'); }, false);
+  //     }
+  //   }
+  // }
+
+// const a1 = document.getElementById("a1")
+// const a2 = document.getElementById("a2")
+// const a3 = document.getElementById("a3")
+// const a4 = document.getElementById("a4")
+// const a5 = document.getElementById("a5")
+// const a6 = document.getElementById("a6")
+
+var page;
+for (var t = 1; t < 6; t++){
+    page = document.getElementByclass('page'+t);
+    if (typeof window.addEventListener === 'function'){
+        (function (_page) {
+            td.addEventListener('click', function(){
+                console.log(_page);
+            });
+        })(page);
+    }
+}
 
 
 
