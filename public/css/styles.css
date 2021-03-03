@@ -173,6 +173,17 @@ span {
   height: 150px;
 
 }
+#profileInfo{
+ font-size: 140%;
+ color: black;
+ font-weight: bolder;
+
+}
+
+#linkColor{
+  color: #5d4e60;
+}
+
 
 /* about us */
 

@@ -15,36 +15,22 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Set Handlebars.
-const handlebars = require('express-handlebars');
+var exphbs  = require('express-handlebars');
 
-// app.engine('handlebars', handlebars({ layoutsDir: __dirname + '/views' }));
-// app.set('view engine', 'handlebars');
-// app.get('/', (req, res) => {
-//   //Serves the body of the page aka "main.handlebars" to the container //aka "index.handlebars"
-//   res.render('main', {layout : 'index'});
-//   });
-
-
-  //Sets our app to use the handlebars engine
+app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
-//Sets handlebars configurations (we will go through them later on)
-app.engine('handlebars', handlebars({
-layoutsDir: __dirname + '/views/layouts',
-}));
 
-app.get('/', (req, res) => {
-  //Serves the body of the page aka "main.handlebars" to the container //aka "index.handlebars"
-  res.render('main', {layout : 'index'});
-  });
-  
+app.get('/', function (req, res) {
+    res.render('home');
+});
 
 
 
-// app.set('views', __dirname + '/views');
+
 
 // Static directory
 app.use(express.static('public'));
-// app.use(express.static(__dirname + '/public'));
+
 
 app.use(
   session({ secret: "keyboard cat", resave: true, saveUninitialized: true })
