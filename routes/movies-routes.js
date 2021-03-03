@@ -9,7 +9,7 @@ module.exports = (app) => {
 
   app.get('/api/movie-list', (req, res) => {
     db.Movies.findAll({
-      limit: 6,
+      limit: 15,
       offset: 1,
       where: {}, // conditions
     })
@@ -30,7 +30,8 @@ module.exports = (app) => {
     db.Movies.findAll({
       where:{
 
-      title: req.params.searchString,
+      title: req.params.searchString
+
       }
     })
     .then((dbMovies) => res.json(dbMovies));

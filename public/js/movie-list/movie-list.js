@@ -157,6 +157,38 @@ document.addEventListener('DOMContentLoaded', () => {
     movieContainer.append(messageH2);
   };
 
+
+  //~!!!!!!YOUNG JI DO THIS!!!! initializeSearch(data); BUILD FUNCTION.
+
+
+  // const charactersList = document.getElementById('charactersList');
+    const searchBar = document.getElementById('searchBar');
+    let searchString = [];
+    
+
+    searchBar.addEventListener("keyup", e => { 
+      const searchString = e.target.value; 
+      fetch(`/api/movie-list/${searchString}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('Success in searching movies:', data);
+          console.log(!data)
+          // if (!data || !data.length) {
+          //   displayEmpty();
+          // } else {
+            initializeSearch(data);
+        // }
+        })
+        .catch((error) => console.error('Error:', error));
+    })
+
+  });
+
   // Handle when we click the delete movie button
   // const handlemovieDelete = (e) => {
   //   const currentmovie = JSON.parse(
@@ -358,4 +390,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-})
