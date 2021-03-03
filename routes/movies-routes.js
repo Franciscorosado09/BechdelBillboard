@@ -1,15 +1,29 @@
 const db = require('../models');
-
+const passport = require('../config/passport')
+const isAuthenticated = require ('../config/middleware/isAuthenticated')
 // Routes
 module.exports = (app) => {
 
-  // app.get('/movie-list', (req, res) => {
-  //   db.Movies.findAll({}).then((dbMovies) => res.json(dbMovies));
-  // });
-
-  app.get('/api/movie-list', (req, res) => {
+  app.get('/movie-list', isAuthenticated, (req, res) => {
+    if (req.user) {
+      res.redirect("/login");
+    } 
     db.Movies.findAll({}).then((dbMovies) => res.json(dbMovies));
   });
+
+  app.get('/api/movie-list', isAuthenticated, (req, res) => {
+    db.Movies.findAll({}).then((dbMovies) => res.json(dbMovies));
+  });
+
+  // app.get('/api/movie-list', (req, res) => {
+  //   db.Movies.findAll({
+  //     limit: 15,
+  //     offset: 0,
+  //     where: {}, // conditions
+  //   })
+  //   .then((dbMovies) => res.json(dbMovies));
+  // });
+  
 
   // var upload = multer({ storage: storage }).single('myFile');
   // app.post('/dashboard/myFile', function (req, res) {
@@ -20,6 +34,19 @@ module.exports = (app) => {
   //     res.end("file is uploaded");
   //   });
   // });
+
+  app.get('/api/movie-list/:searchString', (req, res) => {
+    db.Movies.findAll({
+      where:{
+
+      title: req.params.searchString
+
+      }
+    })
+    .then((dbMovies) => res.json(dbMovies));
+
+  });
+  
 
   app.post('/api/movie-add', (req, res) => {
     console.log(req.body)
