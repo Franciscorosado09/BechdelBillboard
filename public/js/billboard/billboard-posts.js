@@ -85,9 +85,9 @@ document.addEventListener('DOMContentLoaded', () => {
       
   
       // Delete button
-      const editDeleteRow = document.createElement('div')
-      editDeleteRow.classList.add('row')
-      editDeleteRow.setAttribute('id', 'editDelete')
+      // const editDeleteRow = document.createElement('div')
+      // editDeleteRow.classList.add('row')
+      // editDeleteRow.setAttribute('id', 'editDelete')
       const deleteBtn = document.createElement('button');
       deleteBtn.textContent = 'x'
       //deleteBtn.innerHTML = '<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>';
@@ -101,8 +101,8 @@ document.addEventListener('DOMContentLoaded', () => {
       editButton.classList.add('edit', 'btn', 'btn-info');
       editButton.addEventListener('click', handlebillboardEdit);
 
-      editDeleteRow.append(deleteBtn)
-      editDeleteRow.append(editButton)
+      // editDeleteRow.append(deleteBtn)
+      // editDeleteRow.append(editButton)
       
       const titleDataRow = document.createElement('div')
       titleDataRow.classList.add('row')
@@ -145,8 +145,8 @@ document.addEventListener('DOMContentLoaded', () => {
       newbillboardPost.textContent =`${billboard.post}`;
       newbillboardDate.textContent = ` (${formattedDate})`;
       newbillboardTitle.append(newbillboardDate);
-      newbillboardCardHeading.append(editDeleteRow);
-      //newbillboardCardHeading.append(editButton);
+      newbillboardCardHeading.append(deleteBtn);
+      newbillboardCardHeading.append(editButton);
       newbillboardCardHeading.append(titleDataRow);
       newbillboardCardHeading.append(userRow);
       newbillboardCardHeading.append(imageRow)
