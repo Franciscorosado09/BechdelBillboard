@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     }).then((response) => response.json())
       .then((data) => {
-        // window.location.href = '/billboard.html';
+        window.location.href = '/billboard.html';
         console.log(data)
         console.log('Success in submitting post:', data);
         console.log(JSON.stringify(billboard))
@@ -214,7 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
       .then(() => {
         console.log("Success in Put!")
-       //window.location.href = '/billboard.html';
+       window.location.href = '/billboard.html';
       })
       .catch((err) => console.error(err));
   };

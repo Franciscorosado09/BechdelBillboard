@@ -36,7 +36,7 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
-//app.set('view engine', 'handlebars');
+
 
 // Routes
 require('./routes/billboard-routes.js')(app);
