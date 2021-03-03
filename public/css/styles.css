@@ -35,7 +35,8 @@ input.new-item:focus {
 #Brand{
   background-image: url(./assets/BB.png);
   height: auto; 
-  width: 7%;
+  width: 10%;
+
 }
 
 body{
@@ -194,13 +195,14 @@ span {
 .profileimg {
   width: 150px;
   height: 150px;
+  
 
 }
 #profileInfo{
  font-size: 140%;
  color: black;
  font-weight: bolder;
-
+ 
 }
 
 #linkColor{
@@ -219,8 +221,8 @@ span {
 
 .jumbotron{
 
-  background-color:  #fcb9b2;
-  margin-top: 2%;
+  background-color: #fef9ff ;
+  margin-top: 4%;
   color: #5d4e60;
   
 
@@ -275,4 +277,11 @@ span {
   position: absolute;
   top: 7px;
   right: 15px;
+}
+
+#searchText{
+  color: #5d4e60;
+  text-shadow: 2px 2px #fcb9b2;
+margin-left: 25%;
+margin-top: 4%;
 }
