@@ -45,7 +45,7 @@ require('./routes/movies-routes.js')(app)
 require('./routes/user-profile-routes.js')(app)
 
 
-db.sequelize.sync({ force: true }).then(() => {
+db.sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log(`Listening on PORT ${PORT}`));
 });
 
