@@ -190,6 +190,24 @@ document.addEventListener('DOMContentLoaded', () => {
   // }
 
   // const charactersList = document.getElementById('charactersList');
+ const showmessge = () => {
+  movieContainer.innerHTML = '';
+    const messageH2 = document.createElement('h2');
+    messageH2.style.textAlign = 'center';
+    messageH2.style.marginTop = '50px';
+    messageH2.innerHTML = 'Nothing Found';
+    movieContainer.append(messageH2);
+  }
+  
+  const hidemessge = () => {
+    movieContainer.innerHTML = '';
+      const messageH2 = document.createElement('h2');
+      messageH2.style.textAlign = 'center';
+      messageH2.style.marginTop = '50px';
+      messageH2.innerHTML = '';
+      movieContainer.append(messageH2);
+    }
+
   const searchBar = document.getElementById('searchBar');
   let searchString = [];
 
@@ -207,8 +225,9 @@ document.addEventListener('DOMContentLoaded', () => {
         movies = data
         console.log('Success in searching movies:', data);
         if (!data || !data.length) {
-          displayEmpty();
+          showmessge()
         } else {
+        hidemessge()
         initializeSearch(movies);
         }
       })
