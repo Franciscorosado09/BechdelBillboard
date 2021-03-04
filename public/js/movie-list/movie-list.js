@@ -253,7 +253,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // fetchData();
 
 
-  const resultcontainer = document.getElementById('result')
+  // const resultcontainer = document.getElementById('result')
 
   //FRONT
   const fetchData = ()  =>{
