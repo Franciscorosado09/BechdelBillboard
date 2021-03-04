@@ -113,10 +113,10 @@ nav{
 
 }
 
-.edit,
+/* .edit,
 .delete {
   margin-bottom: 2%;
-}
+} */
 
 span {
   color: #fef9ff;
@@ -284,4 +284,65 @@ span {
   text-shadow: 2px 2px #fcb9b2;
 margin-left: 25%;
 margin-top: 4%;
+}
+
+
+/* Billboard Posts CSS -- use these ids (set in JS) */
+
+#imageStyle {
+  width: 40%;
+  height: auto;
+  padding-bottom: 2%;
+}
+
+/* #titlePost {
+  color: #5d4e60;
+  text-shadow: 2px 2px #fef9ff;
+  font-weight: bolder;
+} */
+
+#deleteBtn {
+  width: 5%;
+  margin-left: 85%;
+}
+
+.edit {
+  margin-left: .5%;
+}
+
+#userStyle {
+  font-size: 1.2rem;
+  padding-top: 2%;
+  padding-bottom: 2%;
+}
+
+#newPost {
+
+  width: 150%;
+  height: 100%;
+  margin-top: 10%;
+
+}
+
+#postText {
+  font-size: 1.9rem;
+  padding-left: 5%;
+  padding-top: 2%;
+}
+
+#postTitle {
+  color: #5d4e60;
+  text-shadow: 2px 2px #fef9ff;
+  font-size: 3rem;
+}
+
+small{
+  color: #5d4e60;
+  text-shadow: 2px 2px #fef9ff;
+  font-size: rem;
+  padding-left: 15%;
+}
+
+.billboard-container{
+  margin-top: 5%;
 }
