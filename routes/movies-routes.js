@@ -16,26 +16,26 @@ module.exports = (app) => {
   });
 
 
-  app.get('/api/movie-list/:start/:end', (req, res) => {
+  // app.get('/api/movie-list/:start/:end', (req, res) => {
 
-    var start = req.params.start;
-    var end = req.params.end;
+  //   var start = req.params.start;
+  //   var end = req.params.end;
 
-    db.Movies.findAll({
-      where: {
-        id: {
-          [Op.between]: [start, end],
-        },
-      },
-    })
-      .then((result) => {
-        console.log(result);
-        res.json(result);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  });
+  //   db.Movies.findAll({
+  //     where: {
+  //       id: {
+  //         [Op.between]: [start, end],
+  //       },
+  //     },
+  //   })
+  //     .then((result) => {
+  //       console.log(result);
+  //       res.json(result);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // });
   
 
   // var upload = multer({ storage: storage }).single('myFile');
