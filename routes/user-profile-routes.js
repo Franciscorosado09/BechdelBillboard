@@ -5,19 +5,17 @@ const db = require('../models');
 const passport = require('../config/passport')
 const isAuthenticated = require ('../config/middleware/isAuthenticated')
 
-///<-- add 1 
 
 // Routes
 module.exports = (app) => {
-  app.get('/api/profile', isAuthenticated,(req, res) => {  ///<--- YJK TESTED //USE ISAUTHENTICATED IF YOU WANT BOUNCE BACK WHEN SOMEONE TRIES TO CHANGE LINK
+  app.get('/api/profile', isAuthenticated,(req, res) => {  
     const query = {};
     query.id = req.user.id
     // if (req.user_id) {
     //   UserId = req.user_id;
     // }
     // Here we add an "include" property to our options in our findAll query
-    // We set the value to an array of the models we want to include in a left outer join
-    // In this case, just db.Author
+
 
     db.User.findAll({
       where: query,
@@ -28,8 +26,7 @@ module.exports = (app) => {
   // Get route for retrieving a single Login
   app.get('/api/profile/:id', (req, res) => {
     // Here we add an "include" property to our options in our findOne query
-    // We set the value to an array of the models we want to include in a left outer join
-    // In this case, just db.Author
+
     db.User.findOne({
       where: {
         id: req.params.id,
@@ -39,7 +36,7 @@ module.exports = (app) => {
   });
 
   // POST route for saving a new Login
-  app.post("/api/login", passport.authenticate("local"), (req, res) => { //<--YJK TESTED
+  app.post("/api/login", passport.authenticate("local"), (req, res) => { 
     // Sending back a password, even a hashed password, isn't a good idea
     res.json({
       email: req.user.email,
@@ -70,7 +67,7 @@ module.exports = (app) => {
 // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
 // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
 // otherwise send back an error
-app.post("/api/signup", (req, res) => { //<-- YJK TESTED
+app.post("/api/signup", (req, res) => { 
   db.User.create({
     email: req.body.email,
     password: req.body.password
