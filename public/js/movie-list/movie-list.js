@@ -246,77 +246,77 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-  var page = 1
-  var start = 1;
-  var end = 10;
+  // var page = 1
+  // var start = 1;
+  // var end = 10;
 
-  // fetchData();
+  // // fetchData();
 
 
-  // const resultcontainer = document.getElementById('result')
+  // // const resultcontainer = document.getElementById('result')
 
-  //FRONT
-  const fetchData = ()  =>{
-    fetch(`/api/movie-list/${start}+${end}`, {
-      method: 'GET',
-      data : {
-        page: page
-      },
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("HELLO JEZZY")
-        console.log(data);
-        if (data) {
-          // var dataArr = data;
-          // totalrecord = data.length; 
-          var html = "";
-          for (var i = 0; i < data.length; i++) {
-            html +=
-              "<div class='sample-user'>" +
-              "<h3>ID: " +
-              data[i].id +
-              "</h3>" +
-              "<p>Movie Title " +
-              data[i].title +
-              "</p>" +
-              "<p>Movie Director: " +
-              data[i].director +
-              "</p>" +
-              "<p>Movie Description: " +
-              data[i].description +
-              "</p>" +
-              "<p>Released Year: " +
-              data[i].year +
-              "</p>" +
-              "</div>" +
-              "<hr />";
-          }
-          $("#result").html(html);        }
-      })
-      .catch((error) => console.error("Error:", error));
-  }
+  // //FRONT
+  // const fetchData = ()  =>{
+  //   fetch(`/api/movie-list/${start}+${end}`, {
+  //     method: 'GET',
+  //     data : {
+  //       page: page
+  //     },
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //   })
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       console.log("HELLO JEZZY")
+  //       console.log(data);
+  //       if (data) {
+  //         // var dataArr = data;
+  //         // totalrecord = data.length; 
+  //         var html = "";
+  //         for (var i = 0; i < data.length; i++) {
+  //           html +=
+  //             "<div class='sample-user'>" +
+  //             "<h3>ID: " +
+  //             data[i].id +
+  //             "</h3>" +
+  //             "<p>Movie Title " +
+  //             data[i].title +
+  //             "</p>" +
+  //             "<p>Movie Director: " +
+  //             data[i].director +
+  //             "</p>" +
+  //             "<p>Movie Description: " +
+  //             data[i].description +
+  //             "</p>" +
+  //             "<p>Released Year: " +
+  //             data[i].year +
+  //             "</p>" +
+  //             "</div>" +
+  //             "<hr />";
+  //         }
+  //         $("#result").html(html);        }
+  //     })
+  //     .catch((error) => console.error("Error:", error));
+  // }
   
-  // handling the prev-btn
-  $(".prev-btn").on("click", function () {
-    if (page > 1) {
-      page--;
-      fetchData(start,end);
-    }
-    console.log("Prev Page: " + page);
-  });
+  // // handling the prev-btn
+  // $(".prev-btn").on("click", function () {
+  //   if (page > 1) {
+  //     page--;
+  //     fetchData(start,end);
+  //   }
+  //   console.log("Prev Page: " + page);
+  // });
 
-  // handling the next-btn
-  $(".next-btn").on("click", function () {
-    if (page + 1) { //add a function that stops when data.legnth is met
-      page++;
-      fetchData(start,end);
-    }
-    console.log("Next Page: " + page);
-  });
+  // // handling the next-btn
+  // $(".next-btn").on("click", function () {
+  //   if (page + 1) { //add a function that stops when data.legnth is met
+  //     page++;
+  //     fetchData(start,end);
+  //   }
+  //   console.log("Next Page: " + page);
+  // });
 
 
 
