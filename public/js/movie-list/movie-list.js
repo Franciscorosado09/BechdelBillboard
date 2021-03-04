@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const newmovieTitle = document.createElement('h3');
     const newmovieYear = document.createElement('h3');
     const newmovieGenre = document.createElement('p');
-    const newmovieImage = document.createElement('a').setAttribute('href', `${movie.image}`);
+    const newmovieImage = document.createElement('img');
 
     const imageText = document.createTextNode('This is linked.')
     // console.log(imageText)
@@ -143,10 +143,15 @@ document.addEventListener('DOMContentLoaded', () => {
     newmovieDescription.textContent = `${movie.description}`;
     // newmovieImage.textContent = `${movie.image}`;
     // newmovieImage.set
+    newmovieImage.src = `${movie.image}`
+    newmovieImage.innerHTML = `${movie.image}`
+    console.log(newmovieImage)
+    console.log(movie.image)
+
 
     newmovieCardHeading.append(newmovieImage);
     newmovieCardHeading.append(newmovieTitle);
-    //newmovieCardHeading.append(newmovieImage);
+    newmovieCardHeading.append(newmovieImage);
     newmovieCardDescription.append(newmovieuser);
     newmovieCardDescription.append(newmovieYear);
     newmovieCardDescription.append(newmovieGenre);

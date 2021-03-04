@@ -119,16 +119,16 @@ document.addEventListener('DOMContentLoaded', () => {
     newRow.appendChild(postsLink);
 
     // // "Create a post" link
-    const createLink = document.createElement('td');
-    createLink.innerHTML = `<td><a href='/billboard-add.html'>Create a Post</a></td>`;
-    newRow.appendChild(createLink);
+    // const createLink = document.createElement('td');
+    // createLink.innerHTML = `<td><a href='/billboard-add.html'>Create a Post</a></td>`;
+    // newRow.appendChild(createLink);
 
     // "Delete user" link
-    const deleteLink = document.createElement('td');
-    deleteLink.innerHTML = `<td><a href= '/billboard.html?Billboard_id=${billboards[0].id} style='cursor:pointer;color:red' class='delete-user btn'>Delete Post</a></td>`;
-    deleteLink.addEventListener('click', deletebillboard);
-    newRow.appendChild(deleteLink);
-    console.log(newRow)
+    // const deleteLink = document.createElement('td');
+    // deleteLink.innerHTML = `<td><a href= '/billboard.html?Billboard_id=${billboards[0].id} style='cursor:pointer;color:red' class='delete-user btn'>Delete Post</a></td>`;
+    // deleteLink.addEventListener('click', deletebillboard);
+    // newRow.appendChild(deleteLink);
+    // console.log(newRow)
     // // Return the table row
     return newRow;
     
@@ -153,3 +153,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
   
 });
+
+
