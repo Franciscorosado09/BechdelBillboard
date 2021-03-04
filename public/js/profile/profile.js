@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-  const getUserPosts = () => {
+  const getUserPosts = (users) => {
 
     fetch(`/api/billboard`, {
       method: 'GET',
@@ -55,40 +55,23 @@ document.addEventListener('DOMContentLoaded', () => {
         billboards = data;
         console.log(billboards)
         console.log('Success in getting user information:', data);
-        //pairuserPosts(billboards)
-        //initializeRows(billboards)
-        if(billboards[0].User.id === users.id){
-          createNewRow(billboards)
-        } else {
-          console.log('no posts yet')
+        
+        for (i = 0; i < billboards.length; i++) {
+          if (billboards[i].User.id === users.id) {
+            i++
+            console.log(users.id)
+            console.log(i++)
+            createNewRow(billboards)
+          } else {
+            console.log('no posts yet')
+          }
         }
-        //createNewRow(billboards)
+      
       })
       .catch((error) => console.error('Error:', error));
   };
 
-  //getUserPosts();
 
-  // const pairuserPosts = (billboards) => {
-  //   console.log(user.email)
-  //   if (billboards.User.email === user.email) {
-  //     createuserRow(billboards)
-  //   } else {
-  //     const alertDiv = document.createElement('div');
-  //     alertDiv.classList.add('alert', 'alert-danger');
-  //     alertDiv.textContent = 'Must have at least one user to post';
-  //     alertDiv.id = 'removeMe';
-  //     alertDiv.style.marginRight = '5px';
-  //     return alertDiv;
-  //   }
-  // }
-  // const initializeRows = () => {
-  //   postContainer.innerHTML = '';
-  //   const postsToAdd = [];
-
-  //   billboards.forEach((billboard) => postsToAdd.push(createNewRow(billboard)));
-  //   postsToAdd.forEach((billboard) => postContainer.append(billboard));
-  // };
 
   const createNewRow = (billboards) => {
     console.log(billboards)
@@ -104,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // const addPost = document.getElementById('post')
     // const createNew = document.getElementById('create')
     // const deletePost = document.getElementById('delete')
-    
+
     const td = document.createElement('td');
     td.textContent = billboards[0].title;
     newRow.appendChild(td);
@@ -131,9 +114,23 @@ document.addEventListener('DOMContentLoaded', () => {
     // console.log(newRow)
     // // Return the table row
     return newRow;
-    
+
   };
 
+  // const displayEmpty = (id) => {
+  //   const query = window.location.search;
+  //   let partial = '';
+  //   if (id) {
+  //     partial = ` for user #${id}`;
+  //   }
+
+  //   billboardContainer.innerHTML = '';
+  //   const messageH2 = document.createElement('h2');
+  //   messageH2.style.textAlign = 'center';
+  //   messageH2.style.marginTop = '50px';
+  //   messageH2.innerHTML = `No billboards yet${partial}, navigate <a href='/billboard-add.html${query}'>here</a> in order to get started.`;
+  //   billboardContainer.append(messageH2);
+  // };
   // //need to set this up to delete!
   const deletebillboard = (id) => {
     billboard = id || '';
@@ -151,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.location.href = `/userProfile.html`
   };
 
-  
+
 });
 
 
