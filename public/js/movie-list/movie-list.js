@@ -110,10 +110,12 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log(movie.image)
 
 
-    const newmovieTitle = document.createElement('h3');
-    const newmovieYear = document.createElement('h3');
+    const newmovieTitle = document.createElement('h2');
+    const newmovieYear = document.createElement('h2');
     const newmovieGenre = document.createElement('p');
     const newmovieImage = document.createElement('img');
+    newmovieImage.setAttribute("id", "movieImage")
+    newmovieYear.setAttribute("id","movieYear")
 
     const imageText = document.createTextNode('This is linked.')
     // console.log(imageText)
@@ -126,6 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
     newmovieuser.textContent = `Directed by: ${movie.director}`;
     newmovieuser.style.float = 'right';
     newmovieuser.style.marginTop = '-10px';
+    newmovieuser.setAttribute("id", "movieTitle")
 
     const newmovieCardDescription = document.createElement('div');
 
