@@ -3,7 +3,6 @@ module.exports = (sequelize, DataTypes) => {
     title: {
       type: DataTypes.STRING,
       
-      //not working - get error message
       allowNull: false,
       
       validate: {
@@ -14,7 +13,6 @@ module.exports = (sequelize, DataTypes) => {
     post: {
       type: DataTypes.STRING,
       
-      //not working - get error message
       allowNull: false,
       
       validate: {
@@ -61,8 +59,6 @@ module.exports = (sequelize, DataTypes) => {
     // },
   });
 
-
-
   //posts linked to user in user.
   Billboard.associate = (models) => {
     Billboard.belongsTo(models.User, {
@@ -70,8 +66,6 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
     })
   }
-
-  
 
 
   // // //links to movies - pulls in movies for posts
@@ -82,7 +76,6 @@ module.exports = (sequelize, DataTypes) => {
   //   })
   // }
 
- 
 
   return Billboard;
 };
