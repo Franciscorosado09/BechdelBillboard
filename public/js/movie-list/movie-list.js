@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     movies.forEach((movie) => searches.push(createNewRow(movie)));
-    searches.forEach((movie) => movieContainer.prepend(movie));
+    searches.forEach((movie) => movieContainer.append(movie));
     console.log(searches)
   }
 
