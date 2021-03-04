@@ -290,7 +290,7 @@ margin-top: 4%;
 /* Billboard Posts CSS -- use these ids (set in JS) */
 
 #imageStyle {
-  width: 50%;
+  width: 40%;
   height: auto;
   padding-bottom: 2%;
 }
@@ -311,7 +311,7 @@ margin-top: 4%;
 }
 
 #userStyle {
-  font-size: 1.7rem;
+  font-size: 1.2rem;
   padding-top: 2%;
   padding-bottom: 2%;
 }
@@ -333,13 +333,13 @@ margin-top: 4%;
 #postTitle {
   color: #5d4e60;
   text-shadow: 2px 2px #fef9ff;
-  font-size: 4rem;
+  font-size: 3rem;
 }
 
 small{
   color: #5d4e60;
   text-shadow: 2px 2px #fef9ff;
-  font-size: 3rem;
+  font-size: rem;
   padding-left: 15%;
 }
 

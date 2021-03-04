@@ -1,15 +1,18 @@
 # The Bechdel Billboard
 
-# Version 1.0
+<br>
 
+### Version 1.0
 
+<br>
 
 # Description 
 
-* The Bechdel Billboard is an app that allows the user to find a list of movies that pass the bechdel test and allow for our users to blog and comment on the stories that inspire them. 
+The Bechdel Billboard is an app that allows the user to find a list of movies that pass the bechdel test and allow for our users to blog and comment on the stories that inspire them. 
 
 
 # The Bechdel Test
+
     1. The movie has to have at least two women in it,
     2. who talk to each other,
     3. about something other than a man.

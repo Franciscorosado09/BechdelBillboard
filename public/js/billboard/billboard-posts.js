@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
       const newbillboardCard = document.createElement('div');
       newbillboardCard.classList.add('card');
-      
+      newbillboardCard.setAttribute('id', 'billboardCard')
   
       const newbillboardCardHeading = document.createElement('div');
       newbillboardCardHeading.classList.add('card-header');
@@ -87,9 +87,6 @@ document.addEventListener('DOMContentLoaded', () => {
       
   
       // Delete button
-      // const editDeleteRow = document.createElement('div')
-      // editDeleteRow.classList.add('row')
-      // editDeleteRow.setAttribute('id', 'editDelete')
       const deleteBtn = document.createElement('button');
       //const icon = document.createElement('i')
       //icon.innerHTML = '<i class="bi bi-trash" ></i>';
@@ -107,9 +104,6 @@ document.addEventListener('DOMContentLoaded', () => {
       editButton.classList.add('edit', 'btn', 'btn-info');
       editButton.addEventListener('click', handlebillboardEdit);
 
-      // editDeleteRow.append(deleteBtn)
-      // editDeleteRow.append(editButton)
-      
       const titleDataRow = document.createElement('div')
       titleDataRow.classList.add('row')
       titleDataRow.setAttribute('id', 'titlePost')
@@ -117,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
       newbillboardTitle.setAttribute('id', 'postTitle')
       const newbillboardDate = document.createElement('small');
       titleDataRow.append(newbillboardTitle)
-      //titleDataRow.append(newbillboardDate)
+
 
       const imageRow = document.createElement('div')
       imageRow.classList.add('row')
