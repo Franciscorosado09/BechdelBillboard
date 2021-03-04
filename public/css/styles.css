@@ -358,4 +358,14 @@ small{
 
 .billboard-container{
   margin-top: 5%;
+  
+}
+
+.billboardCard {
+
+  background-color: #fef9ff;
+}
+
+.card{
+  background-color: #fef9ff;
 }
