@@ -285,3 +285,15 @@ span {
 margin-left: 25%;
 margin-top: 4%;
 }
+
+#movieImage {
+  width: 150px;
+  height: 200px;
+}
+
+#movieYear {
+  font-size: 2rem;
+}
+#movieTitle{
+  font-size: 2rem;
+}
