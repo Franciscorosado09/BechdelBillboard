@@ -1,3 +1,5 @@
+// const { nextTick } = require("process");
+
 // Wait for the DOM to completely load before we run our JS
 document.addEventListener('DOMContentLoaded', () => {
   console.log('DOM loaded! 🚀');
@@ -75,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log(searches)
   }
 
-///TESTING-YJK
+  ///TESTING-YJK
 
 
   // Create HTML rows for the movie container
@@ -190,23 +192,23 @@ document.addEventListener('DOMContentLoaded', () => {
   // }
 
   // const charactersList = document.getElementById('charactersList');
- const showmessge = () => {
-  movieContainer.innerHTML = '';
+  const showmessge = () => {
+    movieContainer.innerHTML = '';
     const messageH2 = document.createElement('h2');
     messageH2.style.textAlign = 'center';
     messageH2.style.marginTop = '50px';
     messageH2.innerHTML = 'Nothing Found';
     movieContainer.append(messageH2);
   }
-  
+
   const hidemessge = () => {
     movieContainer.innerHTML = '';
-      const messageH2 = document.createElement('h2');
-      messageH2.style.textAlign = 'center';
-      messageH2.style.marginTop = '50px';
-      messageH2.innerHTML = '';
-      movieContainer.append(messageH2);
-    }
+    const messageH2 = document.createElement('h2');
+    messageH2.style.textAlign = 'center';
+    messageH2.style.marginTop = '50px';
+    messageH2.innerHTML = '';
+    movieContainer.append(messageH2);
+  }
 
   const searchBar = document.getElementById('searchBar');
   let searchString = [];
@@ -227,12 +229,182 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!data || !data.length) {
           showmessge()
         } else {
-        hidemessge()
-        initializeSearch(movies);
+          hidemessge()
+          initializeSearch(movies);
         }
       })
       .catch((error) => console.error('Error:', error));
   })
+
+
+
+
+
+
+  var page = 1
+  var start = 1;
+  var end = 10;
+
+  // fetchData();
+
+
+  const resultcontainer = document.getElementById('result')
+
+  //FRONT
+  const fetchData = ()  =>{
+    fetch(`/api/movie-list/${start}+${end}`, {
+      method: 'GET',
+      data : {
+        page: page
+      },
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("HELLO JEZZY")
+        console.log(data);
+        if (data) {
+          // var dataArr = data;
+          // totalrecord = data.length; 
+          var html = "";
+          for (var i = 0; i < data.length; i++) {
+            html +=
+              "<div class='sample-user'>" +
+              "<h3>ID: " +
+              data[i].id +
+              "</h3>" +
+              "<p>Movie Title " +
+              data[i].title +
+              "</p>" +
+              "<p>Movie Director: " +
+              data[i].director +
+              "</p>" +
+              "<p>Movie Description: " +
+              data[i].description +
+              "</p>" +
+              "<p>Released Year: " +
+              data[i].year +
+              "</p>" +
+              "</div>" +
+              "<hr />";
+          }
+          $("#result").html(html);        }
+      })
+      .catch((error) => console.error("Error:", error));
+  }
+  
+  // handling the prev-btn
+  $(".prev-btn").on("click", function () {
+    if (page > 1) {
+      page--;
+      fetchData(start,end);
+    }
+    console.log("Prev Page: " + page);
+  });
+
+  // handling the next-btn
+  $(".next-btn").on("click", function () {
+    if (page + 1) { //add a function that stops when data.legnth is met
+      page++;
+      fetchData(start,end);
+    }
+    console.log("Next Page: " + page);
+  });
+
+
+
+
+
+
+
+
+
+
+  // $(function () {
+
+  //   var page = 1
+  //   var  pagelimit = 4
+  //   var  totalrecord = 16;
+
+  //   fetchData();
+
+  //   // handling the prev-btn
+  //   $(".prev-btn").on("click", function () {
+  //     if (page > 1) {
+  //       page--;
+  //       fetchData();
+  //     }
+  //     console.log("Prev Page: " + page);
+  //   });
+
+  //   // handling the next-btn
+  //   $(".next-btn").on("click", function () {
+  //     if (page * pagelimit < totalrecord) {
+  //       page++;
+  //       fetchData();
+  //     }
+  //     console.log("Next Page: " + page);
+  //   });
+
+  //   function fetchData() {
+  //     // ajax() method to make api calls
+  //     $.ajax({
+  //       url: "http://localhost:8080/api/movie-list",
+  //       type: "GET",
+  //       dataType: "json",
+  //       headers: {
+  //         "Content-Type": "application/json"
+  //       },
+  //       data: {
+  //         "limit": pagelimit,
+  //         "offset": totalrecord
+  //       },
+  //       contentType: 'application/json',
+  //       success: function (data) {
+  //         console.log(data);
+
+  //         if (data) {
+  //           var dataArr = data;
+
+  //           totalrecord = data.length;
+
+  //           var html = "";
+  //           for (var i = 0; i < dataArr.length; i++) {
+  //             html += "<div class='sample-user'>" +
+  //               "<h3>ID: " + dataArr[i].id + "</h3>" +
+  //               "<p>Movie Title " + dataArr[i].title + "</p>" +
+  //               "<p>Movie Director: " + dataArr[i].director + "</p>" +
+  //               "<p>Movie Description: " + dataArr[i].description + "</p>" +
+  //               "<p>Released Year: " + dataArr[i].year + "</p>" +
+  //               "</div>" +
+  //               "<hr />";
+  //           }
+  //           $("#result").html(html);
+  //         }
+  //       },
+  //       error: function (jqXHR, textStatus, errorThrown) {
+  //         console.log(jqXHR);
+  //         console.log(textStatus);
+  //         console.log(errorThrown);
+  //       }
+  //     });
+  //   }
+  // });
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
