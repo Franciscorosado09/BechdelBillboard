@@ -84,10 +84,12 @@ nav{
 
 }
 
-#loginNav {
+
+
+/* #loginNav {
   padding-top: 2%;
   padding-bottom: 2%;
-}
+} */
 
 #brandLogin {
   height: 2%;
@@ -358,4 +360,14 @@ small{
 
 .billboard-container{
   margin-top: 5%;
+  
+}
+
+.billboardCard {
+
+  background-color: #fef9ff;
+}
+
+.card{
+  background-color: #fef9ff;
 }
